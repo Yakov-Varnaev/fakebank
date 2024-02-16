@@ -20,6 +20,21 @@ class AccountCRUD:
         result = await self.db.execute(q)
         return result.scalars().all()
 
+    async def get_list(
+        self,
+        offset: int | None = None,
+        limit: int | None = None,
+        **filters: Any
+    ):
+        q = self.get_query().filter_by(**filters)
+        if offset:
+            q = q.offset(offset)
+        if limit:
+            q = q.limit(limit)
+
+        result = await self.db.execute(q)
+        return result.scalars().all()
+
     async def get(self, **filters: Any):
         query = self.get_query().filter_by(**filters)
         result = await self.db.execute(query)

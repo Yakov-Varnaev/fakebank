@@ -38,3 +38,4 @@ async def get_user_manager(
 fastapi_users = FastAPIUsers[User, uuid.UUID](get_user_manager, [auth_backend])
 
 current_active_user = fastapi_users.current_user(active=True)
+current_superuser = fastapi_users.current_user(superuser=True)

@@ -6,6 +6,10 @@ class AccountCreateSchema(BaseModel):
     user_id: UUID4
 
 
-class AccountReadSchema(AccountCreateSchema):
+class AccountBase(BaseModel):
     id: UUID4
     balance: Decimal
+
+
+class AccountReadSchema(AccountCreateSchema, AccountBase):
+    pass
