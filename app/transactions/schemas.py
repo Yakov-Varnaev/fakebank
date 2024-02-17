@@ -13,3 +13,9 @@ class AccountBase(BaseModel):
 
 class AccountReadSchema(AccountCreateSchema, AccountBase):
     pass
+
+
+class TransactionCreateSchema(BaseModel):
+    sent_from: UUID4
+    sent_to: UUID4
+    amount: Decimal

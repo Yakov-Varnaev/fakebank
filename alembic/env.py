@@ -10,7 +10,7 @@ from alembic import context
 from app.db.postgres import Base
 from app.core.config import settings
 from app.users.models import User
-from app.transactions.models import Account
+from app.transactions.models import Account, Transaction
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

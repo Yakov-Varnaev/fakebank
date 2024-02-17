@@ -2,13 +2,17 @@ from typing import Any
 from fastapi import Depends
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
+from app.db.crud import BaseCRUD
 from app.db.postgres import get_async_session
-from app.transactions.models import Account
+from app.transactions.models import Account, Transaction
 
-from app.transactions.schemas import AccountCreateSchema
+from app.transactions.schemas import (
+    AccountCreateSchema,
+    TransactionCreateSchema,
+)
 
 
-class AccountCRUD:
+class AccountCRUD(BaseCRUD[Account, AccountCreateSchema]):
     def __init__(self, db: AsyncSession = Depends(get_async_session)):
         self.db = db
 
@@ -52,3 +56,7 @@ class AccountCRUD:
         if instance:
             return instance
         return await self.create(AccountCreateSchema(**filters))
+
+
+class TransactionCRUD(BaseCRUD[Transaction, TransactionCreateSchema]):
+    model = Transaction
