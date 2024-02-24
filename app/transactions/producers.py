@@ -1,18 +1,17 @@
+from aiokafka import AIOKafkaProducer
 from fastapi.logger import logger
-from aiokafka import AIOKafkaProducer  # type: ignore[import]
 from app.core.config import settings
 from app.transactions.schemas import TransactionCreateSchema
 
 logger = logger.getChild(__name__)
 
 
-transaction_producer = AIOKafkaProducer(bootstrap_servers=settings.kafka_url)
-
-
-async def send_transaction(transaction: TransactionCreateSchema):
+async def send_transaction(
+    producer: AIOKafkaProducer, transaction: TransactionCreateSchema
+):
     logger.info(f'Sending transaction: {transaction}')
     try:
-        await transaction_producer.send_and_wait(
+        await producer.send_and_wait(
             settings.transaction_topic,
             value=transaction.model_dump_json().encode(),
         )

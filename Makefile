@@ -19,3 +19,6 @@ migrate:
 downgrade:
 	@echo "Downgrading"
 	poetry run alembic downgrade -1
+
+transaction_consumer:
+	poetry run python app/main.py --name=transactions

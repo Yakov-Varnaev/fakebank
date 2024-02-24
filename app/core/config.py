@@ -4,10 +4,12 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     title: str
     db_url: str
+    redis_url: str
     secret: str = 'notasecretatall'
     token_lifetime: int = 3600  # in seconds
     kafka_url: str = 'localhost:9092'
     transaction_topic: str = 'transactions'
+    notifications_topic: str = 'notifications'
 
     model_config = SettingsConfigDict(env_file='.env')
 

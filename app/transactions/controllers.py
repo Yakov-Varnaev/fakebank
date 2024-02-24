@@ -1,6 +1,16 @@
-from fastapi import APIRouter, Depends, HTTPException
+from typing_extensions import Annotated
+from fastapi import (
+    APIRouter,
+    Depends,
+    HTTPException,
+    WebSocket,
+    WebSocketDisconnect,
+    logger,
+)
 from pydantic import UUID4
+from app.core.dependencies.pagination import Pagination
 from app.transactions.crud import AccountCRUD
+from fastapi import Request
 from app.transactions.schemas import (
     AccountCreateSchema,
     AccountReadSchema,
@@ -25,20 +35,22 @@ async def create_account(
         account = await AccountCRUD(db).get_or_create(
             **account_data.model_dump()
         )
-    return AccountReadSchema.from_orm(account)
+    return AccountReadSchema.model_validate(account)
 
 
 @account_router.get('/my')
 async def get_user_accounts(
+    pagination: Annotated[Pagination, Depends(Pagination)],
     user: User = Depends(current_active_user),
 ) -> list[AccountReadSchema]:
     async with async_session() as db:
-        return await AccountCRUD(db).get_all(user_id=user.id)
+        accounts = await AccountCRUD(db).list(pagination, user_id=user.id)
+    return [AccountReadSchema.model_validate(a) for a in accounts]
 
 
 @account_router.get('/{account_id}')
 async def get_account(
-    account_id: UUID4, user: User = Depends(current_active_user)
+    account_id: UUID4, user: User = Depends(current_active_user),
 ) -> AccountReadSchema:
     async with async_session() as db:
         account = await AccountCRUD(db).get(id=account_id)
@@ -46,21 +58,22 @@ async def get_account(
             raise HTTPException(status_code=404)
         if account.user_id != user.id:
             raise HTTPException(status_code=403, detail='Forbidden')
-    return account
+    return AccountReadSchema.model_validate(account)
 
 
 @account_router.get('/')
 async def list_accounts(
+    pagination: Annotated[Pagination, Depends(Pagination)],
     _: User = Depends(current_superuser),
-    skip: int | None = None,
-    limit: int | None = None,
 ) -> list[AccountReadSchema]:
     async with async_session() as db:
-        return await AccountCRUD(db).get_list(skip, limit)
+        result = await AccountCRUD(db).list(pagination)
+    return [AccountReadSchema.model_validate(a) for a in result]
 
 
 @transaction_router.post('/')
 async def create_transaction(
+    request: Request,
     transaction_request: TransactionCreateSchema,
     user: User = Depends(current_active_user),
 ) -> str:
@@ -71,7 +84,9 @@ async def create_transaction(
     if not trans_exists:
         raise HTTPException(status_code=404, detail='Account not found')
     try:
-        await send_transaction(transaction_request)
+        await send_transaction(
+            request.app.state.transaction_producer, transaction_request
+        )
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
     return 'OK'

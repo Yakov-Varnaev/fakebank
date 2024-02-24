@@ -1,3 +1,4 @@
+from collections.abc import AsyncGenerator
 import uuid
 from fastapi import Depends
 from fastapi_users import BaseUserManager, FastAPIUsers, UUIDIDMixin
@@ -31,7 +32,7 @@ class UserManager(UUIDIDMixin, BaseUserManager[User, uuid.UUID]):
 
 async def get_user_manager(
     user_db: SQLAlchemyUserDatabase = Depends(get_user_db),
-):
+) -> AsyncGenerator[UserManager]:
     yield UserManager(user_db)
 
 
