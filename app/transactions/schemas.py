@@ -4,6 +4,7 @@ from pydantic import UUID4, BaseModel, ConfigDict
 
 class AccountCreateSchema(BaseModel):
     user_id: UUID4
+    name: str
 
 
 class AccountBase(BaseModel):

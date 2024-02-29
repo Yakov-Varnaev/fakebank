@@ -35,5 +35,7 @@ class Transaction(Base):
     sent_from = mapped_column(ForeignKey('account.id'), nullable=False)
     sent_to = mapped_column(ForeignKey('account.id'), nullable=False,)
     amount = mapped_column(DECIMAL, nullable=False)
-    created_at = mapped_column(DateTime, default=datetime.utcnow)
+    created_at = mapped_column(
+        DateTime, default=lambda: datetime.now(datetime.timezone.utc)
+    )
     status = mapped_column(String, default='pending')
