@@ -1,0 +1,10 @@
+<template>
+  <LayoutCentered>
+    <v-progress-circular
+      indeterminate
+      model-value="20"
+      :size="128"
+      :width="12"
+    />
+  </LayoutCentered>
+</template>
