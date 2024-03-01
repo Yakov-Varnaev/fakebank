@@ -6,18 +6,16 @@ export const useLoader = defineStore("loader", {
   }),
   actions: {
     async withLoader(func, args) {
-      this.startLoading();
+      this.start();
       let res = await func(args);
-      this.stopLoading();
+      this.stop();
       return res;
     },
-    startLoading() {
-      console.log("start loader");
+    start() {
       this.loading = true;
     },
-    stopLoading() {
+    stop() {
       this.loading = false;
-      console.log("stop loader");
     },
   },
 });

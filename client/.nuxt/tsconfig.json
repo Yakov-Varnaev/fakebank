@@ -86,6 +86,7 @@
     "./nuxt.d.ts",
     "../**/*",
     "../node_modules/@pinia/nuxt/runtime",
+    "../node_modules/@pinia-plugin-persistedstate/nuxt/runtime",
     "../node_modules/@nuxt/devtools/runtime",
     "../node_modules/@nuxt/telemetry/runtime",
     ".."
@@ -95,6 +96,7 @@
     "../../node_modules",
     "../node_modules/nuxt/node_modules",
     "../node_modules/@pinia/nuxt/runtime/server",
+    "../node_modules/@pinia-plugin-persistedstate/nuxt/runtime/server",
     "../node_modules/@nuxt/devtools/runtime/server",
     "../node_modules/@nuxt/telemetry/runtime/server",
     "../dist",

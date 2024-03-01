@@ -10,6 +10,10 @@ export const login = async (loginData) => {
   });
 };
 
+export const logout = async () => {
+  return await apiv1.post("/auth/logout");
+};
+
 export const register = async (registerData) => {
   return await apiv1.post("/auth/register", registerData);
 };

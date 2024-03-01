@@ -1,11 +1,14 @@
+from http import HTTPStatus
 from typing import Any, OrderedDict, TypeVar
-from typing_extensions import Generic
+
+from fastapi import HTTPException
 from pydantic import BaseModel
-from sqlalchemy import Select, select
+from sqlalchemy import Select, func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import Query
-from app.core.dependencies.pagination import Pagination
+from typing_extensions import Generic
 
+from app.core.dependencies.pagination import Pagination
 from app.db.postgres import Base
 
 ORMModel = TypeVar('ORMModel', bound=Base)
@@ -56,12 +59,32 @@ class BaseCRUD(Generic[ORMModel, CreateSchema]):
         result = await self.db.execute(query)
         return result.scalar()
 
+    async def update(self, instance: ORMModel, data: CreateSchema) -> ORMModel:
+        for field, value in data.model_dump().items():
+            setattr(instance, field, value)
+        await self.db.commit()
+        await self.db.refresh(instance)
+        return instance
+
+    async def get_or_404(self, **filters: Any) -> ORMModel:
+        instance = await self.get(**filters)
+        if instance is None:
+            raise HTTPException(status_code=HTTPStatus.NOT_FOUND)
+        return instance
+
     async def list(
         self, pagination: Pagination = Pagination(), **filters: Any
     ) -> list[ORMModel]:
         query = self.get_base_query(pagination, **filters)
         result = await self.db.execute(query)
         return result.scalars().all()
+
+    async def count(self, **filters: Any) -> int:
+        query = (
+            select(func.count()).select_from(self.model).filter_by(**filters)
+        )
+        result = await self.db.execute(query)
+        return result.scalar() or 0
 
     async def exists(self, **filters: Any) -> bool:
         q = self.get_query().filter_by(**filters).exists()

@@ -63,7 +63,7 @@ export default {
         <v-row>
           <v-col>
             <v-text-field
-              label="Имя"
+              label="First Name"
               v-model="registerData.firstName"
               @input="v$.registerData.firstName.$touch"
               @blur="v$.registerData.firstName.$touch"
@@ -73,7 +73,7 @@ export default {
           </v-col>
           <v-col>
             <v-text-field
-              label="Фамилия"
+              label="Last Name"
               v-model="registerData.lastName"
               @input="v$.registerData.lastName.$touch"
               @blur="v$.registerData.lastName.$touch"
@@ -104,7 +104,7 @@ export default {
         <v-btn
           block
           type="submit"
-          text="Зарегистрироваться"
+          text="Sign up"
           color="primary"
           @click.prevent="performRegister"
         />

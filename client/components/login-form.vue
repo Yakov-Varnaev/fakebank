@@ -24,11 +24,7 @@ const v$ = useVuelidate(rules, formData);
 const auth = useAuth();
 
 async function performLogin() {
-  const res = await auth.login(formData);
-  if (res.errors) {
-    Object.assign(errors, res.errors);
-    return;
-  }
+  await auth.login(formData);
 }
 
 const isFormValid = computed(() => {
@@ -63,7 +59,7 @@ function collectErrors(field) {
         <v-btn
           block
           type="submit"
-          text="Войти"
+          text="Sign in"
           color="primary"
           @click.prevent="performLogin"
         />

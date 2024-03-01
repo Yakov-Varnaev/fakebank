@@ -18,7 +18,7 @@ export default defineNuxtConfig({
   ],
   modules: [
     "@pinia/nuxt",
-    // "@pinia-plugin-persistedstate/nuxt",
+    "@pinia-plugin-persistedstate/nuxt",
 
     (_options, nuxt) => {
       nuxt.hooks.hook("vite:extendConfig", (config) => {

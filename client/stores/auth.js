@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import {
   getMe,
   login as apiLogin,
+  logout as apiLogout,
   register as apiRegister,
 } from "@/api/auth.js";
 import { useLoader } from "~/stores/loader";
@@ -17,7 +18,6 @@ export const useAuth = defineStore("auth", {
   actions: {
     reset() {
       Object.assign(this, initialState());
-      useContext().reset();
     },
     async _register(registerData) {
       try {
@@ -37,9 +37,7 @@ export const useAuth = defineStore("auth", {
         if (report) {
           alerts.reportInfo("Welcome!");
         }
-      } catch (error) {
-        console.log(error);
-        let response = error.response;
+      } catch ({ response }) {
         if (response.status === HttpStatusCode.BadRequest) {
           return { errors: response.data };
         } else if (response.status === HttpStatusCode.Unauthorized) {
@@ -53,17 +51,34 @@ export const useAuth = defineStore("auth", {
       navigateTo({ name: "index" });
       return {};
     },
+    async _logout() {
+      const alert = useAlert();
+      try {
+        await apiLogout();
+      } catch (error) {
+        console.log(error);
+      }
+      this.reset();
+      alert.reportWarning("You have been logged out!");
+      navigateTo({ name: "signin" });
+    },
+    async logout() {
+      const loader = useLoader();
+      loader.start();
+      await this._logout();
+      loader.stop();
+    },
     async login(loginData) {
       const loader = useLoader();
-      loader.startLoading();
+      loader.start();
       await this._login(loginData);
-      loader.stopLoading();
+      loader.stop();
     },
     async register(registerData) {
       const loader = useLoader();
-      loader.startLoading();
+      loader.start();
       let resp = await this._register(registerData);
-      loader.stopLoading();
+      loader.stop();
       return resp;
     },
     async getMe() {
@@ -72,7 +87,7 @@ export const useAuth = defineStore("auth", {
         const { data } = await getMe();
         this.user = data;
       } catch (error) {
-        alerts.reportError("Не могу найти вашу карточку: " + error.message);
+        alerts.reportError("Can't get user data. " + error.message);
       }
     },
   },
