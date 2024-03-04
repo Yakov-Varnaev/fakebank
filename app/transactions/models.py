@@ -1,15 +1,11 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from decimal import Decimal
 from uuid import uuid4
-from sqlalchemy import (
-    CheckConstraint,
-    DateTime,
-    ForeignKey,
-    UUID,
-    DECIMAL,
-    String,
-)
+
+from sqlalchemy import (DECIMAL, UUID, CheckConstraint, DateTime, ForeignKey,
+                        String)
 from sqlalchemy.orm import mapped_column, relationship
+
 from app.db.postgres import Base
 from app.users.models import User
 
@@ -36,6 +32,9 @@ class Transaction(Base):
     sent_to = mapped_column(ForeignKey('account.id'), nullable=False,)
     amount = mapped_column(DECIMAL, nullable=False)
     created_at = mapped_column(
-        DateTime, default=lambda: datetime.now(datetime.timezone.utc)
+        DateTime, default=lambda: datetime.now(timezone.utc)
     )
     status = mapped_column(String, default='pending')
+
+    account_from = relationship(Account, foreign_keys=[sent_from])
+    account_to = relationship(Account, foreign_keys=[sent_to])

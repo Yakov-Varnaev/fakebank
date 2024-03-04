@@ -34,7 +34,7 @@ export default {
       this.$emit("close");
     },
     async submit() {
-      if (this.account) {
+      if (this.account.length > 0) {
         await this.updateAccount();
       } else {
         await this.createAccount();
@@ -61,31 +61,15 @@ export default {
     <v-card-title>Create Account</v-card-title>
     <v-card-text>
       <v-form>
-        <v-text-field
-          label="Name"
-          v-model="accountData.name"
-          @input="v$.accountData.name.$touch"
-          @blur="v$.accountData.name.$touch"
-          :error-messages="v$.accountData.name.$errors.map((e) => e.$message)"
-        />
-        <v-text-field
-          label="Balance"
-          v-model="accountData.balance"
-          type="number"
-          @input="v$.accountData.balance.$touch"
-          @blur="v$.accountData.balance.$touch"
-          :error-messages="
-            v$.accountData.balance.$errors.map((e) => e.$message)
-          "
-        />
+        <v-text-field label="Name" v-model="accountData.name" @input="v$.accountData.name.$touch"
+          @blur="v$.accountData.name.$touch" :error-messages="v$.accountData.name.$errors.map((e) => e.$message)" />
+        <v-text-field label="Balance" v-model="accountData.balance" type="number" @input="v$.accountData.balance.$touch"
+          @blur="v$.accountData.balance.$touch" :error-messages="v$.accountData.balance.$errors.map((e) => e.$message)
+          " />
       </v-form>
     </v-card-text>
     <v-card-actions>
-      <button-block
-        @submit="submit"
-        @cancel="close"
-        :isSubmitDisabled="!isValid"
-      />
+      <button-block @submit="submit" @cancel="close" :isSubmitDisabled="!isValid" />
     </v-card-actions>
   </v-card>
 </template>

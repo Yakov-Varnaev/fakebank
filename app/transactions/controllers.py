@@ -1,13 +1,15 @@
 from http import HTTPStatus
 
-from fastapi import (APIRouter, Depends, HTTPException, Request, Response,
-                     WebSocket, WebSocketDisconnect, logger)
+from fastapi import APIRouter, Depends, HTTPException, Request, Response
 from pydantic import UUID4
+from sqlalchemy import or_
 from typing_extensions import Annotated
 
 from app.core.dependencies.pagination import Pagination
+from app.db.crud import Page, SerializedPage
 from app.db.postgres import async_session
-from app.transactions.crud import AccountCRUD
+from app.transactions.crud import AccountCRUD, AccountORM, TransactionCRUD
+from app.transactions.models import Account, Transaction
 from app.transactions.producers import send_transaction
 from app.transactions.schemas import (AccountCreateSchema,
                                       AccountDBCreateSchema, AccountReadSchema,
@@ -36,14 +38,12 @@ async def create_account(
 async def get_user_accounts(
     pagination: Annotated[Pagination, Depends(Pagination)],
     user: User = Depends(current_active_user),
-) -> dict:
+) -> SerializedPage[AccountReadSchema]:
     async with async_session() as db:
-        accounts = await AccountCRUD(db).list(pagination, user_id=user.id)
-        total = await AccountCRUD(db).count(user_id=user.id)
-    return {
-        'data': [AccountReadSchema.model_validate(a) for a in accounts],
-        'total': total,
-    }
+        page = await AccountORM(db).get_page(
+            pagination, Account.user_id == user.id
+        )
+    return page.serialize(AccountReadSchema)
 
 
 @account_router.get('/{account_id}')
@@ -119,6 +119,22 @@ async def create_transaction(
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
     return 'OK'
+
+
+@transaction_router.get('/my')
+async def get_user_transactions(
+    pagination: Annotated[Pagination, Depends(Pagination)],
+    user: User = Depends(current_active_user),
+) -> dict:
+    async with async_session() as db:
+        # transactions = await TransactionCRUD(db).list(
+        #     pagination, user_id=user.id
+        # )
+        total = await TransactionCRUD(db).count_for_user(user.id)
+    return {
+        'data': [],
+        'total': total,
+    }
 
 
 router = APIRouter()

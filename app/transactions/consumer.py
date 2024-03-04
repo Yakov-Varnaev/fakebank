@@ -1,15 +1,15 @@
 import json
-from pydantic import UUID4
 import logging
+
 from aiokafka import AIOKafkaConsumer, AIOKafkaProducer  # type: ignore[import]
+from pydantic import UUID4
+
 from app.core.config import settings
 from app.db.postgres import async_session
 from app.transactions.crud import AccountCRUD, TransactionCRUD
 from app.transactions.models import Transaction
-from app.transactions.schemas import (
-    TransactionCreateSchema,
-    TransactionStatusSchema,
-)
+from app.transactions.schemas import (TransactionCreateSchema,
+                                      TransactionStatusSchema)
 
 logger = logging.getLogger('transaction consumer')
 
@@ -116,11 +116,12 @@ async def consume_transactions():
                 logger.info(f'Log consumed message: {msg.value}')
                 result = await TransactionPipeline(db, msg.value).process()
                 logger.info(f'Transaction processed. Status: {result}.')
-            await processor.producer.send(
-                settings.notifications_topic,
-                value=result.model_dump_json().encode(),
-            )
-            logging.info('Notification sent')
+            if result is not None:
+                await processor.producer.send(
+                    settings.notifications_topic,
+                    value=result.model_dump_json().encode(),
+                )
+                logging.info('Notification sent')
 
 
 def run_consumer():
