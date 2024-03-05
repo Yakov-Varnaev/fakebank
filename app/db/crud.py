@@ -1,101 +1,18 @@
-from http import HTTPStatus
 from typing import Any, Sequence, TypeVar
 
-from fastapi import HTTPException
 from pydantic import BaseModel
-from sqlalchemy import Result, Select, func, select
+from sqlalchemy import Delete, Result, Select, delete, func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing_extensions import Generic, Self
 
 from app.core.dependencies.pagination import Pagination
+from app.core.exceptions import NotFound
 from app.db.postgres import Base
 
 ORMModel = TypeVar('ORMModel', bound=Base)
 SelectModel = Select[tuple[ORMModel]]
 Schema = TypeVar('Schema', bound=BaseModel)
 CreateSchema = TypeVar('CreateSchema', bound=BaseModel)
-
-
-class BaseCRUD(Generic[ORMModel, CreateSchema]):
-    model: type[ORMModel]
-
-    def __init__(self, db: AsyncSession):
-        self.db = db
-
-    def get_query(self) -> SelectModel:
-        return select(self.model)
-
-    def filter_query(self, query: SelectModel, **filters: Any) -> SelectModel:
-        if not filters:
-            return query
-        return query.filter_by(**filters)
-
-    def paginate_query(
-        self, query: SelectModel, pagination: Pagination
-    ) -> SelectModel:
-        if pagination.limit:
-            query = query.limit(pagination.limit)
-        if pagination.offset:
-            query = query.offset(pagination.offset)
-        return query
-
-    def get_base_query(
-        self, pagination: Pagination = Pagination(), **filters: Any
-    ) -> SelectModel:
-        query = self.get_query()
-        query = self.filter_query(query, **filters)
-        query = self.paginate_query(query, pagination)
-        return query
-
-    async def create(self, data: CreateSchema) -> ORMModel:
-        instance = self.model(**data.model_dump())
-        self.db.add(instance)
-        await self.db.commit()
-        await self.db.refresh(instance)
-        return instance
-
-    async def get(self, **filters: Any) -> ORMModel | None:
-        query = self.get_query().filter_by(**filters)
-        result = await self.db.execute(query)
-        return result.scalar()
-
-    async def update(self, instance: ORMModel, data: CreateSchema) -> ORMModel:
-        for field, value in data.model_dump().items():
-            setattr(instance, field, value)
-        await self.db.commit()
-        await self.db.refresh(instance)
-        return instance
-
-    async def get_or_404(self, **filters: Any) -> ORMModel:
-        instance = await self.get(**filters)
-        if instance is None:
-            raise HTTPException(status_code=HTTPStatus.NOT_FOUND)
-        return instance
-
-    async def list(
-        self, pagination: Pagination = Pagination(), **filters: Any
-    ) -> list[ORMModel]:
-        query = self.get_base_query(pagination, **filters)
-        result = await self.db.execute(query)
-        return result.scalars().all()
-
-    async def count(self, **filters: Any) -> int:
-        query = (
-            select(func.count()).select_from(self.model).filter_by(**filters)
-        )
-        result = await self.db.execute(query)
-        return result.scalar() or 0
-
-    async def exists(self, **filters: Any) -> bool:
-        q = self.get_query().filter_by(**filters).exists()
-        result = await self.db.execute(select(q))
-        return bool(result.scalar())
-
-    async def get_or_create(self, data: CreateSchema) -> ORMModel:
-        instance = await self.get(**data.model_dump())
-        if instance:
-            return instance
-        return await self.create(data)
 
 
 class SerializedPage(BaseModel, Generic[Schema]):
@@ -121,13 +38,17 @@ class BaseORM(Generic[ORMModel]):
     from DB.
     """
 
+    model: type[ORMModel]
+    args_filters: Sequence
+    kwargs_filters: dict
+
     def __init__(self, db: AsyncSession, **kwargs):
         self.db = db
         self.kwargs = kwargs
+        self.args_filters = []
+        self.kwargs_filters = {}
 
-    model: type[ORMModel]
-
-    async def execute(self, query: Select[tuple[Any]]) -> Result:
+    async def execute(self, query: Any) -> Result:
         return await self.db.execute(query)
 
     def get_query(self, *select_stmt: Any) -> Select[tuple[ORMModel]]:
@@ -135,61 +56,90 @@ class BaseORM(Generic[ORMModel]):
             select_stmt = (self.model,)
         return select(*select_stmt).select_from(self.model)
 
-    def get_object_query(self, query: Select[tuple[ORMModel]] | None):
-        return query or self.get_query()
+    def get_object_query(self, query: Select[tuple[ORMModel]] | None = None):
+        return query if query is not None else self.get_query()
 
-    def filter_query(
-        self,
-        query: Select[tuple[ORMModel]],
-        *args_filters: Any,
-        **kwargs_filters: Any
-    ) -> Select[tuple[ORMModel]]:
-        if args_filters:
-            query = query.filter(*args_filters)
-        if kwargs_filters:
-            pass
-        return query
+    def filter(self, *args_filters: Any, **kwargs_filters: Any) -> Self:
+        self.args_filters = args_filters
+        self.kwargs_filters = kwargs_filters
+        return self
+
+    def apply_filter(self, query: Any) -> Select[tuple[ORMModel]] | Delete:
+        return query.filter(*self.args_filters).filter_by(**self.kwargs_filters)
 
     def get_paginated_query(
-        self, pagination: Pagination, *args_filters: Any, **kwargs_filters: Any
+        self, pagination: Pagination
     ) -> Select[tuple[ORMModel]]:
         query = self.get_query()
         if pagination.limit:
             query = query.limit(pagination.limit)
         if pagination.offset:
             query = query.offset(pagination.offset)
-        return self.filter_query(query, *args_filters, **kwargs_filters)
+        return query
+
+    # db requests
+    async def create(
+        self, schema: CreateSchema, commit: bool = True
+    ) -> ORMModel:
+        instance = self.model(**schema.model_dump())
+        self.db.add(instance)
+        if commit:
+            await self.db.commit()
+            await self.db.refresh(instance)
+        return instance
+
+    async def get_or_create(
+        self, schema: CreateSchema
+    ) -> tuple[ORMModel, bool]:
+        instance = await self.filter(**schema.model_dump()).get_one()
+        if instance is None:
+            instance = await self.create(schema)
+            return instance, True
+        return instance, False
+
+    async def get_one_or_404(self) -> ORMModel:
+        instance = await self.get_one()
+        if instance is None:
+            raise NotFound()
+        return instance
 
     async def count(self, query: Select[tuple[ORMModel]] | None = None) -> int:
         query = query if query is not None else self.get_query(func.count())
-        result = await self.execute(query)
+        result = await self.execute(self.apply_filter(query))
         return result.scalar_one()
 
-    async def get_page(
-        self, pagination: Pagination, *args_filter: Any, **kwargs_filters: Any
-    ) -> Page:
+    async def get_page(self, pagination: Pagination) -> Page:
         """
         This method is responsible for paginated data.
         """
-        instances = await self.get_multi(
-            self.get_paginated_query(pagination, *args_filter, **kwargs_filters)
-        )
+        instances = await self.get_multi(self.get_paginated_query(pagination))
         total = await self.count()
         return Page(data=instances, total=total)
 
     async def get_multi(
-        self, query: Select[tuple[ORMModel]] | None
+        self, query: Select[tuple[ORMModel]] | None = None
     ) -> Sequence[ORMModel]:
         query = query if query is not None else self.get_query()
-        result = await self.execute(query)
+        result = await self.execute(self.apply_filter(query))
         return result.scalars().all()
 
-    async def get_one(self, *args_filters, **kwargs_filters) -> ORMModel | None:
-        query = self.get_object_query(self.get_query())
-        if args_filters:
-            query = query.filter(*args_filters)
-        if kwargs_filters:
-            query = query.filter_by(**kwargs_filters)
+    async def get_one(self) -> ORMModel | None:
+        result = await self.execute(self.apply_filter(self.get_object_query()))
+        return result.scalar()
 
-        result = await self.execute(query)
-        return result.scalar_one_or_none()
+    async def delete_instance(self, instance: ORMModel) -> None:
+        await self.db.delete(instance)
+        await self.db.commit()
+
+    async def delete(self) -> None:
+        q = self.apply_filter(delete(self.model))
+        await self.execute(q)
+
+    async def update_instance(
+        self, instance: ORMModel, data: BaseModel
+    ) -> ORMModel:
+        for field, value in data.model_dump().items():
+            setattr(instance, field, value)
+        await self.db.commit()
+        await self.db.refresh(instance)
+        return instance

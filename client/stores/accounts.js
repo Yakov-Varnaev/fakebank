@@ -37,7 +37,7 @@ export const useAccounts = defineStore("accounts", {
     async create(payload) {
       return await this.withLoader(async () => {
         try {
-          const { data } = await apiv1.post("/accounts", payload);
+          const { data } = await apiv1.post("/accounts/", payload);
           if (this.accounts.length < this.perPage) {
             this.accounts.push(data);
           } else {
@@ -52,7 +52,7 @@ export const useAccounts = defineStore("accounts", {
     async update(id, account) {
       return await this.withLoader(async () => {
         try {
-          const { data } = await apiv1.put(`/accounts/${id}`, account);
+          const { data } = await apiv1.put(`/accounts/${id}/`, account);
           const index = this.accounts.findIndex((a) => a.id === id);
           this.accounts[index] = data;
         } catch ({ response }) {
@@ -65,7 +65,7 @@ export const useAccounts = defineStore("accounts", {
     async delete(id) {
       return await this.withLoader(async () => {
         try {
-          await apiv1.delete(`/accounts/${id}`);
+          await apiv1.delete(`/accounts/${id}/`);
           if (this.total > this.perPage) {
             await this.getAccounts();
           } else {

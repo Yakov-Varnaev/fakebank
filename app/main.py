@@ -1,36 +1,22 @@
 import argparse
 import logging
 from contextlib import asynccontextmanager
+from typing import Callable
 
-from aiokafka import AIOKafkaConsumer, AIOKafkaProducer
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.core.config import settings
-from app.transactions.consumer import run_consumer
+from app.accounts.controllers import router as account_router
 from app.transactions.controllers import router as transaction_router
-from app.transactions.views import router as notification_router
 from app.users.controllers import router as user_router
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # transaction_producer = AIOKafkaProducer(
-    #     bootstrap_servers=settings.kafka_url
-    # )
-    # notifications_consumer = AIOKafkaConsumer(
-    #     settings.notifications_topic, bootstrap_servers=settings.kafka_url,
-    # )
-    # await notifications_consumer.start()
-    # await transaction_producer.start()
-    # app.state.transaction_producer = transaction_producer
-    # app.state.notifications_consumer = notifications_consumer
     try:
         yield
     finally:
         pass
-        # await transaction_producer.stop()
-        # await notifications_consumer.stop()
 
 
 app = FastAPI(lifespan=lifespan)
@@ -42,8 +28,8 @@ async def index():
 
 
 app.include_router(user_router)
+app.include_router(account_router)
 app.include_router(transaction_router)
-app.include_router(notification_router)
 
 origins = [
     'http://localhost.tiangolo.com',
@@ -61,10 +47,7 @@ app.add_middleware(
     allow_headers=['*'],
 )
 
-app_by_name = {
-    'transactions': run_consumer,
-}
-
+app_by_name: dict[str, Callable] = {}
 
 logging.basicConfig(level=logging.INFO)
 if __name__ == '__main__':
