@@ -9,6 +9,7 @@ from alembic import context
 from app.accounts.models import Account
 from app.core.config import settings
 from app.db.postgres import Base
+from app.notifications.models import Notification
 from app.transactions.models import Transaction
 from app.users.models import User
 

@@ -1,6 +1,6 @@
+import logging
 from decimal import Decimal
 
-from fastapi import FastAPI
 from pydantic import UUID4
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -10,14 +10,19 @@ from app.core.config import settings
 from app.transactions.crud import TransactionORM
 from app.transactions.exceptions import (InvalidTransaction,
                                          TransactionPermissionError)
+from app.transactions.kafka.producers import TransactionProducer
 from app.transactions.models import Transaction
 from app.transactions.schemas import TransactionCreateSchema
 
+logger = logging.getLogger('TransactionPerformer')
+
 
 class TransactionPerformer:
-    def __init__(self, db: AsyncSession, app: FastAPI):
+    def __init__(
+        self, db: AsyncSession, producer: TransactionProducer | None = None
+    ):
         self.db = db
-        self.app = app
+        self.producer = producer
         self.kafka_enabled = settings.enable_kafka
         self.account_orm = AccountORM(db)
         self.transaction_orm = TransactionORM(db)
@@ -26,6 +31,9 @@ class TransactionPerformer:
         self, user_id: UUID4, data: TransactionCreateSchema
     ) -> Transaction:
         # TODO: implement remote transaction processing
+        return await self.process(user_id, data)
+
+    async def process(self, user_id, data):
         async with self.db.begin():
             sender_account = await self.account_orm.filter(
                 Account.id == data.sender
@@ -56,8 +64,13 @@ class TransactionPerformer:
             ).get_one()
             if full_transaction is None:
                 raise InvalidTransaction('Transaction not found.')
-            await self.validate_transaction(full_transaction)
-            await self.process_transaction(full_transaction.id)
+
+            if self.kafka_enabled:
+                assert self.producer is not None
+                await self.producer.send(value=str(full_transaction.id))
+            else:
+                await self.validate_transaction(full_transaction)
+                await self.process_transaction(full_transaction)
         return full_transaction
 
     async def create_transaction(
@@ -74,13 +87,14 @@ class TransactionPerformer:
         if transaction.sender_account.balance < transaction.amount:
             raise InvalidTransaction('Insufficient funds.')
 
-    async def process_transaction(self, transaction_id: UUID4):
-        transaction = await self.transaction_orm.filter(
-            Transaction.id == transaction_id
-        ).get_one()
+    async def process_transaction(self, transaction: Transaction):
         if transaction is None:
             raise InvalidTransaction('Transaction not found.')
         sender_account = transaction.sender_account
         recipient_account = transaction.recipient_account
         sender_account.balance -= Decimal(transaction.amount)
         recipient_account.balance += Decimal(transaction.amount)
+        transaction.status = 'done'
+        logger.info(
+            f'Transaction({transaction.id}) was successfully processed.'
+        )

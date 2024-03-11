@@ -29,6 +29,7 @@ export { useAccounts } from '../stores/accounts';
 export { useAlert } from '../stores/alerts';
 export { useAuth } from '../stores/auth';
 export { useLoader } from '../stores/loader';
+export { useTransactions } from '../stores/transactions';
 export { defineStore, acceptHMRUpdate, usePinia, storeToRefs } from '../node_modules/@pinia/nuxt/dist/runtime/composables';
 export { persistedState } from '../node_modules/@pinia-plugin-persistedstate/nuxt/dist/runtime/storages';
 export { useNuxtDevTools } from '../node_modules/@nuxt/devtools/dist/runtime/use-nuxt-devtools';

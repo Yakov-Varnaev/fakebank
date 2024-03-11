@@ -27,7 +27,7 @@ class Page(Generic[ORMModel]):
 
     def serialize(self, schema: type[Schema]) -> SerializedPage[Schema]:
         return SerializedPage(
-            data=[schema.from_orm(inst) for inst in self.data],
+            data=[schema.model_validate(inst) for inst in self.data],
             total=self.total,
         )
 
@@ -104,8 +104,10 @@ class BaseORM(Generic[ORMModel]):
         return instance
 
     async def count(self, query: Select[tuple[ORMModel]] | None = None) -> int:
-        query = query if query is not None else self.get_query(func.count())
-        result = await self.execute(self.apply_filter(query))
+        query = query if query is not None else self.get_query()
+        filtered_query = self.apply_filter(query)
+        cnt_query = select(func.count()).select_from(filtered_query.subquery())
+        result = await self.execute(cnt_query)
         return result.scalar_one()
 
     async def get_page(self, pagination: Pagination) -> Page:
@@ -136,9 +138,9 @@ class BaseORM(Generic[ORMModel]):
         await self.execute(q)
 
     async def update_instance(
-        self, instance: ORMModel, data: BaseModel
+        self, instance: ORMModel, data: BaseModel, **kwargs: Any
     ) -> ORMModel:
-        for field, value in data.model_dump().items():
+        for field, value in (data.model_dump() | kwargs).items():
             setattr(instance, field, value)
         await self.db.commit()
         await self.db.refresh(instance)

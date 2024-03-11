@@ -1,5 +1,12 @@
 # app
 run:
+ifndef reload
+	poetry run uvicorn app.main:app
+else
+	poetry run uvicorn app.main:app --reload
+endif
+
+dev-run:
 	poetry run uvicorn app.main:app --reload
 
 # database

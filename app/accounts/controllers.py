@@ -1,3 +1,4 @@
+import json
 from http import HTTPStatus
 
 from fastapi import APIRouter, Depends, HTTPException, Response
@@ -42,8 +43,10 @@ async def create_account(
         account, created = await AccountORM(db).get_or_create(account_data)
     account_data = AccountReadSchema.model_validate(account)
     if created:
-        return JSONResponse(
-            account_data, status_code=HTTPStatus.CREATED
+        return Response(
+            account_data.model_dump_json(),
+            status_code=HTTPStatus.CREATED,
+            media_type='application/json',
         )  # type: ignore[return-value]
     return account_data
 

@@ -1,3 +1,3 @@
 <template>
-  <v-btn block> New transaction </v-btn>
+  <transaction-create-btn variant="tonal" color="success" block />
 </template>

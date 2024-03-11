@@ -8,7 +8,7 @@ function onResponseError(error) {
   const alert = useAlert();
   if (error.response.status === HttpStatusCode.Unauthorized) {
     auth.$reset();
-    alert.reportWarning("Сессия истекла, пожалуйста, войдите заново");
+    alert.reportWarning("Session expired, please login again.");
     return Promise.reject(error);
   }
 
@@ -44,7 +44,7 @@ function createAxios(config) {
 }
 
 export const apiv1 = createAxios({
-  baseURL: "http://localhost:8000",
+  baseURL: "http://localhost",
   headers: {
     "Content-Type": "application/json",
   },

@@ -15,5 +15,5 @@ export default {
 </script>
 
 <template>
-  <v-container>Index</v-container>
+  <v-container> Index </v-container>
 </template>

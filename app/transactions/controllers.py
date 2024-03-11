@@ -1,7 +1,6 @@
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, Request
-from sqlalchemy import or_
 
 from app.core.dependencies.pagination import Pagination
 from app.core.exceptions import BadRequest, Forbidden
@@ -10,7 +9,6 @@ from app.db.postgres import async_session
 from app.transactions.crud import TransactionORM
 from app.transactions.exceptions import (InvalidTransaction,
                                          TransactionPermissionError)
-from app.transactions.models import Transaction
 from app.transactions.schemas import (TransactionCreateSchema,
                                       TransactionReadSchema)
 from app.transactions.services.performer import TransactionPerformer
@@ -28,7 +26,9 @@ async def create_transaction(
 ) -> TransactionReadSchema:
 
     async with async_session() as db:
-        perfomer = TransactionPerformer(db, request.app)
+        perfomer = TransactionPerformer(
+            db, request.app.state.transaction_producer
+        )
 
         try:
             transaction = await perfomer(user.id, transaction_data)
@@ -48,7 +48,5 @@ async def get_user_transactions(
 ) -> SerializedPage[TransactionReadSchema]:
     async with async_session() as db:
         orm = TransactionORM(db)
-        page = await orm.filter(
-            or_(Transaction.sender_account.user_id == user.id)
-        ).get_page(pagination)
+        page = await orm.filter_by_user(user.id).get_page(pagination)
     return page.serialize(TransactionReadSchema)

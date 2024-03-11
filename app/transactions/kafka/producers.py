@@ -25,7 +25,9 @@ class TransactionProducer:
 
     async def send(self, value):
         try:
-            result = await self.producer.send_and_wait(self.topic, value=value)
+            result = await self.producer.send_and_wait(
+                self.topic, value=value.encode()
+            )
         except Exception as e:
             logger.error(f'Error while sending message to Kafka: {e}')
         else:

@@ -15,7 +15,7 @@ asyncpg = "^0.29.0"
 pydantic-settings = "^2.1.0"
 alembic = "^1.13.1"
 aiokafka = "^0.10.0"
-aioredis = "^2.0.1"
+types-redis = "^4.6.0.20240218"
 
 
 [tool.poetry.group.dev.dependencies]

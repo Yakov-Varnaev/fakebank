@@ -31,6 +31,7 @@ export default {
       <v-divider vertical inset class="mr-4" />
       <span>{{ auth.user?.first_name }} {{ auth.user?.last_name }}</span>
       <logout-btn />
+      <notifications-controller />
     </template>
   </v-app-bar>
 </template>

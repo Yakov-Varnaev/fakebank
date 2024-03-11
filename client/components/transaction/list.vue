@@ -1,18 +1,10 @@
 <script>
 export default {
-  data() {
-    return {
-      transactions: [
-        {
-          id: 1,
-          sender: "John Doe",
-          recipient: "Jane Doe",
-          amount: 100,
-          oldBalance: 1000,
-          newBalance: 900,
-        },
-      ],
-    };
+  props: {
+    transactions: {
+      type: Array,
+      required: true,
+    },
   },
 };
 </script>

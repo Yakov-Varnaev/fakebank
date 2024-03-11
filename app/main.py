@@ -3,14 +3,13 @@ import logging
 from contextlib import asynccontextmanager
 from typing import Callable
 
-from fastapi import FastAPI, logger
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.accounts.controllers import router as account_router
-from app.transactions.controllers import router as transaction_router
+from app.core.config import settings
+from app.notifications.kafka.consumer import NotificationConsumer
 from app.transactions.kafka.consumers import TransactionConsumer
 from app.transactions.kafka.producers import TransactionProducer
-from app.users.controllers import router as user_router
 
 logger = logging.getLogger(__name__)
 
@@ -19,22 +18,35 @@ logger = logging.getLogger(__name__)
 async def lifespan(app: FastAPI):
     logger.info('Application started.')
     try:
-        transaction_producer = TransactionProducer()
-        await transaction_producer.start()
+        print(settings.kafka_url)
+        if settings.enable_kafka:
+            transaction_producer = TransactionProducer()
+            await transaction_producer.start()
 
-        app.state.transaction_producer = transaction_producer
+            notification_consumer = NotificationConsumer()
+            await notification_consumer.start()
+
+            app.state.transaction_producer = transaction_producer
+            app.state.notification_consumer = notification_consumer
         yield
     finally:
-        await transaction_producer.stop()
+        if settings.enable_kafka:
+            await transaction_producer.stop()
+            await notification_consumer.stop()
         logger.info('Application stopped.')
 
 
 app = FastAPI(lifespan=lifespan)
 
 
-app.include_router(user_router)
-app.include_router(account_router)
-app.include_router(transaction_router)
+def configure_app():
+    installed_apps = ['users', 'accounts', 'transactions', 'notifications']
+    for app_name in installed_apps:
+        router = __import__(f'app.{app_name}.controllers', fromlist=['router'])
+        app.include_router(router.router)
+
+
+configure_app()
 
 origins = [
     'http://localhost:8080',
@@ -53,20 +65,10 @@ app.add_middleware(
 def run_app():
     import uvicorn
 
-    uvicorn.run(app, reload=True)
-
-
-def run_all():
-    from concurrent.futures import ProcessPoolExecutor
-
-    runners = [run_app, TransactionConsumer.runner]
-    with ProcessPoolExecutor() as executor:
-        for runner in runners:
-            executor.submit(runner)
+    uvicorn.run('app.main:app')
 
 
 app_by_name: dict[str, Callable] = {
-    'all': run_all,
     'transactions': TransactionConsumer.runner,
 }
 

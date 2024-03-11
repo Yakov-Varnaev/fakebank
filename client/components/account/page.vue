@@ -1,9 +1,8 @@
 <script>
 export default {
   setup() {
-    const auth = useAuth();
     const accounts = useAccounts();
-    return { auth, accounts };
+    return { accounts };
   },
   data() {
     return {};
@@ -32,6 +31,7 @@ export default {
   },
 };
 </script>
+
 <template>
   <v-container>
     <account-list :accounts="accounts.accounts" />

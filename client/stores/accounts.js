@@ -39,9 +39,9 @@ export const useAccounts = defineStore("accounts", {
         try {
           const { data } = await apiv1.post("/accounts/", payload);
           if (this.accounts.length < this.perPage) {
-            this.accounts.push(data);
+            this.accounts.unshift(data);
           } else {
-            this.getAccounts();
+            await this.getAccounts();
           }
         } catch ({ response }) {
           const alert = useAlert();
