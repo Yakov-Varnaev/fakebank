@@ -11,7 +11,13 @@ export default {
 <template>
   <v-dialog v-model="overlay">
     <template v-slot:activator="{ props: activatorProps }">
-      <v-btn v-bind="activatorProps" block variant="tonal" color="success" size="large">
+      <v-btn
+        v-bind="activatorProps"
+        block
+        variant="tonal"
+        color="success"
+        size="large"
+      >
         Create Account
       </v-btn>
     </template>

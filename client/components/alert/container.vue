@@ -13,8 +13,14 @@ export default {
 
 <template>
   <div class="alerts_container ma-5">
-    <AlertMessage v-for="alert in alerts" :type="alert.type" :text="alert.text" :key="alert.id" class="mt-2"
-      :alert="alert" />
+    <AlertMessage
+      v-for="alert in alerts"
+      :type="alert.type"
+      :text="alert.text"
+      :key="alert.id"
+      class="mt-2"
+      :alert="alert"
+    />
   </div>
 </template>
 
