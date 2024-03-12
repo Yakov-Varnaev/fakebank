@@ -34,4 +34,5 @@ export { autoAnimate } from '@formkit/auto-animate';
 export { useAutoAnimate } from '@formkit/auto-animate/vue';
 export { defineStore, acceptHMRUpdate, usePinia, storeToRefs } from '../node_modules/@pinia/nuxt/dist/runtime/composables';
 export { persistedState } from '../node_modules/@pinia-plugin-persistedstate/nuxt/dist/runtime/storages';
+export { useNuxtDevTools } from '../node_modules/@nuxt/devtools/dist/runtime/use-nuxt-devtools';
 export { definePageMeta } from '../node_modules/nuxt/dist/pages/runtime/composables';

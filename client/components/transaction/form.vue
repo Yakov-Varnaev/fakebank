@@ -1,7 +1,11 @@
 <script>
+import { apiv1 } from "@/axios";
+
 export default {
   data() {
     return {
+      user_search: "",
+      users: [],
       recipient_user: null, // the user to send the money to
       form: {
         sender: "", // one of the user's accounts
@@ -10,13 +14,32 @@ export default {
       },
     };
   },
+  computed: {},
   methods: {
     close() {
       this.$emit("close");
     },
+    async fetchUsers() {
+      const { data } = await apiv1.get("/users", {
+        params: { search: this.user_search },
+      });
+      console.log(data);
+      this.users = data.data;
+    },
     async submit() {
       console.log(this.form);
       this.close();
+    },
+    setUserSearch(event) {
+      this.user_search = event;
+    },
+  },
+  mounted() {
+    this.fetchUsers();
+  },
+  watch: {
+    async user_search(new_search, old_search) {
+      await this.fetchUsers();
     },
   },
 };
@@ -28,12 +51,15 @@ export default {
     <v-card-text>
       <v-form>
         <v-container>
-          <v-auto-complete
+          <v-autocomplete
+            no-filter
             v-model="recipient_user"
-            :items="['user1', 'user2', 'user3']"
+            :items="users"
+            :search="user_search"
             label="Recipient"
-            item-text="name"
-            item-value="id"
+            item-title="email"
+            return-object
+            @update:search="setUserSearch"
           />
         </v-container>
       </v-form>

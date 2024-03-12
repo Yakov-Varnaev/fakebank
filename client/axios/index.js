@@ -45,7 +45,7 @@ function createAxios(config) {
 }
 
 export const apiv1 = createAxios({
-  baseURL: "http://localhost",
+  baseURL: "http://localhost:8000",
   headers: {
     "Content-Type": "application/json",
   },
