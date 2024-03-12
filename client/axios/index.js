@@ -9,6 +9,7 @@ function onResponseError(error) {
   if (error.response.status === HttpStatusCode.Unauthorized) {
     auth.$reset();
     alert.reportWarning("Session expired, please login again.");
+    navigateTo("/signin");
     return Promise.reject(error);
   }
 

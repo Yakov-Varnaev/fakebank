@@ -13,16 +13,8 @@ export default {
 
 <template>
   <div class="alerts_container ma-5">
-    <v-slide-y-reverse-transition :group="true">
-      <AlertMessage
-        v-for="alert in alerts"
-        :type="alert.type"
-        :text="alert.text"
-        :key="alert.id"
-        class="mt-2"
-        :alert="alert"
-      />
-    </v-slide-y-reverse-transition>
+    <AlertMessage v-for="alert in alerts" :type="alert.type" :text="alert.text" :key="alert.id" class="mt-2"
+      :alert="alert" />
   </div>
 </template>
 
