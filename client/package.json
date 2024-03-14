@@ -30,11 +30,5 @@
     "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
     "typescript": "^5.3.3",
     "vite-plugin-vuetify": "^2.0.1"
-  },
-  "prettier": {
-  },
-  "volar": {
-    "format": {
-    }
   }
 }

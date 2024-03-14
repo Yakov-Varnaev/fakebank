@@ -46,10 +46,8 @@ export default {
     async performRegister() {
       this.v$.registerData.$touch();
       if (this.v$.registerData.$invalid) {
-        console.log("invalid data");
         return;
       }
-      console.log("register", this.registerData);
       this.auth.register(this.registerData);
     },
   },
@@ -62,52 +60,21 @@ export default {
       <v-form>
         <v-row>
           <v-col>
-            <v-text-field
-              label="First Name"
-              v-model="registerData.firstName"
-              @input="v$.registerData.firstName.$touch"
-              @blur="v$.registerData.firstName.$touch"
-              :error-messages="collectErrors('firstName')"
-              class="mb-2"
-            />
+            <v-text-field label="First Name" v-model="registerData.firstName" @input="v$.registerData.firstName.$touch"
+              @blur="v$.registerData.firstName.$touch" :error-messages="collectErrors('firstName')" class="mb-2" />
           </v-col>
           <v-col>
-            <v-text-field
-              label="Last Name"
-              v-model="registerData.lastName"
-              @input="v$.registerData.lastName.$touch"
-              @blur="v$.registerData.lastName.$touch"
-              :error-messages="collectErrors('lastName')"
-              class="mb-2"
-            />
+            <v-text-field label="Last Name" v-model="registerData.lastName" @input="v$.registerData.lastName.$touch"
+              @blur="v$.registerData.lastName.$touch" :error-messages="collectErrors('lastName')" class="mb-2" />
           </v-col>
         </v-row>
-        <v-text-field
-          type="email"
-          label="E-mail"
-          v-model="registerData.email"
-          @input="v$.registerData.email.$touch"
-          @blur="v$.registerData.email.$touch"
-          :error-messages="v$.registerData.email.$errors.map((e) => e.$message)"
-          class="mb-2"
-        />
-        <v-text-field
-          autocomplete="new-password"
-          type="password"
-          label="Пароль"
-          v-model="registerData.password"
-          @input="v$.registerData.password.$touch"
-          @blur="v$.registerData.password.$touch"
-          :error-messages="collectErrors('password')"
-          class="mb-2"
-        />
-        <v-btn
-          block
-          type="submit"
-          text="Sign up"
-          color="primary"
-          @click.prevent="performRegister"
-        />
+        <v-text-field type="email" label="E-mail" v-model="registerData.email" @input="v$.registerData.email.$touch"
+          @blur="v$.registerData.email.$touch" :error-messages="v$.registerData.email.$errors.map((e) => e.$message)"
+          class="mb-2" />
+        <v-text-field autocomplete="new-password" type="password" label="Пароль" v-model="registerData.password"
+          @input="v$.registerData.password.$touch" @blur="v$.registerData.password.$touch"
+          :error-messages="collectErrors('password')" class="mb-2" />
+        <v-btn block type="submit" text="Sign up" color="primary" @click.prevent="performRegister" />
       </v-form>
     </v-card-text>
   </v-card>

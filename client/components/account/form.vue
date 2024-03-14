@@ -71,16 +71,6 @@ export default {
           @blur="v$.accountData.name.$touch"
           :error-messages="v$.accountData.name.$errors.map((e) => e.$message)"
         />
-        <v-text-field
-          label="Balance"
-          v-model="accountData.balance"
-          type="number"
-          @input="v$.accountData.balance.$touch"
-          @blur="v$.accountData.balance.$touch"
-          :error-messages="
-            v$.accountData.balance.$errors.map((e) => e.$message)
-          "
-        />
       </v-form>
     </v-card-text>
     <v-card-actions>

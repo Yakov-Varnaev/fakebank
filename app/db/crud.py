@@ -45,7 +45,7 @@ class BaseORM(Generic[ORMModel]):
     def __init__(self, db: AsyncSession, **kwargs):
         self.db = db
         self.kwargs = kwargs
-        self.args_filters = []
+        self.args_filters = ()
         self.kwargs_filters = {}
 
     async def execute(self, query: Any) -> Result:
@@ -60,8 +60,8 @@ class BaseORM(Generic[ORMModel]):
         return query if query is not None else self.get_query()
 
     def filter(self, *args_filters: Any, **kwargs_filters: Any) -> Self:
-        self.args_filters = args_filters
-        self.kwargs_filters = kwargs_filters
+        self.args_filters = (*self.args_filters, *args_filters)
+        self.kwargs_filters = self.kwargs_filters | kwargs_filters
         return self
 
     def apply_filter(self, query: Any) -> Select[tuple[ORMModel]] | Delete:

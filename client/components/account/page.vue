@@ -2,14 +2,14 @@
 export default {
   setup() {
     const accounts = useAccounts();
-    return { accounts };
+    return { accounts, auth: useAuth() };
   },
   data() {
     return {};
   },
   methods: {
     async fetchAccounts() {
-      await this.accounts.getAccounts();
+      await this.accounts.getAccounts(this.auth.user.id);
     },
   },
   mounted() {

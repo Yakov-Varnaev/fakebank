@@ -51,17 +51,20 @@ async def create_account(
     return account_data
 
 
-@router.get('/my')
+@router.get('/')
 async def get_user_accounts(
+    query: str | None = None,
+    user_id: str | None = None,
     pagination: Annotated[Pagination, Depends(Pagination)] = Pagination(0, 10),
-    user: User = Depends(current_active_user),
+    _: User = Depends(current_active_user),
 ) -> SerializedPage[AccountReadSchema]:
     async with async_session() as db:
-        page = (
-            await AccountORM(db)
-            .filter(Account.user_id == user.id)
-            .get_page(pagination)
-        )
+        orm = AccountORM(db)
+        if query is not None:
+            orm.search(query)
+        if user_id:
+            orm.filter(Account.user_id == user_id)
+        page = await orm.get_page(pagination)
         return page.serialize(AccountReadSchema)
 
 

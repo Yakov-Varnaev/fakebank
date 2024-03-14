@@ -30,6 +30,7 @@ export { useAlert } from '../stores/alerts';
 export { useAuth } from '../stores/auth';
 export { useLoader } from '../stores/loader';
 export { useTransactions } from '../stores/transactions';
+export { useUsers } from '../stores/users';
 export { autoAnimate } from '@formkit/auto-animate';
 export { useAutoAnimate } from '@formkit/auto-animate/vue';
 export { defineStore, acceptHMRUpdate, usePinia, storeToRefs } from '../node_modules/@pinia/nuxt/dist/runtime/composables';

@@ -1,45 +1,25 @@
 <script>
-import { apiv1 } from "@/axios";
-
 export default {
+  setup() {
+    return {
+      auth: useAuth(),
+    };
+  },
   data() {
     return {
-      user_search: "",
-      users: [],
-      recipient_user: null, // the user to send the money to
-      form: {
-        sender: "", // one of the user's accounts
-        recipient: "", // recipient_user's account
-        amount: "",
+      data: {
+        sender: null,
+        recipient: null,
       },
     };
   },
-  computed: {},
   methods: {
     close() {
       this.$emit("close");
     },
-    async fetchUsers() {
-      const { data } = await apiv1.get("/users", {
-        params: { search: this.user_search },
-      });
-      console.log(data);
-      this.users = data.data;
-    },
-    async submit() {
-      console.log(this.form);
-      this.close();
-    },
-    setUserSearch(event) {
-      this.user_search = event;
-    },
-  },
-  mounted() {
-    this.fetchUsers();
-  },
-  watch: {
-    async user_search(new_search, old_search) {
-      await this.fetchUsers();
+    submit() {
+      console.log(this.data);
+      // this.$emit("submit", this.data);
     },
   },
 };
@@ -51,16 +31,8 @@ export default {
     <v-card-text>
       <v-form>
         <v-container>
-          <v-autocomplete
-            no-filter
-            v-model="recipient_user"
-            :items="users"
-            :search="user_search"
-            label="Recipient"
-            item-title="email"
-            return-object
-            @update:search="setUserSearch"
-          />
+          <account-autocomplete v-model="data.sender" :user_id="auth.user.id" />
+          <transaction-recipient-selector v-model="data.recipient" />
         </v-container>
       </v-form>
     </v-card-text>

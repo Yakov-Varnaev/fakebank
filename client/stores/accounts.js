@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import { fetchAccounts } from "~/api/accounts";
 import { apiv1 } from "~/axios";
 
 export const useAccounts = defineStore("accounts", {
@@ -10,29 +11,40 @@ export const useAccounts = defineStore("accounts", {
   }),
   actions: {
     async withLoader(fn) {
-      await useLoader().withLoader(fn);
+      return await useLoader().withLoader(fn);
     },
-    // make pagination work
     async setPage(page) {
       this.page = page;
       await this.getAccounts();
     },
-    async _getAccounts() {
+    async fetch(user_id, query = null) {
       try {
         const offset = (this.page - 1) * this.perPage;
-        const { data } = await apiv1.get("/accounts/my", {
-          params: { limit: this.perPage, offset },
-        });
-        this.accounts = data.data;
-        this.total = data.total;
+        const { data } = await fetchAccounts(
+          offset,
+          this.perPage,
+          user_id,
+          query,
+        );
+        return data;
       } catch (error) {
         const alert = useAlert();
-        console.log(error);
         alert.reportError(`Failed to get accounts: ${error.response?.status}`);
+        return { data: [], total: 0 };
       }
     },
-    async getAccounts() {
-      await this.withLoader(this._getAccounts);
+    async getAccounts(user_id) {
+      const { data, total } = await this.withLoader(
+        async () => await this.fetch(user_id),
+      );
+      this.accounts = data;
+      this.total = total;
+    },
+    async search(user_id, query) {
+      const { data } = await this.withLoader(
+        async () => await this.fetch(user_id, query),
+      );
+      return data;
     },
     async create(payload) {
       return await this.withLoader(async () => {

@@ -16,24 +16,30 @@ export const useTransactions = defineStore("transactions", {
       this.page = page;
       await this.getTransactions();
     },
-    async _getTransactions() {
+    async _getTransactions(query = {}) {
       try {
         const offset = (this.page - 1) * this.perPage;
         const { data } = await apiv1.get("/transactions/my", {
-          params: { limit: this.perPage, offset },
+          params: { limit: this.perPage, offset, ...query },
         });
-        this.transactions = data.data;
-        this.total = data.total;
+        return data;
       } catch (error) {
         const alert = useAlert();
-        console.log(error);
         alert.reportError(
           `Failed to get transactions: ${error.response?.status}`,
         );
       }
     },
     async getTransactions() {
-      await this.withLoader(this._getTransactions);
+      const data = await this.withLoader(async () => this._getTransactions);
+      this.transactions = data.data;
+      this.total = data.total;
+    },
+    async searchTransactions(query) {
+      const data = await this.withLoader(async () =>
+        this._getTransactions(query)
+      );
+      return data.data;
     },
     async create(payload) {
       return await this.withLoader(async () => {

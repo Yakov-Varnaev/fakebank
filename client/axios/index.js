@@ -30,7 +30,6 @@ function onRequestFullfilled(request) {
     request.data = requestCaseMiddleware(request.data);
   }
 
-  console.log(request.data);
   return request;
 }
 
