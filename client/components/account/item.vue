@@ -27,7 +27,7 @@ export default {
 </script>
 
 <template>
-  <v-card>
+  <v-card variant="tonal" color="info">
     <v-card-title class="d-flex align-center">
       {{ account.name }}
 

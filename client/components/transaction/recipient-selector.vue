@@ -1,5 +1,12 @@
 <script>
 export default {
+  props: {
+    forbiddenAccounts: {
+      type: Array,
+      required: false,
+      default: () => [],
+    },
+  },
   data() {
     return {
       user: null,
@@ -11,8 +18,11 @@ export default {
     user() {
       this.account = null;
     },
-    account() {
-      this.$emit("update", this.account);
+    forbiddenAccounts() {
+      this.account = null;
+    },
+    account(selected) {
+      this.$emit("update", selected);
     },
   },
 };
@@ -24,7 +34,7 @@ export default {
       <user-autocomplete v-model="user" />
     </v-col>
     <v-col>
-      <account-autocomplete v-model="account" :user_id="user?.id" />
+      <account-autocomplete v-model="account" :user_id="user?.id" :forbiddenAccounts="forbiddenAccounts" />
     </v-col>
   </v-row>
 </template>

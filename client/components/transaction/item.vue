@@ -41,7 +41,7 @@ export default {
 </script>
 
 <template>
-  <v-card color="light">
+  <v-card variant="tonal" color="info">
     <v-card-title class="d-flex align-center">
       <span>{{ transaction.sender_account.user.email }}</span>
       <v-icon class="mx-2 text-caption">

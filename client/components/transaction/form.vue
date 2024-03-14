@@ -7,19 +7,30 @@ export default {
   },
   data() {
     return {
-      data: {
-        sender: null,
-        recipient: null,
-      },
+      sender: null,
+      recipient: null,
     };
+  },
+  computed: {
+    forbiddenAccounts() {
+      return this.sender ? [this.sender?.id] : [];
+    },
   },
   methods: {
     close() {
       this.$emit("close");
     },
     submit() {
-      console.log(this.data);
+      console.log();
       // this.$emit("submit", this.data);
+    },
+    setRecipient(account) {
+      this.recipient = account;
+    },
+  },
+  watch: {
+    sender() {
+      this.recipient = null;
     },
   },
 };
@@ -31,8 +42,8 @@ export default {
     <v-card-text>
       <v-form>
         <v-container>
-          <account-autocomplete v-model="data.sender" :user_id="auth.user.id" />
-          <transaction-recipient-selector v-model="data.recipient" />
+          <account-autocomplete v-model="sender" :user_id="auth.user.id" />
+          <transaction-recipient-selector v-model="recipient" :forbiddenAccounts="forbiddenAccounts" />
         </v-container>
       </v-form>
     </v-card-text>
