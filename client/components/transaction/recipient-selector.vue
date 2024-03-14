@@ -1,5 +1,10 @@
 <script>
 export default {
+  setup() {
+    return {
+      auth: useAuth(),
+    };
+  },
   props: {
     forbiddenAccounts: {
       type: Array,
@@ -19,7 +24,7 @@ export default {
       this.account = null;
     },
     forbiddenAccounts() {
-      this.account = null;
+      if (this.user?.id === this.auth.user.id) this.account = null;
     },
     account(selected) {
       this.$emit("update", selected);
