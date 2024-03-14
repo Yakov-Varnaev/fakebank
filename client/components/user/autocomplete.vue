@@ -37,6 +37,6 @@ export default {
 </script>
 
 <template>
-  <v-autocomplete no-filter v-model="selected" @update:search="setQuery" :items="options" item-title="email"
-    return-object label="User" />
+  <v-autocomplete v-bind="$attrs" no-filter v-model="selected" @update:search="setQuery" :items="options"
+    item-title="email" return-object label="User" />
 </template>

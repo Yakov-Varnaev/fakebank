@@ -60,6 +60,7 @@ const _inlineRuntimeConfig = {
     }
   },
   "public": {
+    "apiHost": "localhost:8000",
     "persistedState": {
       "storage": "cookies",
       "debug": false,

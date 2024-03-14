@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import { createTransaction } from "~/api/transactions";
 import { apiv1 } from "~/axios";
 
 export const useTransactions = defineStore("transactions", {
@@ -46,27 +47,16 @@ export const useTransactions = defineStore("transactions", {
     async create(payload) {
       return await this.withLoader(async () => {
         try {
-          const { data } = await apiv1.post("/transactions/", payload);
-          if (this.transactions.length < this.perPage) {
+          const { data } = await createTransaction(payload);
+          if (this.transactions.length < this.perPage && this.page === 1) {
             this.transactions.unshift(data);
           } else {
             await this.getTransactions();
           }
-        } catch ({ response }) {
+        } catch (error) {
           const alert = useAlert();
-          alert.reportError(`Failed to create transaction: ${response.status}`);
-        }
-      });
-    },
-    async update(id, transaction) {
-      return await this.withLoader(async () => {
-        try {
-          const { data } = await apiv1.put(`/transactions/${id}/`, transaction);
-          const index = this.transactions.findIndex((a) => a.id === id);
-          this.transactions[index] = data;
-        } catch ({ response }) {
-          useAlert().reportError(
-            `Failed to update transaction: ${response.status}`,
+          alert.reportError(
+            `Failed to create transaction: ${error.message}`,
           );
         }
       });

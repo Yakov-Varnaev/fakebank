@@ -18,6 +18,8 @@ declare module 'nuxt/schema' {
    },
   }
   interface PublicRuntimeConfig {
+   apiHost: string,
+
    persistedState: {
       storage: string,
 

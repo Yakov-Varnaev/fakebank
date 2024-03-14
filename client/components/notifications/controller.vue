@@ -1,5 +1,6 @@
 <script setup>
-const socket = new WebSocket("ws://localhost/notifications/ws");
+const config = useRuntimeConfig();
+const socket = new WebSocket(`ws://${config.public.apiHost}/notifications/ws`);
 
 const alertStore = useAlert();
 

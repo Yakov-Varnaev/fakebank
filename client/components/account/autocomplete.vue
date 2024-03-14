@@ -65,9 +65,6 @@ export default {
     filteredAccounts() {
       return this.filterAccounts(this.options);
     },
-    search() {
-      return this.query;
-    },
   },
   mounted() {
     if (this.user_id) this.fetch();
@@ -76,6 +73,6 @@ export default {
 </script>
 
 <template>
-  <v-autocomplete no-filter v-model="selectedAccount" :search-input.sync="query" @change="query = ''"
-    :items="filteredAccounts" item-title="name" return-object label="Account" :disabled="!user_id" />
+  <v-autocomplete no-filter v-model="selectedAccount" :search-input.sync="query" :items="filteredAccounts"
+    item-title="name" return-object label="Account" :disabled="!user_id" />
 </template>

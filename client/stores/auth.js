@@ -37,7 +37,7 @@ export const useAuth = defineStore("auth", {
         if (report) {
           alerts.reportInfo("Welcome!");
         }
-      } catch ({ response }) {
+      } catch (error) {
         if (response.status === HttpStatusCode.BadRequest) {
           return { errors: response.data };
         } else if (response.status === HttpStatusCode.Unauthorized) {

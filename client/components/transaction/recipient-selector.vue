@@ -6,6 +6,11 @@ export default {
     };
   },
   props: {
+    isUserDisabled: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
     forbiddenAccounts: {
       type: Array,
       required: false,
@@ -36,10 +41,11 @@ export default {
 <template>
   <v-row>
     <v-col>
-      <user-autocomplete v-model="user" />
+      <user-autocomplete v-model="user" :disabled="isUserDisabled" />
     </v-col>
     <v-col>
-      <account-autocomplete v-model="account" :user_id="user?.id" :forbiddenAccounts="forbiddenAccounts" />
+      <account-autocomplete v-bind="$attrs" v-model="account" :user_id="user?.id"
+        :forbiddenAccounts="forbiddenAccounts" />
     </v-col>
   </v-row>
 </template>

@@ -13,7 +13,6 @@ export const fetchAccounts = async (
   if (user_id !== null) {
     params.user_id = user_id;
   }
-  console.log("fetchAccounts", params);
 
   return await apiv1.get("/accounts", { params });
 };

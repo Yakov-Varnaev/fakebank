@@ -6,15 +6,12 @@ import decamelizeKeys from "decamelize-keys";
 function onResponseError(error) {
   const auth = useAuth();
   const alert = useAlert();
+  console.log(error);
   if (error.response.status === HttpStatusCode.Unauthorized) {
     auth.$reset();
     alert.reportWarning("Session expired, please login again.");
     navigateTo("/signin");
     return Promise.reject(error);
-  }
-
-  if (error) {
-    alert.reportError(error);
   }
 
   return Promise.reject(error);
@@ -44,7 +41,7 @@ function createAxios(config) {
 }
 
 export const apiv1 = createAxios({
-  baseURL: "http://localhost:8000",
+  baseURL: "http://" + useRuntimeConfig().public.apiHost,
   headers: {
     "Content-Type": "application/json",
   },

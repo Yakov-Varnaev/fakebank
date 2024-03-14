@@ -1,6 +1,7 @@
 import { apiv1 } from "~/axios";
 
 export const login = async (loginData) => {
+  useRuntimeConfig().public.apiHost;
   let formData = new FormData();
   Object.keys(loginData).forEach((key) => {
     formData.append(key, loginData[key]);
