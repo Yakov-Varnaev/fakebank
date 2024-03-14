@@ -25,10 +25,12 @@ export default {
   },
 };
 </script>
+
 <template>
-  <v-card color="light">
+  <v-card>
     <v-card-title class="d-flex align-center">
       {{ account.name }}
+
       <div class="ml-auto">
         <v-chip class="mr-3" variant="outlined">
           {{ parseBalance(account.balance) }}

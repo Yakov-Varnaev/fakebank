@@ -33,8 +33,12 @@ export default {
 </script>
 
 <template>
-  <v-container>
-    <transaction-list :transactions="transactions.transactions" />
-    <v-pagination v-model="page" :length="paginatorLength" />
-  </v-container>
+  <layout-paged>
+    <template v-slot:content>
+      <transaction-list :transactions="transactions.transactions" />
+    </template>
+    <template v-slot:pagination>
+      <v-pagination v-model="page" :length="paginatorLength" />
+    </template>
+  </layout-paged>
 </template>

@@ -33,8 +33,12 @@ export default {
 </script>
 
 <template>
-  <v-container>
-    <account-list :accounts="accounts.accounts" />
-    <v-pagination v-model="page" :length="paginatorLength" />
-  </v-container>
+  <layout-paged>
+    <template v-slot:content>
+      <account-list :accounts="accounts.accounts" />
+    </template>
+    <template v-slot:pagination>
+      <v-pagination v-model="page" :length="paginatorLength" />
+    </template>
+  </layout-paged>
 </template>

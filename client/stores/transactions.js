@@ -10,7 +10,7 @@ export const useTransactions = defineStore("transactions", {
   }),
   actions: {
     async withLoader(fn) {
-      await useLoader().withLoader(fn);
+      return await useLoader().withLoader(fn);
     },
     async setPage(page) {
       this.page = page;
@@ -31,7 +31,9 @@ export const useTransactions = defineStore("transactions", {
       }
     },
     async getTransactions() {
-      const data = await this.withLoader(async () => this._getTransactions);
+      const data = await this.withLoader(async () =>
+        await this._getTransactions()
+      );
       this.transactions = data.data;
       this.total = data.total;
     },
