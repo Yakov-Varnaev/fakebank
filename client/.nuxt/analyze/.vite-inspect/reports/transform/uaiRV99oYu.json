@@ -1,0 +1,225 @@
+{
+  "resolvedId": "/Users/yakovvarnaev/dev/fakebank/client/node_modules/map-obj/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "'use strict';\n\nconst isObject = value => typeof value === 'object' && value !== null;\nconst mapObjectSkip = Symbol('skip');\n\n// Customized for this use-case\nconst isObjectCustom = value =>\n\tisObject(value) &&\n\t!(value instanceof RegExp) &&\n\t!(value instanceof Error) &&\n\t!(value instanceof Date);\n\nconst mapObject = (object, mapper, options, isSeen = new WeakMap()) => {\n\toptions = {\n\t\tdeep: false,\n\t\ttarget: {},\n\t\t...options\n\t};\n\n\tif (isSeen.has(object)) {\n\t\treturn isSeen.get(object);\n\t}\n\n\tisSeen.set(object, options.target);\n\n\tconst {target} = options;\n\tdelete options.target;\n\n\tconst mapArray = array => array.map(element => isObjectCustom(element) ? mapObject(element, mapper, options, isSeen) : element);\n\tif (Array.isArray(object)) {\n\t\treturn mapArray(object);\n\t}\n\n\tfor (const [key, value] of Object.entries(object)) {\n\t\tconst mapResult = mapper(key, value, object);\n\n\t\tif (mapResult === mapObjectSkip) {\n\t\t\tcontinue;\n\t\t}\n\n\t\tlet [newKey, newValue, {shouldRecurse = true} = {}] = mapResult;\n\n\t\t// Drop `__proto__` keys.\n\t\tif (newKey === '__proto__') {\n\t\t\tcontinue;\n\t\t}\n\n\t\tif (options.deep && shouldRecurse && isObjectCustom(newValue)) {\n\t\t\tnewValue = Array.isArray(newValue) ?\n\t\t\t\tmapArray(newValue) :\n\t\t\t\tmapObject(newValue, mapper, options, isSeen);\n\t\t}\n\n\t\ttarget[newKey] = newValue;\n\t}\n\n\treturn target;\n};\n\nmodule.exports = (object, mapper, options) => {\n\tif (!isObject(object)) {\n\t\tthrow new TypeError(`Expected an object, got \\`${object}\\` (${typeof object})`);\n\t}\n\n\treturn mapObject(object, mapper, options);\n};\n\nmodule.exports.mapObjectSkip = mapObjectSkip;\n",
+      "start": 1710444277301,
+      "end": 1710444277321,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1710444277321,
+      "end": 1710444277321,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1710444277321,
+      "end": 1710444277321,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1710444277321,
+      "end": 1710444277321,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1710444277321,
+      "end": 1710444277321,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1710444277321,
+      "end": 1710444277321,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1710444277321,
+      "end": 1710444277321,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1710444277321,
+      "end": 1710444277321,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1710444277321,
+      "end": 1710444277321,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1710444277321,
+      "end": 1710444277321,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710444277321,
+      "end": 1710444277321,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1710444277321,
+      "end": 1710444277321,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1710444277321,
+      "end": 1710444277321,
+      "order": "normal"
+    },
+    {
+      "name": "vuetify:import",
+      "start": 1710444277321,
+      "end": 1710444277321,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1710444277321,
+      "end": 1710444277321,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710444277321,
+      "end": 1710444277321,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1710444277321,
+      "end": 1710444277321,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1710444277321,
+      "end": 1710444277321,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1710444277321,
+      "end": 1710444277321,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1710444277321,
+      "end": 1710444277321,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1710444277321,
+      "end": 1710444277321,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1710444277321,
+      "end": 1710444277321,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "result": "import * as commonjsHelpers from \"\u0000commonjsHelpers.js\";\nimport { __module as mapObjModule } from \"\\u0000/Users/yakovvarnaev/dev/fakebank/client/node_modules/map-obj/index.js?commonjs-module\";\nvar mapObj = mapObjModule.exports;\n\n'use strict';\n\nconst isObject = value => typeof value === 'object' && value !== null;\nconst mapObjectSkip = Symbol('skip');\n\n// Customized for this use-case\nconst isObjectCustom = value =>\n\tisObject(value) &&\n\t!(value instanceof RegExp) &&\n\t!(value instanceof Error) &&\n\t!(value instanceof Date);\n\nconst mapObject = (object, mapper, options, isSeen = new WeakMap()) => {\n\toptions = {\n\t\tdeep: false,\n\t\ttarget: {},\n\t\t...options\n\t};\n\n\tif (isSeen.has(object)) {\n\t\treturn isSeen.get(object);\n\t}\n\n\tisSeen.set(object, options.target);\n\n\tconst {target} = options;\n\tdelete options.target;\n\n\tconst mapArray = array => array.map(element => isObjectCustom(element) ? mapObject(element, mapper, options, isSeen) : element);\n\tif (Array.isArray(object)) {\n\t\treturn mapArray(object);\n\t}\n\n\tfor (const [key, value] of Object.entries(object)) {\n\t\tconst mapResult = mapper(key, value, object);\n\n\t\tif (mapResult === mapObjectSkip) {\n\t\t\tcontinue;\n\t\t}\n\n\t\tlet [newKey, newValue, {shouldRecurse = true} = {}] = mapResult;\n\n\t\t// Drop `__proto__` keys.\n\t\tif (newKey === '__proto__') {\n\t\t\tcontinue;\n\t\t}\n\n\t\tif (options.deep && shouldRecurse && isObjectCustom(newValue)) {\n\t\t\tnewValue = Array.isArray(newValue) ?\n\t\t\t\tmapArray(newValue) :\n\t\t\t\tmapObject(newValue, mapper, options, isSeen);\n\t\t}\n\n\t\ttarget[newKey] = newValue;\n\t}\n\n\treturn target;\n};\n\nmapObjModule.exports = (object, mapper, options) => {\n\tif (!isObject(object)) {\n\t\tthrow new TypeError(`Expected an object, got \\`${object}\\` (${typeof object})`);\n\t}\n\n\treturn mapObject(object, mapper, options);\n};\n\nvar mapObjectSkip_1 = mapObjModule.exports.mapObjectSkip = mapObjectSkip;\n\nvar mapObjExports = mapObjModule.exports;\nexport default /*@__PURE__*/commonjsHelpers.getDefaultExportFromCjs(mapObjExports);\nexport { mapObjExports as __moduleExports, mapObjectSkip_1 as mapObjectSkip };",
+      "start": 1710444277321,
+      "end": 1710444277322,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          ""
+        ],
+        "names": [],
+        "mappings": "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"
+      }
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1710444277322,
+      "end": 1710444277322,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1710444277322,
+      "end": 1710444277322,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1710444277322,
+      "end": 1710444277322,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1710444277322,
+      "end": 1710444277322,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1710444277322,
+      "end": 1710444277322,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1710444277322,
+      "end": 1710444277322,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1710444277322,
+      "end": 1710444277322,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1710444277322,
+      "end": 1710444277322,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1710444277322,
+      "end": 1710444277322,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1710444277322,
+      "end": 1710444277322,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1710444277322,
+      "end": 1710444277322,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1710444277322,
+      "end": 1710444277322,
+      "order": "normal"
+    }
+  ]
+}

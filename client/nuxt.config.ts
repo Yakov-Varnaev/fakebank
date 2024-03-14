@@ -37,7 +37,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      apiHost: "localhost:8000",
+      apiHost: process.env.NUXT_ENV_API_HOST,
     },
   },
 });

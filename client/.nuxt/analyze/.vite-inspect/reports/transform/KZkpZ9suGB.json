@@ -1,0 +1,223 @@
+{
+  "resolvedId": "/Users/yakovvarnaev/dev/fakebank/client/layouts/default.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\n  <v-app>\n    <AppBar />\n    <v-main>\n      <slot />\n    </v-main>\n    <alert-container />\n    <div v-auto-animate>\n      <transaction-create-btn\n        class=\"floating_transaction_btn\"\n        size=\"large\"\n        variant=\"tonal\"\n        color=\"success\"\n        v-if=\"this.$route.name != 'transactions'\"\n      />\n    </div>\n  </v-app>\n</template>\n\n<style scoped>\n.floating_transaction_btn {\n  position: fixed;\n  bottom: 20px;\n  left: 20px;\n}\n</style>\n",
+      "start": 1710444275927,
+      "end": 1710444275958,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1710444275958,
+      "end": 1710444275958,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1710444275958,
+      "end": 1710444275958,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1710444275958,
+      "end": 1710444275958,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1710444275958,
+      "end": 1710444275958,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1710444275958,
+      "end": 1710444275958,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1710444275958,
+      "end": 1710444275958,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1710444275958,
+      "end": 1710444275958,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "const _sfc_main = {}\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, renderSlot as _renderSlot, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock, createCommentVNode as _createCommentVNode, resolveDirective as _resolveDirective, createElementBlock as _createElementBlock, withDirectives as _withDirectives } from \"vue\"\n\nfunction _sfc_render(_ctx, _cache) {\n  const _component_AppBar = _resolveComponent(\"AppBar\")\n  const _component_v_main = _resolveComponent(\"v-main\")\n  const _component_alert_container = _resolveComponent(\"alert-container\")\n  const _component_transaction_create_btn = _resolveComponent(\"transaction-create-btn\")\n  const _component_v_app = _resolveComponent(\"v-app\")\n  const _directive_auto_animate = _resolveDirective(\"auto-animate\")\n\n  return (_openBlock(), _createBlock(_component_v_app, null, {\n    default: _withCtx(() => [\n      _createVNode(_component_AppBar),\n      _createVNode(_component_v_main, null, {\n        default: _withCtx(() => [\n          _renderSlot(_ctx.$slots, \"default\", {}, undefined, true)\n        ]),\n        _: 3\n      }),\n      _createVNode(_component_alert_container),\n      _withDirectives((_openBlock(), _createElementBlock(\"div\", null, [\n        (this.$route.name != 'transactions')\n          ? (_openBlock(), _createBlock(_component_transaction_create_btn, {\n              key: 0,\n              class: \"floating_transaction_btn\",\n              size: \"large\",\n              variant: \"tonal\",\n              color: \"success\"\n            }))\n          : _createCommentVNode(\"\", true)\n      ])), [\n        [_directive_auto_animate]\n      ])\n    ]),\n    _: 3\n  }))\n}\n\nimport \"/Users/yakovvarnaev/dev/fakebank/client/layouts/default.vue?vue&type=style&index=0&scoped=8d4d596e&lang.css\"\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['render',_sfc_render],['__scopeId',\"data-v-8d4d596e\"]])",
+      "start": 1710444275958,
+      "end": 1710444275961,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1710444275961,
+      "end": 1710444275961,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710444275961,
+      "end": 1710444275961,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1710444275961,
+      "end": 1710444275961,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1710444275961,
+      "end": 1710444275961,
+      "order": "normal"
+    },
+    {
+      "name": "vuetify:import",
+      "result": "const _sfc_main = {}\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, renderSlot as _renderSlot, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock, createCommentVNode as _createCommentVNode, resolveDirective as _resolveDirective, createElementBlock as _createElementBlock, withDirectives as _withDirectives } from \"vue\"\n\nfunction _sfc_render(_ctx, _cache) {\n  const _component_AppBar = _resolveComponent(\"AppBar\")\n                                                       \n  const _component_alert_container = _resolveComponent(\"alert-container\")\n  const _component_transaction_create_btn = _resolveComponent(\"transaction-create-btn\")\n                                                     \n  const _directive_auto_animate = _resolveDirective(\"auto-animate\")\n\n  return (_openBlock(), _createBlock(_component_v_app, null, {\n    default: _withCtx(() => [\n      _createVNode(_component_AppBar),\n      _createVNode(_component_v_main, null, {\n        default: _withCtx(() => [\n          _renderSlot(_ctx.$slots, \"default\", {}, undefined, true)\n        ]),\n        _: 3\n      }),\n      _createVNode(_component_alert_container),\n      _withDirectives((_openBlock(), _createElementBlock(\"div\", null, [\n        (this.$route.name != 'transactions')\n          ? (_openBlock(), _createBlock(_component_transaction_create_btn, {\n              key: 0,\n              class: \"floating_transaction_btn\",\n              size: \"large\",\n              variant: \"tonal\",\n              color: \"success\"\n            }))\n          : _createCommentVNode(\"\", true)\n      ])), [\n        [_directive_auto_animate]\n      ])\n    ]),\n    _: 3\n  }))\n}\n\nimport \"/Users/yakovvarnaev/dev/fakebank/client/layouts/default.vue?vue&type=style&index=0&scoped=8d4d596e&lang.css\"\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['render',_sfc_render],['__scopeId',\"data-v-8d4d596e\"]])\n\n/* Vuetify */\nimport { VApp as _component_v_app } from \"vuetify/lib/components/VApp/index.mjs\"\nimport { VMain as _component_v_main } from \"vuetify/lib/components/VMain/index.mjs\"\n\n",
+      "start": 1710444275961,
+      "end": 1710444275961,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1710444275961,
+      "end": 1710444275961,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710444275961,
+      "end": 1710444275961,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1710444275961,
+      "end": 1710444275961,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1710444275961,
+      "end": 1710444275961,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1710444275961,
+      "end": 1710444275961,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1710444275961,
+      "end": 1710444275961,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1710444275961,
+      "end": 1710444275961,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1710444275961,
+      "end": 1710444275961,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1710444275961,
+      "end": 1710444275961,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1710444275961,
+      "end": 1710444275961,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1710444275961,
+      "end": 1710444275961,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1710444275961,
+      "end": 1710444275961,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1710444275961,
+      "end": 1710444275961,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1710444275961,
+      "end": 1710444275961,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1710444275961,
+      "end": 1710444275961,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1710444275961,
+      "end": 1710444275961,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1710444275961,
+      "end": 1710444275961,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "result": "import { default as __nuxt_component_0 } from \"/Users/yakovvarnaev/dev/fakebank/client/components/app-bar.vue\";\nimport { default as __nuxt_component_1 } from \"/Users/yakovvarnaev/dev/fakebank/client/components/alert/container.vue\";\nimport { default as __nuxt_component_2 } from \"/Users/yakovvarnaev/dev/fakebank/client/components/transaction/create-btn.vue\";\nconst _sfc_main = {}\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, renderSlot as _renderSlot, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock, createCommentVNode as _createCommentVNode, resolveDirective as _resolveDirective, createElementBlock as _createElementBlock, withDirectives as _withDirectives } from \"vue\"\n\nfunction _sfc_render(_ctx, _cache) {\n  const _component_AppBar = __nuxt_component_0\n                                                       \n  const _component_alert_container = __nuxt_component_1\n  const _component_transaction_create_btn = __nuxt_component_2\n                                                     \n  const _directive_auto_animate = _resolveDirective(\"auto-animate\")\n\n  return (_openBlock(), _createBlock(_component_v_app, null, {\n    default: _withCtx(() => [\n      _createVNode(_component_AppBar),\n      _createVNode(_component_v_main, null, {\n        default: _withCtx(() => [\n          _renderSlot(_ctx.$slots, \"default\", {}, undefined, true)\n        ]),\n        _: 3\n      }),\n      _createVNode(_component_alert_container),\n      _withDirectives((_openBlock(), _createElementBlock(\"div\", null, [\n        (this.$route.name != 'transactions')\n          ? (_openBlock(), _createBlock(_component_transaction_create_btn, {\n              key: 0,\n              class: \"floating_transaction_btn\",\n              size: \"large\",\n              variant: \"tonal\",\n              color: \"success\"\n            }))\n          : _createCommentVNode(\"\", true)\n      ])), [\n        [_directive_auto_animate]\n      ])\n    ]),\n    _: 3\n  }))\n}\n\nimport \"/Users/yakovvarnaev/dev/fakebank/client/layouts/default.vue?vue&type=style&index=0&scoped=8d4d596e&lang.css\"\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['render',_sfc_render],['__scopeId',\"data-v-8d4d596e\"]])\n\n/* Vuetify */\nimport { VApp as _component_v_app } from \"vuetify/lib/components/VApp/index.mjs\"\nimport { VMain as _component_v_main } from \"vuetify/lib/components/VMain/index.mjs\"\n\n",
+      "start": 1710444275961,
+      "end": 1710444275961,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1710444275961,
+      "end": 1710444275961,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1710444275961,
+      "end": 1710444275961,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1710444275961,
+      "end": 1710444275961,
+      "order": "normal"
+    }
+  ]
+}

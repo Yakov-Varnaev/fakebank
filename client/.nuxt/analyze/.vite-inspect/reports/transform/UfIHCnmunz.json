@@ -1,0 +1,223 @@
+{
+  "resolvedId": "/Users/yakovvarnaev/dev/fakebank/client/components/button-block.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<script>\nexport default {\n  props: {\n    isSubmitDisabled: {\n      type: Boolean,\n    },\n  },\n};\n</script>\n<template>\n  <v-row no-gutters>\n    <v-col class=\"mx-1\">\n      <submit-btn\n        variant=\"tonal\"\n        block\n        @click=\"$emit('submit')\"\n        :disabled=\"isSubmitDisabled\"\n      />\n    </v-col>\n    <v-col class=\"mx-1\">\n      <cancel-btn variant=\"tonal\" block @click=\"$emit('cancel')\" />\n    </v-col>\n  </v-row>\n</template>\n",
+      "start": 1710444276524,
+      "end": 1710444277111,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1710444277111,
+      "end": 1710444277111,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1710444277111,
+      "end": 1710444277111,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1710444277111,
+      "end": 1710444277111,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1710444277111,
+      "end": 1710444277111,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1710444277111,
+      "end": 1710444277111,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1710444277111,
+      "end": 1710444277111,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1710444277111,
+      "end": 1710444277111,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "\nconst _sfc_main = {\n  props: {\n    isSubmitDisabled: {\n      type: Boolean,\n    },\n  },\n};\n\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nfunction _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {\n  const _component_submit_btn = _resolveComponent(\"submit-btn\")\n  const _component_v_col = _resolveComponent(\"v-col\")\n  const _component_cancel_btn = _resolveComponent(\"cancel-btn\")\n  const _component_v_row = _resolveComponent(\"v-row\")\n\n  return (_openBlock(), _createBlock(_component_v_row, { \"no-gutters\": \"\" }, {\n    default: _withCtx(() => [\n      _createVNode(_component_v_col, { class: \"mx-1\" }, {\n        default: _withCtx(() => [\n          _createVNode(_component_submit_btn, {\n            variant: \"tonal\",\n            block: \"\",\n            onClick: _cache[0] || (_cache[0] = $event => (_ctx.$emit('submit'))),\n            disabled: $props.isSubmitDisabled\n          }, null, 8, [\"disabled\"])\n        ]),\n        _: 1\n      }),\n      _createVNode(_component_v_col, { class: \"mx-1\" }, {\n        default: _withCtx(() => [\n          _createVNode(_component_cancel_btn, {\n            variant: \"tonal\",\n            block: \"\",\n            onClick: _cache[1] || (_cache[1] = $event => (_ctx.$emit('cancel')))\n          })\n        ]),\n        _: 1\n      })\n    ]),\n    _: 1\n  }))\n}\n\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['render',_sfc_render]])",
+      "start": 1710444277111,
+      "end": 1710444277112,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1710444277112,
+      "end": 1710444277112,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710444277112,
+      "end": 1710444277112,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1710444277112,
+      "end": 1710444277112,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1710444277112,
+      "end": 1710444277112,
+      "order": "normal"
+    },
+    {
+      "name": "vuetify:import",
+      "result": "\nconst _sfc_main = {\n  props: {\n    isSubmitDisabled: {\n      type: Boolean,\n    },\n  },\n};\n\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nfunction _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {\n  const _component_submit_btn = _resolveComponent(\"submit-btn\")\n                                                     \n  const _component_cancel_btn = _resolveComponent(\"cancel-btn\")\n                                                     \n\n  return (_openBlock(), _createBlock(_component_v_row, { \"no-gutters\": \"\" }, {\n    default: _withCtx(() => [\n      _createVNode(_component_v_col, { class: \"mx-1\" }, {\n        default: _withCtx(() => [\n          _createVNode(_component_submit_btn, {\n            variant: \"tonal\",\n            block: \"\",\n            onClick: _cache[0] || (_cache[0] = $event => (_ctx.$emit('submit'))),\n            disabled: $props.isSubmitDisabled\n          }, null, 8, [\"disabled\"])\n        ]),\n        _: 1\n      }),\n      _createVNode(_component_v_col, { class: \"mx-1\" }, {\n        default: _withCtx(() => [\n          _createVNode(_component_cancel_btn, {\n            variant: \"tonal\",\n            block: \"\",\n            onClick: _cache[1] || (_cache[1] = $event => (_ctx.$emit('cancel')))\n          })\n        ]),\n        _: 1\n      })\n    ]),\n    _: 1\n  }))\n}\n\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['render',_sfc_render]])\n\n/* Vuetify */\nimport { VCol as _component_v_col, VRow as _component_v_row } from \"vuetify/lib/components/VGrid/index.mjs\"\n\n",
+      "start": 1710444277112,
+      "end": 1710444277112,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1710444277112,
+      "end": 1710444277112,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710444277112,
+      "end": 1710444277112,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1710444277112,
+      "end": 1710444277112,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1710444277112,
+      "end": 1710444277112,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1710444277112,
+      "end": 1710444277112,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1710444277112,
+      "end": 1710444277112,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1710444277112,
+      "end": 1710444277112,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1710444277112,
+      "end": 1710444277112,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1710444277112,
+      "end": 1710444277112,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1710444277112,
+      "end": 1710444277112,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1710444277112,
+      "end": 1710444277112,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1710444277112,
+      "end": 1710444277112,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1710444277112,
+      "end": 1710444277112,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1710444277112,
+      "end": 1710444277112,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1710444277112,
+      "end": 1710444277112,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1710444277112,
+      "end": 1710444277112,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1710444277112,
+      "end": 1710444277112,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "result": "import { default as __nuxt_component_0 } from \"/Users/yakovvarnaev/dev/fakebank/client/components/submit-btn.vue\";\nimport { default as __nuxt_component_1 } from \"/Users/yakovvarnaev/dev/fakebank/client/components/cancel-btn.vue\";\n\nconst _sfc_main = {\n  props: {\n    isSubmitDisabled: {\n      type: Boolean,\n    },\n  },\n};\n\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nfunction _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {\n  const _component_submit_btn = __nuxt_component_0\n                                                     \n  const _component_cancel_btn = __nuxt_component_1\n                                                     \n\n  return (_openBlock(), _createBlock(_component_v_row, { \"no-gutters\": \"\" }, {\n    default: _withCtx(() => [\n      _createVNode(_component_v_col, { class: \"mx-1\" }, {\n        default: _withCtx(() => [\n          _createVNode(_component_submit_btn, {\n            variant: \"tonal\",\n            block: \"\",\n            onClick: _cache[0] || (_cache[0] = $event => (_ctx.$emit('submit'))),\n            disabled: $props.isSubmitDisabled\n          }, null, 8, [\"disabled\"])\n        ]),\n        _: 1\n      }),\n      _createVNode(_component_v_col, { class: \"mx-1\" }, {\n        default: _withCtx(() => [\n          _createVNode(_component_cancel_btn, {\n            variant: \"tonal\",\n            block: \"\",\n            onClick: _cache[1] || (_cache[1] = $event => (_ctx.$emit('cancel')))\n          })\n        ]),\n        _: 1\n      })\n    ]),\n    _: 1\n  }))\n}\n\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['render',_sfc_render]])\n\n/* Vuetify */\nimport { VCol as _component_v_col, VRow as _component_v_row } from \"vuetify/lib/components/VGrid/index.mjs\"\n\n",
+      "start": 1710444277112,
+      "end": 1710444277112,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1710444277112,
+      "end": 1710444277112,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1710444277112,
+      "end": 1710444277112,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1710444277112,
+      "end": 1710444277112,
+      "order": "normal"
+    }
+  ]
+}

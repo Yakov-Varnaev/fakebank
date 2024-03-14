@@ -1,0 +1,223 @@
+{
+  "resolvedId": "/Users/yakovvarnaev/dev/fakebank/client/components/account/create-item.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<script>\nexport default {\n  data() {\n    return {\n      overlay: false,\n    };\n  },\n};\n</script>\n\n<template>\n  <v-dialog v-model=\"overlay\">\n    <template v-slot:activator=\"{ props: activatorProps }\">\n      <v-btn\n        v-bind=\"activatorProps\"\n        block\n        variant=\"tonal\"\n        color=\"success\"\n        size=\"large\"\n      >\n        Create Account\n      </v-btn>\n    </template>\n\n    <template v-slot:default=\"{ isActive }\">\n      <v-row>\n        <v-col offset-md=\"4\" md=\"4\">\n          <account-form @close=\"overlay = !overlay\" />\n        </v-col>\n      </v-row>\n    </template>\n  </v-dialog>\n</template>\n",
+      "start": 1710444276449,
+      "end": 1710444276468,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1710444276468,
+      "end": 1710444276468,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1710444276468,
+      "end": 1710444276468,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1710444276468,
+      "end": 1710444276468,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1710444276468,
+      "end": 1710444276468,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1710444276468,
+      "end": 1710444276468,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1710444276468,
+      "end": 1710444276468,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1710444276468,
+      "end": 1710444276468,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "\nconst _sfc_main = {\n  data() {\n    return {\n      overlay: false,\n    };\n  },\n};\n\nimport { createTextVNode as _createTextVNode, resolveComponent as _resolveComponent, mergeProps as _mergeProps, withCtx as _withCtx, createVNode as _createVNode, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nfunction _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {\n  const _component_v_btn = _resolveComponent(\"v-btn\")\n  const _component_account_form = _resolveComponent(\"account-form\")\n  const _component_v_col = _resolveComponent(\"v-col\")\n  const _component_v_row = _resolveComponent(\"v-row\")\n  const _component_v_dialog = _resolveComponent(\"v-dialog\")\n\n  return (_openBlock(), _createBlock(_component_v_dialog, {\n    modelValue: $data.overlay,\n    \"onUpdate:modelValue\": _cache[1] || (_cache[1] = $event => (($data.overlay) = $event))\n  }, {\n    activator: _withCtx(({ props: activatorProps }) => [\n      _createVNode(_component_v_btn, _mergeProps(activatorProps, {\n        block: \"\",\n        variant: \"tonal\",\n        color: \"success\",\n        size: \"large\"\n      }), {\n        default: _withCtx(() => [\n          _createTextVNode(\" Create Account \")\n        ]),\n        _: 2\n      }, 1040)\n    ]),\n    default: _withCtx(({ isActive }) => [\n      _createVNode(_component_v_row, null, {\n        default: _withCtx(() => [\n          _createVNode(_component_v_col, {\n            \"offset-md\": \"4\",\n            md: \"4\"\n          }, {\n            default: _withCtx(() => [\n              _createVNode(_component_account_form, {\n                onClose: _cache[0] || (_cache[0] = $event => ($data.overlay = !$data.overlay))\n              })\n            ]),\n            _: 1\n          })\n        ]),\n        _: 1\n      })\n    ]),\n    _: 1\n  }, 8, [\"modelValue\"]))\n}\n\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['render',_sfc_render]])",
+      "start": 1710444276468,
+      "end": 1710444276468,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1710444276468,
+      "end": 1710444276468,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710444276468,
+      "end": 1710444276468,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1710444276468,
+      "end": 1710444276468,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1710444276468,
+      "end": 1710444276468,
+      "order": "normal"
+    },
+    {
+      "name": "vuetify:import",
+      "result": "\nconst _sfc_main = {\n  data() {\n    return {\n      overlay: false,\n    };\n  },\n};\n\nimport { createTextVNode as _createTextVNode, resolveComponent as _resolveComponent, mergeProps as _mergeProps, withCtx as _withCtx, createVNode as _createVNode, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nfunction _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {\n                                                     \n  const _component_account_form = _resolveComponent(\"account-form\")\n                                                     \n                                                     \n                                                           \n\n  return (_openBlock(), _createBlock(_component_v_dialog, {\n    modelValue: $data.overlay,\n    \"onUpdate:modelValue\": _cache[1] || (_cache[1] = $event => (($data.overlay) = $event))\n  }, {\n    activator: _withCtx(({ props: activatorProps }) => [\n      _createVNode(_component_v_btn, _mergeProps(activatorProps, {\n        block: \"\",\n        variant: \"tonal\",\n        color: \"success\",\n        size: \"large\"\n      }), {\n        default: _withCtx(() => [\n          _createTextVNode(\" Create Account \")\n        ]),\n        _: 2\n      }, 1040)\n    ]),\n    default: _withCtx(({ isActive }) => [\n      _createVNode(_component_v_row, null, {\n        default: _withCtx(() => [\n          _createVNode(_component_v_col, {\n            \"offset-md\": \"4\",\n            md: \"4\"\n          }, {\n            default: _withCtx(() => [\n              _createVNode(_component_account_form, {\n                onClose: _cache[0] || (_cache[0] = $event => ($data.overlay = !$data.overlay))\n              })\n            ]),\n            _: 1\n          })\n        ]),\n        _: 1\n      })\n    ]),\n    _: 1\n  }, 8, [\"modelValue\"]))\n}\n\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['render',_sfc_render]])\n\n/* Vuetify */\nimport { VBtn as _component_v_btn } from \"vuetify/lib/components/VBtn/index.mjs\"\nimport { VDialog as _component_v_dialog } from \"vuetify/lib/components/VDialog/index.mjs\"\nimport { VCol as _component_v_col, VRow as _component_v_row } from \"vuetify/lib/components/VGrid/index.mjs\"\n\n",
+      "start": 1710444276469,
+      "end": 1710444276469,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1710444276469,
+      "end": 1710444276469,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710444276469,
+      "end": 1710444276469,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1710444276469,
+      "end": 1710444276469,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1710444276469,
+      "end": 1710444276469,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1710444276469,
+      "end": 1710444276469,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1710444276469,
+      "end": 1710444276469,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1710444276469,
+      "end": 1710444276469,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1710444276469,
+      "end": 1710444276469,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1710444276469,
+      "end": 1710444276469,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1710444276469,
+      "end": 1710444276469,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1710444276469,
+      "end": 1710444276469,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1710444276469,
+      "end": 1710444276469,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1710444276469,
+      "end": 1710444276469,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1710444276469,
+      "end": 1710444276469,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1710444276469,
+      "end": 1710444276469,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1710444276469,
+      "end": 1710444276469,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1710444276469,
+      "end": 1710444276469,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "result": "import { default as __nuxt_component_0 } from \"/Users/yakovvarnaev/dev/fakebank/client/components/account/form.vue\";\n\nconst _sfc_main = {\n  data() {\n    return {\n      overlay: false,\n    };\n  },\n};\n\nimport { createTextVNode as _createTextVNode, resolveComponent as _resolveComponent, mergeProps as _mergeProps, withCtx as _withCtx, createVNode as _createVNode, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nfunction _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {\n                                                     \n  const _component_account_form = __nuxt_component_0\n                                                     \n                                                     \n                                                           \n\n  return (_openBlock(), _createBlock(_component_v_dialog, {\n    modelValue: $data.overlay,\n    \"onUpdate:modelValue\": _cache[1] || (_cache[1] = $event => (($data.overlay) = $event))\n  }, {\n    activator: _withCtx(({ props: activatorProps }) => [\n      _createVNode(_component_v_btn, _mergeProps(activatorProps, {\n        block: \"\",\n        variant: \"tonal\",\n        color: \"success\",\n        size: \"large\"\n      }), {\n        default: _withCtx(() => [\n          _createTextVNode(\" Create Account \")\n        ]),\n        _: 2\n      }, 1040)\n    ]),\n    default: _withCtx(({ isActive }) => [\n      _createVNode(_component_v_row, null, {\n        default: _withCtx(() => [\n          _createVNode(_component_v_col, {\n            \"offset-md\": \"4\",\n            md: \"4\"\n          }, {\n            default: _withCtx(() => [\n              _createVNode(_component_account_form, {\n                onClose: _cache[0] || (_cache[0] = $event => ($data.overlay = !$data.overlay))\n              })\n            ]),\n            _: 1\n          })\n        ]),\n        _: 1\n      })\n    ]),\n    _: 1\n  }, 8, [\"modelValue\"]))\n}\n\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['render',_sfc_render]])\n\n/* Vuetify */\nimport { VBtn as _component_v_btn } from \"vuetify/lib/components/VBtn/index.mjs\"\nimport { VDialog as _component_v_dialog } from \"vuetify/lib/components/VDialog/index.mjs\"\nimport { VCol as _component_v_col, VRow as _component_v_row } from \"vuetify/lib/components/VGrid/index.mjs\"\n\n",
+      "start": 1710444276469,
+      "end": 1710444276469,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1710444276469,
+      "end": 1710444276469,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1710444276469,
+      "end": 1710444276469,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1710444276469,
+      "end": 1710444276469,
+      "order": "normal"
+    }
+  ]
+}

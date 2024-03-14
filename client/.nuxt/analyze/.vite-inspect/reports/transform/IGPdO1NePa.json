@@ -1,0 +1,232 @@
+{
+  "resolvedId": "/Users/yakovvarnaev/dev/fakebank/client/components/account/page.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<script>\nexport default {\n  setup() {\n    const accounts = useAccounts();\n    return { accounts, auth: useAuth() };\n  },\n  data() {\n    return {};\n  },\n  methods: {\n    async fetchAccounts() {\n      await this.accounts.getAccounts(this.auth.user.id);\n    },\n  },\n  mounted() {\n    this.fetchAccounts();\n  },\n  computed: {\n    paginatorLength() {\n      return Math.ceil(this.accounts.total / this.accounts.perPage);\n    },\n    page: {\n      get() {\n        return this.accounts.page;\n      },\n      set(value) {\n        this.accounts.page = value;\n        this.fetchAccounts();\n      },\n    },\n  },\n};\n</script>\n\n<template>\n  <layout-paged>\n    <template v-slot:content>\n      <account-list :accounts=\"accounts.accounts\" />\n    </template>\n    <template v-slot:pagination>\n      <v-pagination v-model=\"page\" :length=\"paginatorLength\" />\n    </template>\n  </layout-paged>\n</template>\n",
+      "start": 1710444275975,
+      "end": 1710444275996,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1710444275996,
+      "end": 1710444275996,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1710444275996,
+      "end": 1710444275996,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1710444275996,
+      "end": 1710444275996,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1710444275996,
+      "end": 1710444275996,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1710444275996,
+      "end": 1710444275996,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1710444275996,
+      "end": 1710444275996,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1710444275996,
+      "end": 1710444275996,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "\nconst _sfc_main = {\n  setup() {\n    const accounts = useAccounts();\n    return { accounts, auth: useAuth() };\n  },\n  data() {\n    return {};\n  },\n  methods: {\n    async fetchAccounts() {\n      await this.accounts.getAccounts(this.auth.user.id);\n    },\n  },\n  mounted() {\n    this.fetchAccounts();\n  },\n  computed: {\n    paginatorLength() {\n      return Math.ceil(this.accounts.total / this.accounts.perPage);\n    },\n    page: {\n      get() {\n        return this.accounts.page;\n      },\n      set(value) {\n        this.accounts.page = value;\n        this.fetchAccounts();\n      },\n    },\n  },\n};\n\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nfunction _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {\n  const _component_account_list = _resolveComponent(\"account-list\")\n  const _component_v_pagination = _resolveComponent(\"v-pagination\")\n  const _component_layout_paged = _resolveComponent(\"layout-paged\")\n\n  return (_openBlock(), _createBlock(_component_layout_paged, null, {\n    content: _withCtx(() => [\n      _createVNode(_component_account_list, {\n        accounts: $setup.accounts.accounts\n      }, null, 8, [\"accounts\"])\n    ]),\n    pagination: _withCtx(() => [\n      _createVNode(_component_v_pagination, {\n        modelValue: $options.page,\n        \"onUpdate:modelValue\": _cache[0] || (_cache[0] = $event => (($options.page) = $event)),\n        length: $options.paginatorLength\n      }, null, 8, [\"modelValue\", \"length\"])\n    ]),\n    _: 1\n  }))\n}\n\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['render',_sfc_render]])",
+      "start": 1710444275996,
+      "end": 1710444275998,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1710444275998,
+      "end": 1710444275998,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710444275998,
+      "end": 1710444275998,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1710444275998,
+      "end": 1710444275998,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1710444275998,
+      "end": 1710444275998,
+      "order": "normal"
+    },
+    {
+      "name": "vuetify:import",
+      "result": "\nconst _sfc_main = {\n  setup() {\n    const accounts = useAccounts();\n    return { accounts, auth: useAuth() };\n  },\n  data() {\n    return {};\n  },\n  methods: {\n    async fetchAccounts() {\n      await this.accounts.getAccounts(this.auth.user.id);\n    },\n  },\n  mounted() {\n    this.fetchAccounts();\n  },\n  computed: {\n    paginatorLength() {\n      return Math.ceil(this.accounts.total / this.accounts.perPage);\n    },\n    page: {\n      get() {\n        return this.accounts.page;\n      },\n      set(value) {\n        this.accounts.page = value;\n        this.fetchAccounts();\n      },\n    },\n  },\n};\n\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nfunction _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {\n  const _component_account_list = _resolveComponent(\"account-list\")\n                                                                   \n  const _component_layout_paged = _resolveComponent(\"layout-paged\")\n\n  return (_openBlock(), _createBlock(_component_layout_paged, null, {\n    content: _withCtx(() => [\n      _createVNode(_component_account_list, {\n        accounts: $setup.accounts.accounts\n      }, null, 8, [\"accounts\"])\n    ]),\n    pagination: _withCtx(() => [\n      _createVNode(_component_v_pagination, {\n        modelValue: $options.page,\n        \"onUpdate:modelValue\": _cache[0] || (_cache[0] = $event => (($options.page) = $event)),\n        length: $options.paginatorLength\n      }, null, 8, [\"modelValue\", \"length\"])\n    ]),\n    _: 1\n  }))\n}\n\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['render',_sfc_render]])\n\n/* Vuetify */\nimport { VPagination as _component_v_pagination } from \"vuetify/lib/components/VPagination/index.mjs\"\n\n",
+      "start": 1710444275998,
+      "end": 1710444275998,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1710444275998,
+      "end": 1710444275998,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710444275998,
+      "end": 1710444275998,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1710444275998,
+      "end": 1710444275998,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1710444275998,
+      "end": 1710444275998,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1710444275998,
+      "end": 1710444275998,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1710444275998,
+      "end": 1710444275998,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1710444275998,
+      "end": 1710444275998,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1710444275998,
+      "end": 1710444275998,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1710444275998,
+      "end": 1710444275998,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1710444275998,
+      "end": 1710444275998,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1710444275998,
+      "end": 1710444275998,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1710444275998,
+      "end": 1710444275998,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "result": "import { useAccounts } from '/Users/yakovvarnaev/dev/fakebank/client/stores/accounts.js';\nimport { useAuth } from '/Users/yakovvarnaev/dev/fakebank/client/stores/auth.js';\n\nconst _sfc_main = {\n  setup() {\n    const accounts = useAccounts();\n    return { accounts, auth: useAuth() };\n  },\n  data() {\n    return {};\n  },\n  methods: {\n    async fetchAccounts() {\n      await this.accounts.getAccounts(this.auth.user.id);\n    },\n  },\n  mounted() {\n    this.fetchAccounts();\n  },\n  computed: {\n    paginatorLength() {\n      return Math.ceil(this.accounts.total / this.accounts.perPage);\n    },\n    page: {\n      get() {\n        return this.accounts.page;\n      },\n      set(value) {\n        this.accounts.page = value;\n        this.fetchAccounts();\n      },\n    },\n  },\n};\n\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nfunction _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {\n  const _component_account_list = _resolveComponent(\"account-list\")\n                                                                   \n  const _component_layout_paged = _resolveComponent(\"layout-paged\")\n\n  return (_openBlock(), _createBlock(_component_layout_paged, null, {\n    content: _withCtx(() => [\n      _createVNode(_component_account_list, {\n        accounts: $setup.accounts.accounts\n      }, null, 8, [\"accounts\"])\n    ]),\n    pagination: _withCtx(() => [\n      _createVNode(_component_v_pagination, {\n        modelValue: $options.page,\n        \"onUpdate:modelValue\": _cache[0] || (_cache[0] = $event => (($options.page) = $event)),\n        length: $options.paginatorLength\n      }, null, 8, [\"modelValue\", \"length\"])\n    ]),\n    _: 1\n  }))\n}\n\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['render',_sfc_render]])\n\n/* Vuetify */\nimport { VPagination as _component_v_pagination } from \"vuetify/lib/components/VPagination/index.mjs\"\n\n",
+      "start": 1710444275998,
+      "end": 1710444275999,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          ""
+        ],
+        "names": [],
+        "mappings": ";;AAAA;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACX,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACzC,CAAC,CAAC,CAAC,CAAC;AACJ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACV,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACd,CAAC,CAAC,CAAC,CAAC;AACJ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACZ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC3B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACzD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACN,CAAC,CAAC,CAAC,CAAC;AACJ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACb,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACzB,CAAC,CAAC,CAAC,CAAC;AACJ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACb,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACvB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACN,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACX,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACb,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACR,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACR,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACN,CAAC,CAAC,CAAC,CAAC;AACJ,CAAC,CAAC;AACF;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnK;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnE;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC/B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACP,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC/F,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACxC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC3C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACP,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACR,CAAC,CAAC,CAAC,CAAC,CAAC;AACL,CAAC;AACD;AACA;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC5E;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACb,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrG;"
+      }
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1710444275999,
+      "end": 1710444275999,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1710444275999,
+      "end": 1710444275999,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1710444275999,
+      "end": 1710444275999,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1710444275999,
+      "end": 1710444275999,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "result": "import { default as __nuxt_component_0 } from \"/Users/yakovvarnaev/dev/fakebank/client/components/account/list.vue\";\nimport { default as __nuxt_component_1 } from \"/Users/yakovvarnaev/dev/fakebank/client/components/layout/paged.vue\";\nimport { useAccounts } from '/Users/yakovvarnaev/dev/fakebank/client/stores/accounts.js';\nimport { useAuth } from '/Users/yakovvarnaev/dev/fakebank/client/stores/auth.js';\n\nconst _sfc_main = {\n  setup() {\n    const accounts = useAccounts();\n    return { accounts, auth: useAuth() };\n  },\n  data() {\n    return {};\n  },\n  methods: {\n    async fetchAccounts() {\n      await this.accounts.getAccounts(this.auth.user.id);\n    },\n  },\n  mounted() {\n    this.fetchAccounts();\n  },\n  computed: {\n    paginatorLength() {\n      return Math.ceil(this.accounts.total / this.accounts.perPage);\n    },\n    page: {\n      get() {\n        return this.accounts.page;\n      },\n      set(value) {\n        this.accounts.page = value;\n        this.fetchAccounts();\n      },\n    },\n  },\n};\n\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nfunction _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {\n  const _component_account_list = __nuxt_component_0\n                                                                   \n  const _component_layout_paged = __nuxt_component_1\n\n  return (_openBlock(), _createBlock(_component_layout_paged, null, {\n    content: _withCtx(() => [\n      _createVNode(_component_account_list, {\n        accounts: $setup.accounts.accounts\n      }, null, 8, [\"accounts\"])\n    ]),\n    pagination: _withCtx(() => [\n      _createVNode(_component_v_pagination, {\n        modelValue: $options.page,\n        \"onUpdate:modelValue\": _cache[0] || (_cache[0] = $event => (($options.page) = $event)),\n        length: $options.paginatorLength\n      }, null, 8, [\"modelValue\", \"length\"])\n    ]),\n    _: 1\n  }))\n}\n\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['render',_sfc_render]])\n\n/* Vuetify */\nimport { VPagination as _component_v_pagination } from \"vuetify/lib/components/VPagination/index.mjs\"\n\n",
+      "start": 1710444275999,
+      "end": 1710444275999,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1710444275999,
+      "end": 1710444275999,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1710444275999,
+      "end": 1710444275999,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1710444275999,
+      "end": 1710444275999,
+      "order": "normal"
+    }
+  ]
+}

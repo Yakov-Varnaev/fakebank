@@ -24,8 +24,14 @@ class TransactionPerformer:
         self.db = db
         self.producer = producer
         self.kafka_enabled = settings.enable_kafka
-        self.account_orm = AccountORM(db)
-        self.transaction_orm = TransactionORM(db)
+
+    @property
+    def account_orm(self) -> AccountORM:
+        return AccountORM(self.db)
+
+    @property
+    def transaction_orm(self) -> TransactionORM:
+        return TransactionORM(self.db)
 
     async def __call__(
         self, user_id: UUID4, data: TransactionCreateSchema

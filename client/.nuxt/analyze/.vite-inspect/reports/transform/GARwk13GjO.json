@@ -1,0 +1,232 @@
+{
+  "resolvedId": "/Users/yakovvarnaev/dev/fakebank/client/components/transaction/recipient-selector.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<script>\nexport default {\n  setup() {\n    return {\n      auth: useAuth(),\n    };\n  },\n  props: {\n    isUserDisabled: {\n      type: Boolean,\n      required: false,\n      default: true,\n    },\n    forbiddenAccounts: {\n      type: Array,\n      required: false,\n      default: () => [],\n    },\n  },\n  data() {\n    return {\n      user: null,\n      account: null,\n    };\n  },\n  computed: {},\n  watch: {\n    user() {\n      this.account = null;\n    },\n    forbiddenAccounts() {\n      if (this.user?.id === this.auth.user.id) this.account = null;\n    },\n    account(selected) {\n      this.$emit(\"update\", selected);\n    },\n  },\n};\n</script>\n\n<template>\n  <v-row>\n    <v-col>\n      <user-autocomplete v-model=\"user\" :disabled=\"isUserDisabled\" />\n    </v-col>\n    <v-col>\n      <account-autocomplete v-bind=\"$attrs\" v-model=\"account\" :user_id=\"user?.id\"\n        :forbiddenAccounts=\"forbiddenAccounts\" />\n    </v-col>\n  </v-row>\n</template>\n",
+      "start": 1710444276523,
+      "end": 1710444277110,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1710444277110,
+      "end": 1710444277110,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1710444277110,
+      "end": 1710444277110,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1710444277110,
+      "end": 1710444277110,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1710444277110,
+      "end": 1710444277110,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1710444277110,
+      "end": 1710444277110,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1710444277110,
+      "end": 1710444277110,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1710444277110,
+      "end": 1710444277110,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "\nconst _sfc_main = {\n  setup() {\n    return {\n      auth: useAuth(),\n    };\n  },\n  props: {\n    isUserDisabled: {\n      type: Boolean,\n      required: false,\n      default: true,\n    },\n    forbiddenAccounts: {\n      type: Array,\n      required: false,\n      default: () => [],\n    },\n  },\n  data() {\n    return {\n      user: null,\n      account: null,\n    };\n  },\n  computed: {},\n  watch: {\n    user() {\n      this.account = null;\n    },\n    forbiddenAccounts() {\n      if (this.user?.id === this.auth.user.id) this.account = null;\n    },\n    account(selected) {\n      this.$emit(\"update\", selected);\n    },\n  },\n};\n\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, withCtx as _withCtx, mergeProps as _mergeProps, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nfunction _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {\n  const _component_user_autocomplete = _resolveComponent(\"user-autocomplete\")\n  const _component_v_col = _resolveComponent(\"v-col\")\n  const _component_account_autocomplete = _resolveComponent(\"account-autocomplete\")\n  const _component_v_row = _resolveComponent(\"v-row\")\n\n  return (_openBlock(), _createBlock(_component_v_row, null, {\n    default: _withCtx(() => [\n      _createVNode(_component_v_col, null, {\n        default: _withCtx(() => [\n          _createVNode(_component_user_autocomplete, {\n            modelValue: $data.user,\n            \"onUpdate:modelValue\": _cache[0] || (_cache[0] = $event => (($data.user) = $event)),\n            disabled: $props.isUserDisabled\n          }, null, 8, [\"modelValue\", \"disabled\"])\n        ]),\n        _: 1\n      }),\n      _createVNode(_component_v_col, null, {\n        default: _withCtx(() => [\n          _createVNode(_component_account_autocomplete, _mergeProps(_ctx.$attrs, {\n            modelValue: $data.account,\n            \"onUpdate:modelValue\": _cache[1] || (_cache[1] = $event => (($data.account) = $event)),\n            user_id: $data.user?.id,\n            forbiddenAccounts: $props.forbiddenAccounts\n          }), null, 16, [\"modelValue\", \"user_id\", \"forbiddenAccounts\"])\n        ]),\n        _: 1\n      })\n    ]),\n    _: 1\n  }))\n}\n\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['render',_sfc_render]])",
+      "start": 1710444277110,
+      "end": 1710444277111,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1710444277111,
+      "end": 1710444277111,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710444277111,
+      "end": 1710444277111,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1710444277111,
+      "end": 1710444277111,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1710444277111,
+      "end": 1710444277111,
+      "order": "normal"
+    },
+    {
+      "name": "vuetify:import",
+      "result": "\nconst _sfc_main = {\n  setup() {\n    return {\n      auth: useAuth(),\n    };\n  },\n  props: {\n    isUserDisabled: {\n      type: Boolean,\n      required: false,\n      default: true,\n    },\n    forbiddenAccounts: {\n      type: Array,\n      required: false,\n      default: () => [],\n    },\n  },\n  data() {\n    return {\n      user: null,\n      account: null,\n    };\n  },\n  computed: {},\n  watch: {\n    user() {\n      this.account = null;\n    },\n    forbiddenAccounts() {\n      if (this.user?.id === this.auth.user.id) this.account = null;\n    },\n    account(selected) {\n      this.$emit(\"update\", selected);\n    },\n  },\n};\n\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, withCtx as _withCtx, mergeProps as _mergeProps, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nfunction _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {\n  const _component_user_autocomplete = _resolveComponent(\"user-autocomplete\")\n                                                     \n  const _component_account_autocomplete = _resolveComponent(\"account-autocomplete\")\n                                                     \n\n  return (_openBlock(), _createBlock(_component_v_row, null, {\n    default: _withCtx(() => [\n      _createVNode(_component_v_col, null, {\n        default: _withCtx(() => [\n          _createVNode(_component_user_autocomplete, {\n            modelValue: $data.user,\n            \"onUpdate:modelValue\": _cache[0] || (_cache[0] = $event => (($data.user) = $event)),\n            disabled: $props.isUserDisabled\n          }, null, 8, [\"modelValue\", \"disabled\"])\n        ]),\n        _: 1\n      }),\n      _createVNode(_component_v_col, null, {\n        default: _withCtx(() => [\n          _createVNode(_component_account_autocomplete, _mergeProps(_ctx.$attrs, {\n            modelValue: $data.account,\n            \"onUpdate:modelValue\": _cache[1] || (_cache[1] = $event => (($data.account) = $event)),\n            user_id: $data.user?.id,\n            forbiddenAccounts: $props.forbiddenAccounts\n          }), null, 16, [\"modelValue\", \"user_id\", \"forbiddenAccounts\"])\n        ]),\n        _: 1\n      })\n    ]),\n    _: 1\n  }))\n}\n\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['render',_sfc_render]])\n\n/* Vuetify */\nimport { VCol as _component_v_col, VRow as _component_v_row } from \"vuetify/lib/components/VGrid/index.mjs\"\n\n",
+      "start": 1710444277111,
+      "end": 1710444277111,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1710444277111,
+      "end": 1710444277111,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710444277111,
+      "end": 1710444277111,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1710444277111,
+      "end": 1710444277111,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1710444277111,
+      "end": 1710444277111,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1710444277111,
+      "end": 1710444277111,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1710444277111,
+      "end": 1710444277111,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1710444277111,
+      "end": 1710444277111,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1710444277111,
+      "end": 1710444277111,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1710444277111,
+      "end": 1710444277111,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1710444277111,
+      "end": 1710444277111,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1710444277111,
+      "end": 1710444277111,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1710444277111,
+      "end": 1710444277111,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "result": "import { useAuth } from '/Users/yakovvarnaev/dev/fakebank/client/stores/auth.js';\n\nconst _sfc_main = {\n  setup() {\n    return {\n      auth: useAuth(),\n    };\n  },\n  props: {\n    isUserDisabled: {\n      type: Boolean,\n      required: false,\n      default: true,\n    },\n    forbiddenAccounts: {\n      type: Array,\n      required: false,\n      default: () => [],\n    },\n  },\n  data() {\n    return {\n      user: null,\n      account: null,\n    };\n  },\n  computed: {},\n  watch: {\n    user() {\n      this.account = null;\n    },\n    forbiddenAccounts() {\n      if (this.user?.id === this.auth.user.id) this.account = null;\n    },\n    account(selected) {\n      this.$emit(\"update\", selected);\n    },\n  },\n};\n\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, withCtx as _withCtx, mergeProps as _mergeProps, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nfunction _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {\n  const _component_user_autocomplete = _resolveComponent(\"user-autocomplete\")\n                                                     \n  const _component_account_autocomplete = _resolveComponent(\"account-autocomplete\")\n                                                     \n\n  return (_openBlock(), _createBlock(_component_v_row, null, {\n    default: _withCtx(() => [\n      _createVNode(_component_v_col, null, {\n        default: _withCtx(() => [\n          _createVNode(_component_user_autocomplete, {\n            modelValue: $data.user,\n            \"onUpdate:modelValue\": _cache[0] || (_cache[0] = $event => (($data.user) = $event)),\n            disabled: $props.isUserDisabled\n          }, null, 8, [\"modelValue\", \"disabled\"])\n        ]),\n        _: 1\n      }),\n      _createVNode(_component_v_col, null, {\n        default: _withCtx(() => [\n          _createVNode(_component_account_autocomplete, _mergeProps(_ctx.$attrs, {\n            modelValue: $data.account,\n            \"onUpdate:modelValue\": _cache[1] || (_cache[1] = $event => (($data.account) = $event)),\n            user_id: $data.user?.id,\n            forbiddenAccounts: $props.forbiddenAccounts\n          }), null, 16, [\"modelValue\", \"user_id\", \"forbiddenAccounts\"])\n        ]),\n        _: 1\n      })\n    ]),\n    _: 1\n  }))\n}\n\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['render',_sfc_render]])\n\n/* Vuetify */\nimport { VCol as _component_v_col, VRow as _component_v_row } from \"vuetify/lib/components/VGrid/index.mjs\"\n\n",
+      "start": 1710444277111,
+      "end": 1710444277111,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          ""
+        ],
+        "names": [],
+        "mappings": "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CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACN,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACvB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACN,CAAC,CAAC,CAAC,CAAC;AACJ,CAAC,CAAC;AACF;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC9L;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7E,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnF,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrD;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC9D,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC5C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACtD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChG,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC3C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACX,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACZ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACT,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC5C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClF,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACtC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnG,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACvD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACvE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACX,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACZ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACR,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACP,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACR,CAAC,CAAC,CAAC,CAAC,CAAC;AACL,CAAC;AACD;AACA;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC5E;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACb,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC3G;"
+      }
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1710444277111,
+      "end": 1710444277111,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1710444277111,
+      "end": 1710444277111,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1710444277111,
+      "end": 1710444277111,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1710444277111,
+      "end": 1710444277111,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "result": "import { default as __nuxt_component_0 } from \"/Users/yakovvarnaev/dev/fakebank/client/components/user/autocomplete.vue\";\nimport { default as __nuxt_component_1 } from \"/Users/yakovvarnaev/dev/fakebank/client/components/account/autocomplete.vue\";\nimport { useAuth } from '/Users/yakovvarnaev/dev/fakebank/client/stores/auth.js';\n\nconst _sfc_main = {\n  setup() {\n    return {\n      auth: useAuth(),\n    };\n  },\n  props: {\n    isUserDisabled: {\n      type: Boolean,\n      required: false,\n      default: true,\n    },\n    forbiddenAccounts: {\n      type: Array,\n      required: false,\n      default: () => [],\n    },\n  },\n  data() {\n    return {\n      user: null,\n      account: null,\n    };\n  },\n  computed: {},\n  watch: {\n    user() {\n      this.account = null;\n    },\n    forbiddenAccounts() {\n      if (this.user?.id === this.auth.user.id) this.account = null;\n    },\n    account(selected) {\n      this.$emit(\"update\", selected);\n    },\n  },\n};\n\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, withCtx as _withCtx, mergeProps as _mergeProps, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\nfunction _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {\n  const _component_user_autocomplete = __nuxt_component_0\n                                                     \n  const _component_account_autocomplete = __nuxt_component_1\n                                                     \n\n  return (_openBlock(), _createBlock(_component_v_row, null, {\n    default: _withCtx(() => [\n      _createVNode(_component_v_col, null, {\n        default: _withCtx(() => [\n          _createVNode(_component_user_autocomplete, {\n            modelValue: $data.user,\n            \"onUpdate:modelValue\": _cache[0] || (_cache[0] = $event => (($data.user) = $event)),\n            disabled: $props.isUserDisabled\n          }, null, 8, [\"modelValue\", \"disabled\"])\n        ]),\n        _: 1\n      }),\n      _createVNode(_component_v_col, null, {\n        default: _withCtx(() => [\n          _createVNode(_component_account_autocomplete, _mergeProps(_ctx.$attrs, {\n            modelValue: $data.account,\n            \"onUpdate:modelValue\": _cache[1] || (_cache[1] = $event => (($data.account) = $event)),\n            user_id: $data.user?.id,\n            forbiddenAccounts: $props.forbiddenAccounts\n          }), null, 16, [\"modelValue\", \"user_id\", \"forbiddenAccounts\"])\n        ]),\n        _: 1\n      })\n    ]),\n    _: 1\n  }))\n}\n\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['render',_sfc_render]])\n\n/* Vuetify */\nimport { VCol as _component_v_col, VRow as _component_v_row } from \"vuetify/lib/components/VGrid/index.mjs\"\n\n",
+      "start": 1710444277111,
+      "end": 1710444277111,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1710444277111,
+      "end": 1710444277111,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1710444277111,
+      "end": 1710444277111,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1710444277111,
+      "end": 1710444277111,
+      "order": "normal"
+    }
+  ]
+}

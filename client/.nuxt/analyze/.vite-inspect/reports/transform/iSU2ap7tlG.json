@@ -1,0 +1,240 @@
+{
+  "resolvedId": "/Users/yakovvarnaev/dev/fakebank/client/pages/index.vue?macro=true",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<script setup>\ndefinePageMeta({\n  middleware: \"authenticated-only\",\n});\n</script>\n\n<script>\nexport default {\n  data() {\n    return {\n      tab: \"accounts\",\n    };\n  },\n};\n</script>\n\n<template>\n  <v-container> Index </v-container>\n</template>\n",
+      "start": 1710444275916,
+      "end": 1710444275942,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1710444275942,
+      "end": 1710444275942,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1710444275942,
+      "end": 1710444275942,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1710444275942,
+      "end": 1710444275942,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1710444275942,
+      "end": 1710444275942,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1710444275942,
+      "end": 1710444275942,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1710444275942,
+      "end": 1710444275942,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1710444275942,
+      "end": 1710444275942,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import { createTextVNode as _createTextVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\n\nconst __default__ = {\n  data() {\n    return {\n      tab: \"accounts\",\n    };\n  },\n};\n\n\nconst _sfc_main = /*#__PURE__*/Object.assign(__default__, {\n  __name: 'index',\n  setup(__props) {\n\ndefinePageMeta({\n  middleware: \"authenticated-only\",\n});\n\nreturn (_ctx, _cache) => {\n  const _component_v_container = _resolveComponent(\"v-container\")\n\n  return (_openBlock(), _createBlock(_component_v_container, null, {\n    default: _withCtx(() => [\n      _createTextVNode(\" Index \")\n    ]),\n    _: 1\n  }))\n}\n}\n\n})\n\n\n\nexport default _sfc_main",
+      "start": 1710444275942,
+      "end": 1710444275944,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1710444275944,
+      "end": 1710444275944,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710444275944,
+      "end": 1710444275944,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1710444275944,
+      "end": 1710444275944,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1710444275944,
+      "end": 1710444275944,
+      "order": "normal"
+    },
+    {
+      "name": "vuetify:import",
+      "result": "import { createTextVNode as _createTextVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\n\nconst __default__ = {\n  data() {\n    return {\n      tab: \"accounts\",\n    };\n  },\n};\n\n\nconst _sfc_main = /*#__PURE__*/Object.assign(__default__, {\n  __name: 'index',\n  setup(__props) {\n\ndefinePageMeta({\n  middleware: \"authenticated-only\",\n});\n\nreturn (_ctx, _cache) => {\n                                                                 \n\n  return (_openBlock(), _createBlock(_component_v_container, null, {\n    default: _withCtx(() => [\n      _createTextVNode(\" Index \")\n    ]),\n    _: 1\n  }))\n}\n}\n\n})\n\n\n\nexport default _sfc_main\n\n/* Vuetify */\nimport { VContainer as _component_v_container } from \"vuetify/lib/components/VGrid/index.mjs\"\n\n",
+      "start": 1710444275944,
+      "end": 1710444275944,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1710444275944,
+      "end": 1710444275944,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710444275944,
+      "end": 1710444275944,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1710444275944,
+      "end": 1710444275944,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1710444275944,
+      "end": 1710444275944,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1710444275944,
+      "end": 1710444275944,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1710444275944,
+      "end": 1710444275944,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1710444275944,
+      "end": 1710444275944,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1710444275944,
+      "end": 1710444275944,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1710444275944,
+      "end": 1710444275944,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1710444275944,
+      "end": 1710444275944,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1710444275944,
+      "end": 1710444275944,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1710444275944,
+      "end": 1710444275944,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "result": "import { definePageMeta } from '/Users/yakovvarnaev/dev/fakebank/client/node_modules/nuxt/dist/pages/runtime/composables';\nimport { createTextVNode as _createTextVNode, resolveComponent as _resolveComponent, withCtx as _withCtx, openBlock as _openBlock, createBlock as _createBlock } from \"vue\"\n\n\nconst __default__ = {\n  data() {\n    return {\n      tab: \"accounts\",\n    };\n  },\n};\n\n\nconst _sfc_main = /*#__PURE__*/Object.assign(__default__, {\n  __name: 'index',\n  setup(__props) {\n\ndefinePageMeta({\n  middleware: \"authenticated-only\",\n});\n\nreturn (_ctx, _cache) => {\n                                                                 \n\n  return (_openBlock(), _createBlock(_component_v_container, null, {\n    default: _withCtx(() => [\n      _createTextVNode(\" Index \")\n    ]),\n    _: 1\n  }))\n}\n}\n\n})\n\n\n\nexport default _sfc_main\n\n/* Vuetify */\nimport { VContainer as _component_v_container } from \"vuetify/lib/components/VGrid/index.mjs\"\n\n",
+      "start": 1710444275944,
+      "end": 1710444275944,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          ""
+        ],
+        "names": [],
+        "mappings": ";AAAA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC3K;AACA;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACV,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACZ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CA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"
+      }
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1710444275944,
+      "end": 1710444275944,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "result": "const __nuxt_page_meta = {\n  middleware: \"authenticated-only\",\n}\nexport default __nuxt_page_meta",
+      "start": 1710444275944,
+      "end": 1710444275945,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          ""
+        ],
+        "names": [],
+        "mappings": "AAAA;AAAA;AAAA;AAAA"
+      }
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1710444275945,
+      "end": 1710444275945,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1710444275945,
+      "end": 1710444275945,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1710444275945,
+      "end": 1710444275945,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1710444275945,
+      "end": 1710444275945,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1710444275945,
+      "end": 1710444275945,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1710444275945,
+      "end": 1710444275945,
+      "order": "normal"
+    }
+  ]
+}

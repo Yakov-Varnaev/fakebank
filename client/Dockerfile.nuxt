@@ -1,0 +1,27 @@
+# Use an appropriate Node.js base image
+FROM node:21-alpine AS build
+
+# Set working directory
+WORKDIR /app
+
+# Copy package.json and package-lock.json
+COPY package*.json yarn.lock ./
+
+# Install dependencies
+RUN yarn install
+
+# Copy the rest of the application code
+COPY . .
+
+# Build the Nuxt.js application
+RUN yarn run build
+
+FROM node:21-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Copy the built Nuxt.js application
+COPY --from=build /app/.output .
+
+ENTRYPOINT ["node", "./server/index.mjs"]

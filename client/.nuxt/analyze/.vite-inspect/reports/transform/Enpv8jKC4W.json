@@ -1,0 +1,223 @@
+{
+  "resolvedId": "/Users/yakovvarnaev/dev/fakebank/client/components/transaction/list.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<script>\nexport default {\n  props: {\n    transactions: {\n      type: Array,\n      required: true,\n    },\n  },\n};\n</script>\n\n<template>\n  <div v-auto-animate>\n    <v-list v-auto-animate>\n      <transaction-create-item />\n      <transaction-item :transaction=\"transaction\" v-for=\"transaction in transactions\" class=\"mt-2\" v-auto-animate />\n    </v-list>\n  </div>\n</template>\n",
+      "start": 1710444276405,
+      "end": 1710444276445,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1710444276445,
+      "end": 1710444276445,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1710444276445,
+      "end": 1710444276445,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1710444276445,
+      "end": 1710444276445,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1710444276445,
+      "end": 1710444276445,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1710444276445,
+      "end": 1710444276445,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1710444276445,
+      "end": 1710444276445,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1710444276445,
+      "end": 1710444276445,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "\nconst _sfc_main = {\n  props: {\n    transactions: {\n      type: Array,\n      required: true,\n    },\n  },\n};\n\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, resolveDirective as _resolveDirective, withDirectives as _withDirectives, createBlock as _createBlock, withCtx as _withCtx } from \"vue\"\n\nfunction _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {\n  const _component_transaction_create_item = _resolveComponent(\"transaction-create-item\")\n  const _component_transaction_item = _resolveComponent(\"transaction-item\")\n  const _component_v_list = _resolveComponent(\"v-list\")\n  const _directive_auto_animate = _resolveDirective(\"auto-animate\")\n\n  return _withDirectives((_openBlock(), _createElementBlock(\"div\", null, [\n    _withDirectives((_openBlock(), _createBlock(_component_v_list, null, {\n      default: _withCtx(() => [\n        _createVNode(_component_transaction_create_item),\n        (_openBlock(true), _createElementBlock(_Fragment, null, _renderList($props.transactions, (transaction) => {\n          return _withDirectives((_openBlock(), _createBlock(_component_transaction_item, {\n            transaction: transaction,\n            class: \"mt-2\"\n          }, null, 8, [\"transaction\"])), [\n            [_directive_auto_animate]\n          ])\n        }), 256))\n      ]),\n      _: 1\n    })), [\n      [_directive_auto_animate]\n    ])\n  ])), [\n    [_directive_auto_animate]\n  ])\n}\n\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['render',_sfc_render]])",
+      "start": 1710444276445,
+      "end": 1710444276446,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1710444276446,
+      "end": 1710444276446,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710444276446,
+      "end": 1710444276446,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1710444276446,
+      "end": 1710444276446,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1710444276446,
+      "end": 1710444276446,
+      "order": "normal"
+    },
+    {
+      "name": "vuetify:import",
+      "result": "\nconst _sfc_main = {\n  props: {\n    transactions: {\n      type: Array,\n      required: true,\n    },\n  },\n};\n\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, resolveDirective as _resolveDirective, withDirectives as _withDirectives, createBlock as _createBlock, withCtx as _withCtx } from \"vue\"\n\nfunction _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {\n  const _component_transaction_create_item = _resolveComponent(\"transaction-create-item\")\n  const _component_transaction_item = _resolveComponent(\"transaction-item\")\n                                                       \n  const _directive_auto_animate = _resolveDirective(\"auto-animate\")\n\n  return _withDirectives((_openBlock(), _createElementBlock(\"div\", null, [\n    _withDirectives((_openBlock(), _createBlock(_component_v_list, null, {\n      default: _withCtx(() => [\n        _createVNode(_component_transaction_create_item),\n        (_openBlock(true), _createElementBlock(_Fragment, null, _renderList($props.transactions, (transaction) => {\n          return _withDirectives((_openBlock(), _createBlock(_component_transaction_item, {\n            transaction: transaction,\n            class: \"mt-2\"\n          }, null, 8, [\"transaction\"])), [\n            [_directive_auto_animate]\n          ])\n        }), 256))\n      ]),\n      _: 1\n    })), [\n      [_directive_auto_animate]\n    ])\n  ])), [\n    [_directive_auto_animate]\n  ])\n}\n\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['render',_sfc_render]])\n\n/* Vuetify */\nimport { VList as _component_v_list } from \"vuetify/lib/components/VList/index.mjs\"\n\n",
+      "start": 1710444276446,
+      "end": 1710444276446,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1710444276446,
+      "end": 1710444276446,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710444276446,
+      "end": 1710444276446,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1710444276446,
+      "end": 1710444276446,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1710444276446,
+      "end": 1710444276446,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1710444276446,
+      "end": 1710444276446,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1710444276446,
+      "end": 1710444276446,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1710444276446,
+      "end": 1710444276446,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1710444276446,
+      "end": 1710444276446,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1710444276446,
+      "end": 1710444276446,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1710444276446,
+      "end": 1710444276446,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1710444276446,
+      "end": 1710444276446,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1710444276446,
+      "end": 1710444276446,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1710444276446,
+      "end": 1710444276446,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1710444276446,
+      "end": 1710444276446,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1710444276446,
+      "end": 1710444276446,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1710444276446,
+      "end": 1710444276446,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1710444276446,
+      "end": 1710444276446,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "result": "import { default as __nuxt_component_0 } from \"/Users/yakovvarnaev/dev/fakebank/client/components/transaction/create-item.vue\";\nimport { default as __nuxt_component_1 } from \"/Users/yakovvarnaev/dev/fakebank/client/components/transaction/item.vue\";\n\nconst _sfc_main = {\n  props: {\n    transactions: {\n      type: Array,\n      required: true,\n    },\n  },\n};\n\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, renderList as _renderList, Fragment as _Fragment, openBlock as _openBlock, createElementBlock as _createElementBlock, resolveDirective as _resolveDirective, withDirectives as _withDirectives, createBlock as _createBlock, withCtx as _withCtx } from \"vue\"\n\nfunction _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {\n  const _component_transaction_create_item = __nuxt_component_0\n  const _component_transaction_item = __nuxt_component_1\n                                                       \n  const _directive_auto_animate = _resolveDirective(\"auto-animate\")\n\n  return _withDirectives((_openBlock(), _createElementBlock(\"div\", null, [\n    _withDirectives((_openBlock(), _createBlock(_component_v_list, null, {\n      default: _withCtx(() => [\n        _createVNode(_component_transaction_create_item),\n        (_openBlock(true), _createElementBlock(_Fragment, null, _renderList($props.transactions, (transaction) => {\n          return _withDirectives((_openBlock(), _createBlock(_component_transaction_item, {\n            transaction: transaction,\n            class: \"mt-2\"\n          }, null, 8, [\"transaction\"])), [\n            [_directive_auto_animate]\n          ])\n        }), 256))\n      ]),\n      _: 1\n    })), [\n      [_directive_auto_animate]\n    ])\n  ])), [\n    [_directive_auto_animate]\n  ])\n}\n\n\nimport _export_sfc from '\u0000plugin-vue:export-helper'\nexport default /*#__PURE__*/_export_sfc(_sfc_main, [['render',_sfc_render]])\n\n/* Vuetify */\nimport { VList as _component_v_list } from \"vuetify/lib/components/VList/index.mjs\"\n\n",
+      "start": 1710444276446,
+      "end": 1710444276446,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1710444276446,
+      "end": 1710444276446,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1710444276446,
+      "end": 1710444276446,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1710444276446,
+      "end": 1710444276446,
+      "order": "normal"
+    }
+  ]
+}

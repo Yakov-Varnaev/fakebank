@@ -1,0 +1,218 @@
+{
+  "resolvedId": "virtual:nuxt:/Users/yakovvarnaev/dev/fakebank/client/.nuxt/routes.mjs",
+  "transforms": [
+    {
+      "name": "virtual",
+      "result": "import { default as accountsfPCP1T6sQwMeta } from \"/Users/yakovvarnaev/dev/fakebank/client/pages/accounts.vue?macro=true\";\nimport { default as indexRhnAwx1QDDMeta } from \"/Users/yakovvarnaev/dev/fakebank/client/pages/index.vue?macro=true\";\nimport { default as signinrwZZHjnj4BMeta } from \"/Users/yakovvarnaev/dev/fakebank/client/pages/signin.vue?macro=true\";\nimport { default as signupaHY13IQzg2Meta } from \"/Users/yakovvarnaev/dev/fakebank/client/pages/signup.vue?macro=true\";\nimport { default as transactionskI4aOvTn38Meta } from \"/Users/yakovvarnaev/dev/fakebank/client/pages/transactions.vue?macro=true\";\nexport default [\n  {\n    name: accountsfPCP1T6sQwMeta?.name ?? \"accounts\",\n    path: accountsfPCP1T6sQwMeta?.path ?? \"/accounts\",\n    meta: accountsfPCP1T6sQwMeta || {},\n    alias: accountsfPCP1T6sQwMeta?.alias || [],\n    redirect: accountsfPCP1T6sQwMeta?.redirect,\n    component: () => import(\"/Users/yakovvarnaev/dev/fakebank/client/pages/accounts.vue\").then(m => m.default || m)\n  },\n  {\n    name: indexRhnAwx1QDDMeta?.name ?? \"index\",\n    path: indexRhnAwx1QDDMeta?.path ?? \"/\",\n    meta: indexRhnAwx1QDDMeta || {},\n    alias: indexRhnAwx1QDDMeta?.alias || [],\n    redirect: indexRhnAwx1QDDMeta?.redirect,\n    component: () => import(\"/Users/yakovvarnaev/dev/fakebank/client/pages/index.vue\").then(m => m.default || m)\n  },\n  {\n    name: signinrwZZHjnj4BMeta?.name ?? \"signin\",\n    path: signinrwZZHjnj4BMeta?.path ?? \"/signin\",\n    meta: signinrwZZHjnj4BMeta || {},\n    alias: signinrwZZHjnj4BMeta?.alias || [],\n    redirect: signinrwZZHjnj4BMeta?.redirect,\n    component: () => import(\"/Users/yakovvarnaev/dev/fakebank/client/pages/signin.vue\").then(m => m.default || m)\n  },\n  {\n    name: signupaHY13IQzg2Meta?.name ?? \"signup\",\n    path: signupaHY13IQzg2Meta?.path ?? \"/signup\",\n    meta: signupaHY13IQzg2Meta || {},\n    alias: signupaHY13IQzg2Meta?.alias || [],\n    redirect: signupaHY13IQzg2Meta?.redirect,\n    component: () => import(\"/Users/yakovvarnaev/dev/fakebank/client/pages/signup.vue\").then(m => m.default || m)\n  },\n  {\n    name: transactionskI4aOvTn38Meta?.name ?? \"transactions\",\n    path: transactionskI4aOvTn38Meta?.path ?? \"/transactions\",\n    meta: transactionskI4aOvTn38Meta || {},\n    alias: transactionskI4aOvTn38Meta?.alias || [],\n    redirect: transactionskI4aOvTn38Meta?.redirect,\n    component: () => import(\"/Users/yakovvarnaev/dev/fakebank/client/pages/transactions.vue\").then(m => m.default || m)\n  }\n]",
+      "start": 1710444275892,
+      "end": 1710444275892,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1710444275892,
+      "end": 1710444275892,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1710444275892,
+      "end": 1710444275892,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1710444275892,
+      "end": 1710444275892,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1710444275892,
+      "end": 1710444275892,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1710444275892,
+      "end": 1710444275892,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1710444275892,
+      "end": 1710444275892,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1710444275892,
+      "end": 1710444275892,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1710444275892,
+      "end": 1710444275892,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1710444275892,
+      "end": 1710444275892,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710444275893,
+      "end": 1710444275893,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1710444275893,
+      "end": 1710444275893,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1710444275893,
+      "end": 1710444275893,
+      "order": "normal"
+    },
+    {
+      "name": "vuetify:import",
+      "start": 1710444275893,
+      "end": 1710444275893,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1710444275893,
+      "end": 1710444275893,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710444275893,
+      "end": 1710444275893,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1710444275893,
+      "end": 1710444275893,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1710444275893,
+      "end": 1710444275893,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1710444275893,
+      "end": 1710444275893,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1710444275893,
+      "end": 1710444275893,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1710444275893,
+      "end": 1710444275893,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1710444275893,
+      "end": 1710444275893,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1710444275893,
+      "end": 1710444275893,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1710444275893,
+      "end": 1710444275893,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1710444275893,
+      "end": 1710444275893,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1710444275893,
+      "end": 1710444275893,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1710444275893,
+      "end": 1710444275894,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1710444275894,
+      "end": 1710444275894,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1710444275894,
+      "end": 1710444275894,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1710444275894,
+      "end": 1710444275894,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1710444275894,
+      "end": 1710444275894,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1710444275894,
+      "end": 1710444275894,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1710444275894,
+      "end": 1710444275894,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "result": "import { __vitePreload } from \"\u0000vite/preload-helper.js\";import { default as accountsfPCP1T6sQwMeta } from \"/Users/yakovvarnaev/dev/fakebank/client/pages/accounts.vue?macro=true\";\nimport { default as indexRhnAwx1QDDMeta } from \"/Users/yakovvarnaev/dev/fakebank/client/pages/index.vue?macro=true\";\nimport { default as signinrwZZHjnj4BMeta } from \"/Users/yakovvarnaev/dev/fakebank/client/pages/signin.vue?macro=true\";\nimport { default as signupaHY13IQzg2Meta } from \"/Users/yakovvarnaev/dev/fakebank/client/pages/signup.vue?macro=true\";\nimport { default as transactionskI4aOvTn38Meta } from \"/Users/yakovvarnaev/dev/fakebank/client/pages/transactions.vue?macro=true\";\nexport default [\n  {\n    name: accountsfPCP1T6sQwMeta?.name ?? \"accounts\",\n    path: accountsfPCP1T6sQwMeta?.path ?? \"/accounts\",\n    meta: accountsfPCP1T6sQwMeta || {},\n    alias: accountsfPCP1T6sQwMeta?.alias || [],\n    redirect: accountsfPCP1T6sQwMeta?.redirect,\n    component: () => __vitePreload(() => import(\"/Users/yakovvarnaev/dev/fakebank/client/pages/accounts.vue\"),__VITE_IS_MODERN__?\"__VITE_PRELOAD__\":void 0,import.meta.url).then(m => m.default || m)\n  },\n  {\n    name: indexRhnAwx1QDDMeta?.name ?? \"index\",\n    path: indexRhnAwx1QDDMeta?.path ?? \"/\",\n    meta: indexRhnAwx1QDDMeta || {},\n    alias: indexRhnAwx1QDDMeta?.alias || [],\n    redirect: indexRhnAwx1QDDMeta?.redirect,\n    component: () => __vitePreload(() => import(\"/Users/yakovvarnaev/dev/fakebank/client/pages/index.vue\"),__VITE_IS_MODERN__?\"__VITE_PRELOAD__\":void 0,import.meta.url).then(m => m.default || m)\n  },\n  {\n    name: signinrwZZHjnj4BMeta?.name ?? \"signin\",\n    path: signinrwZZHjnj4BMeta?.path ?? \"/signin\",\n    meta: signinrwZZHjnj4BMeta || {},\n    alias: signinrwZZHjnj4BMeta?.alias || [],\n    redirect: signinrwZZHjnj4BMeta?.redirect,\n    component: () => __vitePreload(() => import(\"/Users/yakovvarnaev/dev/fakebank/client/pages/signin.vue\"),__VITE_IS_MODERN__?\"__VITE_PRELOAD__\":void 0,import.meta.url).then(m => m.default || m)\n  },\n  {\n    name: signupaHY13IQzg2Meta?.name ?? \"signup\",\n    path: signupaHY13IQzg2Meta?.path ?? \"/signup\",\n    meta: signupaHY13IQzg2Meta || {},\n    alias: signupaHY13IQzg2Meta?.alias || [],\n    redirect: signupaHY13IQzg2Meta?.redirect,\n    component: () => __vitePreload(() => import(\"/Users/yakovvarnaev/dev/fakebank/client/pages/signup.vue\"),__VITE_IS_MODERN__?\"__VITE_PRELOAD__\":void 0,import.meta.url).then(m => m.default || m)\n  },\n  {\n    name: transactionskI4aOvTn38Meta?.name ?? \"transactions\",\n    path: transactionskI4aOvTn38Meta?.path ?? \"/transactions\",\n    meta: transactionskI4aOvTn38Meta || {},\n    alias: transactionskI4aOvTn38Meta?.alias || [],\n    redirect: transactionskI4aOvTn38Meta?.redirect,\n    component: () => __vitePreload(() => import(\"/Users/yakovvarnaev/dev/fakebank/client/pages/transactions.vue\"),__VITE_IS_MODERN__?\"__VITE_PRELOAD__\":void 0,import.meta.url).then(m => m.default || m)\n  }\n]",
+      "start": 1710444275894,
+      "end": 1710444275894,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1710444275894,
+      "end": 1710444275894,
+      "order": "normal"
+    }
+  ]
+}

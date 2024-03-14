@@ -27,6 +27,7 @@ class TransactionORM(BaseORM[Transaction]):
                     Transaction.recipient_account, Account.user, innerjoin=True
                 ),
             )
+            .order_by(Transaction.time.desc())
         )
 
     def filter_by_user(self, user_id: UUID) -> Self:

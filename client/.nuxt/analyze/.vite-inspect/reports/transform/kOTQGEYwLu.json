@@ -1,0 +1,225 @@
+{
+  "resolvedId": "/Users/yakovvarnaev/dev/fakebank/client/api/auth.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { apiv1 } from \"~/axios\";\n\nexport const login = async (loginData) => {\n  useRuntimeConfig().public.apiHost;\n  let formData = new FormData();\n  Object.keys(loginData).forEach((key) => {\n    formData.append(key, loginData[key]);\n  });\n  return await apiv1.post(\"/auth/login\", formData, {\n    headers: { \"Content-Type\": \"multipart/form-data\" },\n  });\n};\n\nexport const logout = async () => {\n  return await apiv1.post(\"/auth/logout\");\n};\n\nexport const register = async (registerData) => {\n  return await apiv1.post(\"/auth/register\", registerData);\n};\n\nexport const getMe = async () => {\n  return await apiv1.get(\"/users/me\");\n};\n",
+      "start": 1710444276387,
+      "end": 1710444276408,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1710444276408,
+      "end": 1710444276408,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1710444276408,
+      "end": 1710444276408,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1710444276408,
+      "end": 1710444276408,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1710444276408,
+      "end": 1710444276408,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1710444276408,
+      "end": 1710444276408,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1710444276408,
+      "end": 1710444276408,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1710444276408,
+      "end": 1710444276408,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1710444276408,
+      "end": 1710444276408,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1710444276408,
+      "end": 1710444276408,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710444276408,
+      "end": 1710444276408,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1710444276408,
+      "end": 1710444276408,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1710444276408,
+      "end": 1710444276408,
+      "order": "normal"
+    },
+    {
+      "name": "vuetify:import",
+      "start": 1710444276408,
+      "end": 1710444276408,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1710444276408,
+      "end": 1710444276408,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710444276408,
+      "end": 1710444276408,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1710444276408,
+      "end": 1710444276408,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1710444276408,
+      "end": 1710444276408,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1710444276408,
+      "end": 1710444276408,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1710444276408,
+      "end": 1710444276408,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1710444276408,
+      "end": 1710444276408,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1710444276408,
+      "end": 1710444276408,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1710444276408,
+      "end": 1710444276408,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1710444276408,
+      "end": 1710444276408,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1710444276408,
+      "end": 1710444276408,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1710444276408,
+      "end": 1710444276408,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "result": "import { useRuntimeConfig } from '#app/nuxt';\nimport { apiv1 } from \"~/axios\";\n\nexport const login = async (loginData) => {\n  useRuntimeConfig().public.apiHost;\n  let formData = new FormData();\n  Object.keys(loginData).forEach((key) => {\n    formData.append(key, loginData[key]);\n  });\n  return await apiv1.post(\"/auth/login\", formData, {\n    headers: { \"Content-Type\": \"multipart/form-data\" },\n  });\n};\n\nexport const logout = async () => {\n  return await apiv1.post(\"/auth/logout\");\n};\n\nexport const register = async (registerData) => {\n  return await apiv1.post(\"/auth/register\", registerData);\n};\n\nexport const getMe = async () => {\n  return await apiv1.get(\"/users/me\");\n};\n",
+      "start": 1710444276408,
+      "end": 1710444276408,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          ""
+        ],
+        "names": [],
+        "mappings": ";AAAA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChC;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC3C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC3C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACzC,CAAC,CAAC,CAAC,CAAC,CAAC;AACL,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACvD,CAAC,CAAC,CAAC,CAAC,CAAC;AACL,CAAC,CAAC;AACF;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1C,CAAC,CAAC;AACF;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1D,CAAC,CAAC;AACF;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACtC,CAAC,CAAC;"
+      }
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1710444276408,
+      "end": 1710444276408,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1710444276408,
+      "end": 1710444276408,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1710444276408,
+      "end": 1710444276408,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1710444276408,
+      "end": 1710444276408,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1710444276408,
+      "end": 1710444276408,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1710444276408,
+      "end": 1710444276408,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1710444276408,
+      "end": 1710444276408,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1710444276408,
+      "end": 1710444276408,
+      "order": "normal"
+    }
+  ]
+}

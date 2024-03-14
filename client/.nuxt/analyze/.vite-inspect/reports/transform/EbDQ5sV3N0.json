@@ -1,0 +1,231 @@
+{
+  "resolvedId": "/Users/yakovvarnaev/dev/fakebank/client/components/notifications/controller.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<script setup>\nconst config = useRuntimeConfig();\nconst socket = new WebSocket(`ws://${config.public.apiHost}/notifications/ws`);\n\nconst alertStore = useAlert();\n\nsocket.onopen = (event) => {\n  console.log(\"WebSocket connection opened:\", event);\n};\n\nsocket.onmessage = (event) => {\n  let notification = JSON.parse(event.data);\n  alertStore.reportInfo(notification.message);\n};\n\nsocket.onclose = (event) => {\n  console.log(\"WebSocket connection closed:\", event);\n};\n\nsocket.onerror = (event) => {\n  console.error(\"WebSocket error:\", event);\n};\n</script>\n\n<template>\n  <div></div>\n</template>\n",
+      "start": 1710444276408,
+      "end": 1710444276448,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1710444276448,
+      "end": 1710444276448,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1710444276448,
+      "end": 1710444276448,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1710444276448,
+      "end": 1710444276448,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1710444276448,
+      "end": 1710444276448,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1710444276448,
+      "end": 1710444276448,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1710444276448,
+      "end": 1710444276448,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1710444276448,
+      "end": 1710444276448,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import { openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\"\n\n\nconst _sfc_main = {\n  __name: 'controller',\n  setup(__props) {\n\nconst config = useRuntimeConfig();\nconst socket = new WebSocket(`ws://${config.public.apiHost}/notifications/ws`);\n\nconst alertStore = useAlert();\n\nsocket.onopen = (event) => {\n  console.log(\"WebSocket connection opened:\", event);\n};\n\nsocket.onmessage = (event) => {\n  let notification = JSON.parse(event.data);\n  alertStore.reportInfo(notification.message);\n};\n\nsocket.onclose = (event) => {\n  console.log(\"WebSocket connection closed:\", event);\n};\n\nsocket.onerror = (event) => {\n  console.error(\"WebSocket error:\", event);\n};\n\nreturn (_ctx, _cache) => {\n  return (_openBlock(), _createElementBlock(\"div\"))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1710444276448,
+      "end": 1710444276449,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1710444276449,
+      "end": 1710444276449,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710444276449,
+      "end": 1710444276449,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1710444276449,
+      "end": 1710444276449,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1710444276449,
+      "end": 1710444276449,
+      "order": "normal"
+    },
+    {
+      "name": "vuetify:import",
+      "result": "import { openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\"\n\n\nconst _sfc_main = {\n  __name: 'controller',\n  setup(__props) {\n\nconst config = useRuntimeConfig();\nconst socket = new WebSocket(`ws://${config.public.apiHost}/notifications/ws`);\n\nconst alertStore = useAlert();\n\nsocket.onopen = (event) => {\n  console.log(\"WebSocket connection opened:\", event);\n};\n\nsocket.onmessage = (event) => {\n  let notification = JSON.parse(event.data);\n  alertStore.reportInfo(notification.message);\n};\n\nsocket.onclose = (event) => {\n  console.log(\"WebSocket connection closed:\", event);\n};\n\nsocket.onerror = (event) => {\n  console.error(\"WebSocket error:\", event);\n};\n\nreturn (_ctx, _cache) => {\n  return (_openBlock(), _createElementBlock(\"div\"))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1710444276449,
+      "end": 1710444276449,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1710444276449,
+      "end": 1710444276449,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1710444276449,
+      "end": 1710444276449,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1710444276449,
+      "end": 1710444276449,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1710444276449,
+      "end": 1710444276449,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1710444276449,
+      "end": 1710444276449,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1710444276449,
+      "end": 1710444276449,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1710444276449,
+      "end": 1710444276449,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1710444276449,
+      "end": 1710444276449,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1710444276449,
+      "end": 1710444276449,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1710444276449,
+      "end": 1710444276449,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1710444276449,
+      "end": 1710444276449,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1710444276449,
+      "end": 1710444276449,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "result": "import { useRuntimeConfig } from '#app/nuxt';\nimport { useAlert } from '/Users/yakovvarnaev/dev/fakebank/client/stores/alerts.js';\nimport { openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\"\n\n\nconst _sfc_main = {\n  __name: 'controller',\n  setup(__props) {\n\nconst config = useRuntimeConfig();\nconst socket = new WebSocket(`ws://${config.public.apiHost}/notifications/ws`);\n\nconst alertStore = useAlert();\n\nsocket.onopen = (event) => {\n  console.log(\"WebSocket connection opened:\", event);\n};\n\nsocket.onmessage = (event) => {\n  let notification = JSON.parse(event.data);\n  alertStore.reportInfo(notification.message);\n};\n\nsocket.onclose = (event) => {\n  console.log(\"WebSocket connection closed:\", event);\n};\n\nsocket.onerror = (event) => {\n  console.error(\"WebSocket error:\", event);\n};\n\nreturn (_ctx, _cache) => {\n  return (_openBlock(), _createElementBlock(\"div\"))\n}\n}\n\n}\n\n\n\nexport default _sfc_main",
+      "start": 1710444276449,
+      "end": 1710444276449,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          ""
+        ],
+        "names": [],
+        "mappings": ";;AAAA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACxF;AACA;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACvB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClB;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC/E;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC9B;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC5B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrD,CAAC,CAAC;AACF;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC/B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC5C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC9C,CAAC,CAAC;AACF;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrD,CAAC,CAAC;AACF;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC3C,CAAC,CAAC;AACF;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnD,CAAC;AACD,CAAC;AACD;AACA,CAAC;AACD;AACA;AACA;AACA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC"
+      }
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1710444276449,
+      "end": 1710444276449,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1710444276449,
+      "end": 1710444276449,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1710444276449,
+      "end": 1710444276449,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1710444276449,
+      "end": 1710444276449,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1710444276449,
+      "end": 1710444276449,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1710444276449,
+      "end": 1710444276449,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1710444276449,
+      "end": 1710444276449,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1710444276449,
+      "end": 1710444276449,
+      "order": "normal"
+    }
+  ]
+}

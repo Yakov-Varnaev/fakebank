@@ -85,6 +85,16 @@ services:
     networks:
       - mynetwork
 
+  nuxt-app:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.nuxt
+    environment:
+      NUXT_ENV_API_HOST: localhost/api
+      NITRO_PORT: 7000
+    networks:
+      - mynetwork
+
   nginx:
     image: nginx:latest
     ports:
