@@ -45,8 +45,8 @@ export default {
         recipient: this.recipient?.id,
         amount: parseFloat(this.amount),
       };
-      console.log(data);
       this.transactions.create(data);
+      this.close();
     },
     setRecipient(account) {
       this.recipient = account;
