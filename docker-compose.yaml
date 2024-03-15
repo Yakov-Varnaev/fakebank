@@ -76,7 +76,7 @@ services:
     networks:
       - mynetwork
 
-  fastapi-app:
+  backend:
     build:
       context: .
       dockerfile: Dockerfile
@@ -91,12 +91,12 @@ services:
     networks:
       - mynetwork
 
-  nuxt-app:
+  client:
     build:
       context: ./client
       dockerfile: Dockerfile.nuxt
     environment:
-      NUXT_ENV_API_HOST: fastapi-app/api
+      NUXT_ENV_API_HOST: backend/api
       NITRO_PORT: 7000
     networks:
       - mynetwork
@@ -108,6 +108,6 @@ services:
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
-      - fastapi-app
+      - backend
     networks:
       - mynetwork
