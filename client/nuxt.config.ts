@@ -2,7 +2,7 @@
 import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
 
 export default defineNuxtConfig({
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   ssr: false,
   devServer: {
     port: 7000,
@@ -20,7 +20,6 @@ export default defineNuxtConfig({
     "@formkit/auto-animate/nuxt",
     "@pinia/nuxt",
     "@pinia-plugin-persistedstate/nuxt",
-
     (_options, nuxt) => {
       nuxt.hooks.hook("vite:extendConfig", (config) => {
         // @ts-expect-error
@@ -37,7 +36,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      apiHost: process.env.NUXT_ENV_API_HOST,
+      apiHost: process.env.NUXT_ENV_API_HOST || "localhost/api",
     },
   },
 });

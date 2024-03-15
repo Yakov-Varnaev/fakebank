@@ -25,14 +25,7 @@ export default {
     <v-spacer></v-spacer>
 
     <template v-slot:append v-if="auth.loggedIn && !loader.isLoading">
-      <v-btn
-        v-for="link in authenticatedLinks"
-        :key="link.title"
-        :to="link.to"
-        nuxt
-        text
-        class="mr-1"
-      >
+      <v-btn v-for="link in authenticatedLinks" :key="link.title" :to="link.to" nuxt text class="mr-1">
         {{ link.title }}
       </v-btn>
       <v-divider vertical inset class="mr-4" />

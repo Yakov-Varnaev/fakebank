@@ -3,7 +3,7 @@ import logging
 from contextlib import asynccontextmanager
 from typing import Callable
 
-from fastapi import FastAPI
+from fastapi import APIRouter, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import settings
@@ -16,9 +16,7 @@ logger = logging.getLogger(__name__)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    logger.info('Application started.')
     try:
-        print(settings.kafka_url)
         if settings.enable_kafka:
             transaction_producer = TransactionProducer()
             await transaction_producer.start()
@@ -37,13 +35,15 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(lifespan=lifespan)
+api_router = APIRouter(prefix='/api')
 
 
 def configure_app():
     installed_apps = ['users', 'accounts', 'transactions', 'notifications']
     for app_name in installed_apps:
         router = __import__(f'app.{app_name}.controllers', fromlist=['router'])
-        app.include_router(router.router)
+        api_router.include_router(router.router)
+    app.include_router(api_router)
 
 
 configure_app()

@@ -2,7 +2,6 @@
 /// <reference types="@formkit/auto-animate" />
 /// <reference types="@pinia/nuxt" />
 /// <reference types="@pinia-plugin-persistedstate/nuxt" />
-/// <reference types="@nuxt/devtools" />
 /// <reference types="@nuxt/telemetry" />
 /// <reference types="nuxt" />
 /// <reference path="types/plugins.d.ts" />

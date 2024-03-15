@@ -1,3 +1,4 @@
+import asyncio
 import logging
 from decimal import Decimal
 
@@ -36,7 +37,6 @@ class TransactionPerformer:
     async def __call__(
         self, user_id: UUID4, data: TransactionCreateSchema
     ) -> Transaction:
-        # TODO: implement remote transaction processing
         return await self.process(user_id, data)
 
     async def process(self, user_id, data):
@@ -77,6 +77,7 @@ class TransactionPerformer:
             else:
                 await self.validate_transaction(full_transaction)
                 await self.process_transaction(full_transaction)
+        await self.db.commit()
         return full_transaction
 
     async def create_transaction(
@@ -91,9 +92,12 @@ class TransactionPerformer:
             )
 
         if transaction.sender_account.balance < transaction.amount:
-            raise InvalidTransaction('Insufficient funds.')
+            raise InvalidTransaction(
+                f'Insufficient funds. Transaction amount: {transaction.amount}. Account balance: {transaction.sender_account.balance}'
+            )
 
     async def process_transaction(self, transaction: Transaction):
+        await asyncio.sleep(10)
         if transaction is None:
             raise InvalidTransaction('Transaction not found.')
         sender_account = transaction.sender_account

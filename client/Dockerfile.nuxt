@@ -24,4 +24,5 @@ WORKDIR /app
 # Copy the built Nuxt.js application
 COPY --from=build /app/.output .
 
+ENV NUXT_ENV_API_HOST=fastapi-app/api
 ENTRYPOINT ["node", "./server/index.mjs"]

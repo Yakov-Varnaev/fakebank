@@ -80,6 +80,9 @@ class TransactionConsumer:
                         f'Transaction with id {msg.value.decode()} not found!'
                     )
                     continue
+                logger.info(
+                    f'Processing transaction {transaction.id} {transaction.amount}'
+                )
                 try:
                     await self.processor.validate_transaction(transaction)
                     await self.processor.process_transaction(transaction)

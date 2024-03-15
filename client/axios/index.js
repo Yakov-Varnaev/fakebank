@@ -31,6 +31,7 @@ function onRequestFullfilled(request) {
 }
 
 function createAxios(config) {
+  console.log(useRuntimeConfig().public.apiHost);
   const instance = axios.create(config);
   instance.interceptors.request.use((value) => onRequestFullfilled(value));
   instance.interceptors.response.use(

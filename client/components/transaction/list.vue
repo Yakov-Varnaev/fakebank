@@ -13,7 +13,9 @@ export default {
   <div v-auto-animate>
     <v-list v-auto-animate>
       <transaction-create-item />
-      <transaction-item :transaction="transaction" v-for="transaction in transactions" class="mt-2" v-auto-animate />
+      <v-divider class="mt-3" />
+      <transaction-item :transaction="transaction" v-for="transaction in transactions" :key="transaction.id"
+        class="mt-2" v-auto-animate />
     </v-list>
   </div>
 </template>

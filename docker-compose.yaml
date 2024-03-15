@@ -16,6 +16,7 @@ services:
       - POSTGRES_DB=fakebank
     networks:
       - mynetwork
+
   zookeeper:
     image: confluentinc/cp-zookeeper:7.5.0
     hostname: zookeeper
@@ -63,12 +64,15 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.processor
+      args:
+        KAFKA_URL: kafka:29092
+
     environment:
       KAFKA_URL: kafka:29092
       DB_URL: postgresql+asyncpg://fakebank:fakebank@postgres:5432/fakebank
     depends_on:
-      - postgres
       - kafka
+      - postgres
     networks:
       - mynetwork
 
@@ -76,6 +80,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        KAFKA_URL: "kafka:29092"
     environment:
       DB_URL: postgresql+asyncpg://fakebank:fakebank@postgres:5432/fakebank
       KAFKA_URL: kafka:29092
@@ -90,7 +96,7 @@ services:
       context: ./client
       dockerfile: Dockerfile.nuxt
     environment:
-      NUXT_ENV_API_HOST: localhost/api
+      NUXT_ENV_API_HOST: fastapi-app/api
       NITRO_PORT: 7000
     networks:
       - mynetwork

@@ -1,1 +1,0 @@
-import{aa as a,q as n}from"./entry.9zux7mMk.js";import{u as o,a as r}from"./index.CJeuY9gg.js";const l=a((s,i)=>{const e=o(),t=r();if(!e.loggedIn)return t.reportInfo("Please sign in!"),n({name:"signin"})});export{l as default};

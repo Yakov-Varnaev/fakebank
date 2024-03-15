@@ -27,8 +27,10 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 # 
 COPY ./app /code/app
+COPY ./transaction_entrypoint.sh /code/transaction_entrypoint.sh
 
 # 
 ENV PYTHONPATH=/code
 
-CMD ["python", "app/main.py", "--name=transactions"]
+RUN chmod +x ./transaction_entrypoint.sh
+ENTRYPOINT ["./transaction_entrypoint.sh"]
