@@ -26,18 +26,29 @@ export default {
       outcome: "red",
       self: "blue",
     };
+
     const prepend_icons = {
       pending: { icon: "mdi-clock-outline", color: "warning" },
-      error: { icon: "mdi-alert-outline", color: "red" },
-      done: { icon: "mdi-check-outline", color: "success" },
+      error: { icon: "mdi-close-circle-outline", color: "red" },
+      done: { icon: "mdi-check-circle-outline", color: "success" },
     };
-    console.log(this.transaction.status);
+
+    const row = {
+      prepend: prepend_icons[this.transaction.status],
+      color: colors[kind],
+      sender_email: this.transaction.sender_account.user.email,
+      sender_account: this.transaction.sender_account.name,
+      recipient_email: this.transaction.recipient_account.user.email,
+      recipient_account: this.transaction.recipient_account.name,
+      amount: this.parseBalance(this.transaction.amount),
+      date: this.parsedDate(this.transaction.time),
+      time: this.parsedTime(this.transaction.time),
+    };
 
     return {
       dialog: false,
       kind,
-      color: colors[kind],
-      prepend: prepend_icons[this.transaction.status],
+      row,
     };
   },
   methods: {
@@ -55,23 +66,46 @@ export default {
 </script>
 
 <template>
-  <v-card variant="tonal" :color="prepend.color">
-    <v-card-title class="d-flex align-center">
-      <v-icon class="mr-2" :color="prepend.color">
-        {{ prepend.icon }}
-      </v-icon>
-      <span>{{ transaction.sender_account.user.email }}</span>
-      <v-icon class="mx-2 text-caption">
-        {{ kind === "income" ? "mdi-arrow-down" : "mdi-arrow-up" }}
-      </v-icon>
-      <span>{{ transaction.recipient_account.user.email }}</span>
-      <v-chip :color="color" text-color="white" class="text-caption ml-auto">
-        {{ transaction.amount }} | {{ kind }}
-      </v-chip>
-      <div class="d-flex flex-column align-center text-caption ml-16">
-        <span>{{ parsedDate(transaction.time) }}</span>
-        <span>{{ parsedTime(transaction.time) }}</span>
-      </div>
+  <v-card elevation="0">
+    <v-card-title>
+      <v-row align="center" justify="between">
+        <v-col cols="1">
+          <v-icon class="mr-2" :color="row.prepend.color">
+            {{ row.prepend.icon }}
+          </v-icon>
+        </v-col>
+
+        <v-col cols="3" align="center">
+          <span> {{ row.sender_account }}({{ row.sender_email }}) </span>
+        </v-col>
+        <v-col cols="1" align="center">
+          <div>
+            <v-icon class="mx-2 text-caption" :color="row.color">
+              mdi-arrow-right
+            </v-icon>
+          </div>
+        </v-col>
+        <v-col cols="3" align="center">
+          <span>{{ row.recipient_email }}({{ row.recipient_account }})</span>
+        </v-col>
+
+        <v-col />
+
+        <v-col align="center">
+          <v-chip :color="row.color" class="text-caption ml-auto">
+            {{ row.amount }}
+          </v-chip>
+        </v-col>
+
+        <v-col />
+
+        <v-col align="end" cols="1">
+          <div class="d-flex flex-column align-center text-caption">
+            <span>{{ row.date }}</span>
+            <span>{{ row.time }}</span>
+          </div>
+        </v-col>
+      </v-row>
     </v-card-title>
   </v-card>
 </template>
