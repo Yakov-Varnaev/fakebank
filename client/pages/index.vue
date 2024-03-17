@@ -10,9 +10,9 @@ definePageMeta({
       <v-col md="8" offset-md="2">
         <h1>About</h1>
         <p>
-          This is a simple banking app. You can create accounts, transfer money
-          between them, and see the transaction history. Also, this app supports
-          real-time notifications about transactions.
+          This is a simple "banking" app. You can create accounts, transfer
+          money between them, and see the transaction history. Also, this app
+          supports real-time notifications about transactions.
         </p>
       </v-col>
     </v-row>
@@ -24,7 +24,7 @@ definePageMeta({
     <v-row justify="center">
       <v-col cols="3" offset="1">
         <h2>Backend</h2>
-        <v-list>
+        <v-list density="compact">
           <v-list-item>FastApi</v-list-item>
           <v-list-item>PostgreSQL</v-list-item>
           <v-list-item>SqlAlchemy</v-list-item>
@@ -35,17 +35,17 @@ definePageMeta({
 
       <v-col cols="3">
         <h2>Frontend</h2>
-        <ul>
+        <v-list densiti="compact">
           <v-list-item>Vue</v-list-item>
           <v-list-item>Nuxt</v-list-item>
           <v-list-item>Vuetify</v-list-item>
           <v-list-item>pinia</v-list-item>
-        </ul>
+        </v-list>
       </v-col>
 
       <v-col cols="3">
         <h2>DevOps</h2>
-        <v-list>
+        <v-list density="compact">
           <v-list-item>Docker</v-list-item>
           <v-list-item>Nginx</v-list-item>
         </v-list>
