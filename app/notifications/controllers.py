@@ -49,10 +49,14 @@ ws_manager = WebSocketManager()
 
 @router.websocket('/ws')
 async def notifications_websocket(ws: WebSocket):
-    user = await get_user_by_cookie(ws.cookies.get('fastapiusersauth'))
-    await ws_manager.connect(user.id, ws)
-    async for msg in ws.app.state.notification_consumer.consumer:
-        if user.id == msg.value.user_id:
-            await ws_manager.send_personal_message(
-                user.id, json.loads(msg.value.model_dump_json())
-            )
+    try:
+        user = await get_user_by_cookie(ws.cookies.get('fastapiusersauth'))
+    except Exception as e:
+        ws.close(reason=str(e))
+    else:
+        await ws_manager.connect(user.id, ws)
+        async for msg in ws.app.state.notification_consumer.consumer:
+            if user.id == msg.value.user_id:
+                await ws_manager.send_personal_message(
+                    user.id, json.loads(msg.value.model_dump_json())
+                )

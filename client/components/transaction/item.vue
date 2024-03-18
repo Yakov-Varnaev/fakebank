@@ -1,4 +1,15 @@
 <script>
+const colors = {
+  income: "green",
+  outcome: "red",
+  self: "blue",
+};
+
+const prepend_icons = {
+  pending: { icon: "mdi-clock-outline", color: "warning" },
+  error: { icon: "mdi-close-circle-outline", color: "red" },
+  done: { icon: "mdi-check-circle-outline", color: "success" },
+};
 export default {
   setup() {
     return { auth: useAuth() };
@@ -21,34 +32,12 @@ export default {
     ) {
       kind = "self";
     }
-    const colors = {
-      income: "green",
-      outcome: "red",
-      self: "blue",
-    };
-
-    const prepend_icons = {
-      pending: { icon: "mdi-clock-outline", color: "warning" },
-      error: { icon: "mdi-close-circle-outline", color: "red" },
-      done: { icon: "mdi-check-circle-outline", color: "success" },
-    };
-
-    const row = {
-      prepend: prepend_icons[this.transaction.status],
-      color: colors[kind],
-      sender_email: this.transaction.sender_account.user.email,
-      sender_account: this.transaction.sender_account.name,
-      recipient_email: this.transaction.recipient_account.user.email,
-      recipient_account: this.transaction.recipient_account.name,
-      amount: this.parseBalance(this.transaction.amount),
-      date: this.parsedDate(this.transaction.time),
-      time: this.parsedTime(this.transaction.time),
-    };
 
     return {
       dialog: false,
       kind,
-      row,
+      colors,
+      prepend_icons,
     };
   },
   methods: {
@@ -62,13 +51,28 @@ export default {
       return new Date(date).toLocaleTimeString();
     },
   },
+  computed: {
+    row() {
+      return {
+        prepend: prepend_icons[this.transaction.status],
+        color: colors[this.kind],
+        sender_email: this.transaction.sender_account.user.email,
+        sender_account: this.transaction.sender_account.name,
+        recipient_email: this.transaction.recipient_account.user.email,
+        recipient_account: this.transaction.recipient_account.name,
+        amount: this.parseBalance(this.transaction.amount),
+        date: this.parsedDate(this.transaction.time),
+        time: this.parsedTime(this.transaction.time),
+      };
+    },
+  },
 };
 </script>
 
 <template>
   <v-card elevation="0">
     <v-card-title>
-      <v-row align="center" justify="between">
+      <v-row align="center">
         <v-col cols="1">
           <v-icon class="mr-2" :color="row.prepend.color">
             {{ row.prepend.icon }}

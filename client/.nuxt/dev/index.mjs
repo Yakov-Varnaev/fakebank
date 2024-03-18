@@ -60,7 +60,7 @@ const _inlineRuntimeConfig = {
     }
   },
   "public": {
-    "apiHost": "localhost:8000/api",
+    "apiHost": "localhost:8000",
     "persistedState": {
       "storage": "cookies",
       "debug": false,
@@ -565,8 +565,25 @@ function getRouteRulesForPath(path) {
   return defu({}, ..._routeRulesMatcher.matchAll(path).reverse());
 }
 
+const script = `
+if (!window.__NUXT_DEVTOOLS_TIME_METRIC__) {
+  Object.defineProperty(window, '__NUXT_DEVTOOLS_TIME_METRIC__', {
+    value: {},
+    enumerable: false,
+    configurable: true,
+  })
+}
+window.__NUXT_DEVTOOLS_TIME_METRIC__.appInit = Date.now()
+`;
+
+const _sp7ulI7Ak9 = (function(nitro) {
+  nitro.hooks.hook("render:html", (htmlContext) => {
+    htmlContext.head.push(`<script>${script}<\/script>`);
+  });
+});
+
 const plugins = [
-  
+  _sp7ulI7Ak9
 ];
 
 function defineRenderHandler(handler) {

@@ -42,7 +42,7 @@ function createAxios(config) {
 }
 
 export const apiv1 = createAxios({
-  baseURL: "http://" + useRuntimeConfig().public.apiHost,
+  baseURL: "http://" + useRuntimeConfig().public.apiHost + "/api",
   headers: {
     "Content-Type": "application/json",
   },
