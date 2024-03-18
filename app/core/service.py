@@ -1,3 +1,5 @@
+from abc import ABC, abstractmethod
+
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing_extensions import Generic, TypeVar
 
@@ -6,7 +8,7 @@ from app.db.postgres import async_session
 Produces = TypeVar('Produces')
 
 
-class BaseService(Generic[Produces]):
+class BaseService(ABC, Generic[Produces]):
     with_db: bool = True
     db: AsyncSession | None = None
 
@@ -18,5 +20,6 @@ class BaseService(Generic[Produces]):
             self.db = db
             return await self.act()
 
+    @abstractmethod
     async def act(self) -> Produces:
-        raise NotImplementedError
+        pass
