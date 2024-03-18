@@ -1,4 +1,5 @@
 import json
+import logging
 from uuid import UUID
 
 from fastapi import APIRouter, Depends, WebSocket
@@ -14,6 +15,7 @@ from app.notifications.schemas import NotificationSchema
 from app.users.auth import current_active_user, get_user_by_cookie
 from app.users.models import User
 
+logger = logging.getLogger(__name__)
 router = APIRouter(prefix='/notifications', tags=['notifications'])
 
 
@@ -55,7 +57,7 @@ async def notifications_websocket(ws: WebSocket):
     else:
         await ws_manager.connect(user.id, ws)
         async for msg in ws.app.state.notification_consumer.consumer:
-            if user.id == msg.value.user_id:
-                await ws_manager.send_personal_message(
-                    user.id, json.loads(msg.value.model_dump_json())
-                )
+            logger.info(f'Sending notification to {user.id}')
+            await ws_manager.send_personal_message(
+                msg.value.user_id, json.loads(msg.value.model_dump_json())
+            )

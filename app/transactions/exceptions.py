@@ -1,7 +1,7 @@
-from app.core.exceptions import FakeBankException
+from app.core.exceptions import BadRequest, Forbidden
 
 
-class TransactionException(FakeBankException):
+class TransactionException(BadRequest):
     pass
 
 
@@ -9,5 +9,5 @@ class InvalidTransaction(TransactionException):
     pass
 
 
-class TransactionPermissionError(TransactionException):
+class TransactionPermissionError(Forbidden):
     pass

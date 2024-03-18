@@ -39,7 +39,7 @@ class TransactionPerformer:
     ) -> Transaction:
         return await self.process(user_id, data)
 
-    async def process(self, user_id, data):
+    async def process(self, user_id: UUID4, data: TransactionCreateSchema):
         async with self.db.begin():
             sender_account = await self.account_orm.filter(
                 Account.id == data.sender
@@ -77,7 +77,6 @@ class TransactionPerformer:
             else:
                 await self.validate_transaction(full_transaction)
                 await self.process_transaction(full_transaction)
-        await self.db.commit()
         return full_transaction
 
     async def create_transaction(
@@ -97,7 +96,7 @@ class TransactionPerformer:
             )
 
     async def process_transaction(self, transaction: Transaction):
-        await asyncio.sleep(10)
+        await asyncio.sleep(10)  # just to make some delay
         if transaction is None:
             raise InvalidTransaction('Transaction not found.')
         sender_account = transaction.sender_account
