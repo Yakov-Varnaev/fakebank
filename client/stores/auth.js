@@ -23,7 +23,6 @@ export const useAuth = defineStore("auth", {
       try {
         await apiRegister(registerData);
       } catch (error) {
-        console.log(error);
         return { errors: error.response.data };
       }
       navigateTo({ name: "signin" });
@@ -56,7 +55,7 @@ export const useAuth = defineStore("auth", {
       try {
         await apiLogout();
       } catch (error) {
-        console.log(error);
+        useAlert().reportError(error.message);
       }
       this.reset();
       alert.reportWarning("You have been logged out!");

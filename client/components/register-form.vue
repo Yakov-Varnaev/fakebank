@@ -51,9 +51,6 @@ export default {
       this.auth.register(this.registerData);
     },
   },
-  mounted() {
-    console.log(this.$config.public.apiHost);
-  },
 };
 </script>
 

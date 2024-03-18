@@ -6,7 +6,6 @@ export const useAlert = defineStore("alert", {
   }),
   actions: {
     addAlert(alert) {
-      console.log(alert);
       alert.id = Date.now();
       alert.numeric = this.alerts.length + 1;
       this.alerts = [...this.alerts, alert];

@@ -6,7 +6,6 @@ import decamelizeKeys from "decamelize-keys";
 function onResponseError(error) {
   const auth = useAuth();
   const alert = useAlert();
-  console.log(error);
   if (error.response.status === HttpStatusCode.Unauthorized) {
     auth.$reset();
     alert.reportWarning("Session expired, please login again.");
@@ -31,7 +30,6 @@ function onRequestFullfilled(request) {
 }
 
 function createAxios(config) {
-  console.log(useRuntimeConfig().public.apiHost);
   const instance = axios.create(config);
   instance.interceptors.request.use((value) => onRequestFullfilled(value));
   instance.interceptors.response.use(

@@ -56,9 +56,6 @@ export default {
     sender() {
       this.recipient = null;
     },
-    recipient(value) {
-      console.log("form", value);
-    },
   },
 };
 </script>
