@@ -2,7 +2,6 @@ from datetime import datetime
 
 from pydantic import UUID4, BaseModel, ConfigDict
 
-from app.accounts.schemas import AccountReadSchema
 from app.users.schemas import UserRead
 
 

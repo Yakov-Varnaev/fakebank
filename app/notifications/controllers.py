@@ -1,7 +1,7 @@
 import json
 from uuid import UUID
 
-from fastapi import APIRouter, Depends, WebSocket, WebSocketException
+from fastapi import APIRouter, Depends, WebSocket
 from typing_extensions import Annotated
 
 from app.core.dependencies.pagination import Pagination
@@ -11,8 +11,7 @@ from app.db.postgres import async_session
 from app.notifications.crud import NotificationORM
 from app.notifications.models import Notification
 from app.notifications.schemas import NotificationSchema
-from app.users.auth import (UserManager, auth_backend, current_active_user,
-                            get_user_by_cookie, get_user_manager)
+from app.users.auth import current_active_user, get_user_by_cookie
 from app.users.models import User
 
 router = APIRouter(prefix='/notifications', tags=['notifications'])

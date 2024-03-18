@@ -1,8 +1,6 @@
-import json
 from http import HTTPStatus
 
 from fastapi import APIRouter, Depends, HTTPException, Response
-from fastapi.responses import JSONResponse
 from pydantic import UUID4
 from typing_extensions import Annotated
 
