@@ -1,8 +1,4 @@
-import os
-
 from pydantic_settings import BaseSettings, SettingsConfigDict
-
-CI = os.getenv('CI', False) == 'True'
 
 
 class Settings(BaseSettings):
@@ -15,7 +11,7 @@ class Settings(BaseSettings):
     transaction_topic: str = 'transactions'
     notifications_topic: str = 'notifications'
 
-    model_config = SettingsConfigDict(env_file='.env' if not CI else '.env.ci')
+    model_config = SettingsConfigDict(env_file='.env')
 
 
 settings = Settings()  # type: ignore[call-arg]
