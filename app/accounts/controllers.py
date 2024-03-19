@@ -8,6 +8,7 @@ from app.accounts.crud import AccountORM
 from app.accounts.models import Account
 from app.accounts.schemas import (AccountCreateSchema, AccountDBCreateSchema,
                                   AccountReadSchema)
+from app.accounts.serivces.creator import AccountCreator
 from app.core.dependencies.pagination import Pagination
 from app.db.crud import SerializedPage
 from app.db.postgres import async_session
@@ -31,22 +32,16 @@ router = APIRouter(prefix='/accounts', tags=['accounts'])
     },
 )
 async def create_account(
-    account_data: AccountCreateSchema,
-    user: User = Depends(current_active_user),
+    creator: Annotated[AccountCreator, Depends(AccountCreator)]
 ) -> AccountReadSchema:
-    account_data = AccountDBCreateSchema(
-        user_id=user.id, **account_data.model_dump()
-    )
-    async with async_session() as db:
-        account, created = await AccountORM(db).get_or_create(account_data)
-    account_data = AccountReadSchema.model_validate(account)
+    account, created = await creator()
     if created:
         return Response(
-            account_data.model_dump_json(),
+            account.model_dump_json(),
             status_code=HTTPStatus.CREATED,
             media_type='application/json',
         )  # type: ignore[return-value]
-    return account_data
+    return account
 
 
 @router.get('/')

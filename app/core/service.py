@@ -10,7 +10,7 @@ Produces = TypeVar('Produces')
 
 class BaseService(ABC, Generic[Produces]):
     with_db: bool = True
-    db: AsyncSession | None = None
+    db: AsyncSession
 
     async def __call__(self) -> Produces:
         if not self.with_db:
