@@ -6,8 +6,7 @@ from typing_extensions import Annotated
 
 from app.accounts.crud import AccountORM
 from app.accounts.models import Account
-from app.accounts.schemas import (AccountCreateSchema, AccountDBCreateSchema,
-                                  AccountReadSchema)
+from app.accounts.schemas import AccountCreateSchema, AccountReadSchema
 from app.accounts.serivces.creator import AccountCreator
 from app.core.dependencies.pagination import Pagination
 from app.db.crud import SerializedPage
@@ -32,9 +31,9 @@ router = APIRouter(prefix='/accounts', tags=['accounts'])
     },
 )
 async def create_account(
-    creator: Annotated[AccountCreator, Depends(AccountCreator)]
+    service: Annotated[AccountCreator, Depends(AccountCreator)]
 ) -> AccountReadSchema:
-    account, created = await creator()
+    account, created = await service()
     if created:
         return Response(
             account.model_dump_json(),
