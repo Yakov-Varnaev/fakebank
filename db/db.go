@@ -10,7 +10,7 @@ import (
 var db *sql.DB
 
 func Init() {
-	connStr := "postgres://fakebank:fakebank@localhost:5432/fakebank?sslmode=disable"
+	connStr := "postgres://fakebank:fakebank@localhost:5432/test?sslmode=disable"
 	var err error
 	db, err = sql.Open("postgres", connStr)
 	if err != nil {

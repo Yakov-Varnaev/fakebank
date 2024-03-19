@@ -16,13 +16,6 @@ type UserPage struct {
 	Data  []User `json:"data"`
 }
 
-type UserRegisterData struct {
-	Email     string `json:"email,omitempty"`
-	FirstName string `json:"first_name,omitempty"`
-	LastName  string `json:"last_name,omitempty"`
-	Password  string `json:"password,omitempty"`
-}
-
 // Register user godoc
 // @Summary	Create new user
 // @Tags		users
@@ -35,6 +28,12 @@ func (ctrl *Controller) Signup(c *gin.Context) {
 	var userData UserRegisterData
 
 	err := c.ShouldBindJSON(&userData)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"detail": err.Error()})
+		return
+	}
+
+	err = userData.Validate()
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"detail": err.Error()})
 		return
