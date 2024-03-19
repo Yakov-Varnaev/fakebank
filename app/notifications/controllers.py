@@ -53,7 +53,7 @@ async def notifications_websocket(ws: WebSocket):
     try:
         user = await get_user_by_cookie(ws.cookies.get('fastapiusersauth'))
     except Exception as e:
-        ws.close(reason=str(e))
+        await ws.close(reason=str(e))
     else:
         await ws_manager.connect(user.id, ws)
         async for msg in ws.app.state.notification_consumer.consumer:
