@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
+	"strings"
 
 	"github.com/Yakov-Varnaev/fakebank/db"
 	"github.com/gin-gonic/gin"
@@ -32,6 +33,8 @@ func (ctrl *Controller) Signup(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"detail": err.Error()})
 		return
 	}
+	// lower case email
+	userData.Email = strings.ToLower(userData.Email)
 
 	err = userData.Validate()
 	if err != nil {
@@ -39,7 +42,13 @@ func (ctrl *Controller) Signup(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusCreated, userData)
+	user, err := userData.Save()
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"detail": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusCreated, user)
 }
 
 // Retrieve user godoc

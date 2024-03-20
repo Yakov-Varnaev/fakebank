@@ -2,10 +2,24 @@ package users
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/Yakov-Varnaev/fakebank/db"
 	"github.com/google/uuid"
+	"golang.org/x/crypto/bcrypt"
 )
+
+func HashPassword(password string) (string, error) {
+	hash, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+	if err != nil {
+		return "", err
+	}
+	return string(hash), nil
+}
+
+func VerifyPassword(hashedPassword, password string) error {
+	return bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(password))
+}
 
 type User struct {
 	ID          string `json:"id"`
@@ -15,6 +29,7 @@ type User struct {
 	IsActive    bool   `json:"is_active"`
 	IsSuperuser bool   `json:"is_superuser"`
 	IsVerified  bool   `json:"is_verified"`
+	Password    string
 }
 
 type UserRegisterData struct {
@@ -32,7 +47,7 @@ func (d *UserRegisterData) validateEmail() error {
 		return fmt.Errorf("Email is required")
 	}
 
-	query := `SELECT EXISTS(SELECT id FROM users WHERE email = $1)`
+	query := `SELECT EXISTS(SELECT id FROM users WHERE email = LOWER($1))`
 	var exists bool
 	err := db.GetDB().QueryRow(query, d.Email).Scan(&exists)
 	if err != nil {
@@ -66,13 +81,17 @@ func (d *UserRegisterData) Save() (*User, error) {
 	query := `
 	INSERT INTO users (id, email, first_name, last_name, hashed_password, is_active, is_superuser, is_verified)
 	VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-	RETURNING id, email, first_name, last_name, is_active, is_superuser, is_verified`
+	RETURNING id, email, first_name, last_name, hashed_password, is_active, is_superuser, is_verified`
 
+	hashedPassword, err := HashPassword(d.Password)
+	if err != nil {
+		return nil, err
+	}
 	var user User
-	err := db.GetDB().QueryRow(
-		query, uuid.NewString(), d.Email, d.FirstName, d.LastName, d.Password, d.IsActive, d.IsSuperuser, d.IsVerified,
+	err = db.GetDB().QueryRow(
+		query, uuid.NewString(), strings.ToLower(d.Email), d.FirstName, d.LastName, hashedPassword, d.IsActive, d.IsSuperuser, d.IsVerified,
 	).Scan(
-		&user.ID, &user.Email, &user.FirstName, &user.LastName, &user.IsActive, &user.IsSuperuser, &user.IsVerified,
+		&user.ID, &user.Email, &user.FirstName, &user.LastName, &user.Password, &user.IsActive, &user.IsSuperuser, &user.IsVerified,
 	)
 	if err != nil {
 		return nil, err
