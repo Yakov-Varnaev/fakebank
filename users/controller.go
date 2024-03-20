@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
-	"strings"
 
 	"github.com/Yakov-Varnaev/fakebank/config"
 	"github.com/Yakov-Varnaev/fakebank/db"
+	httpErrors "github.com/Yakov-Varnaev/fakebank/errors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -29,24 +29,17 @@ type UserPage struct {
 //	@Router		/users [post]
 func (ctrl *Controller) Signup(c *gin.Context) {
 	var userData UserRegisterData
-
-	err := c.ShouldBindJSON(&userData)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"detail": err.Error()})
-		return
-	}
-	// lower case email
-	userData.Email = strings.ToLower(userData.Email)
-
-	err = userData.Validate()
+	err := c.ShouldBindJSON(userData)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"detail": err.Error()})
 		return
 	}
 
-	user, err := userData.Save()
+	service := SignupSerivce{Data: &userData}
+	user, err := service.Signup()
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"detail": err.Error()})
+		httpErr := httpErrors.GetHTTPError(err)
+		c.JSON(httpErr.Code, gin.H{"detail": httpErr.Message})
 		return
 	}
 

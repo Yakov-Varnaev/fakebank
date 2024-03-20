@@ -4,7 +4,6 @@ import (
 	"database/sql"
 	"fmt"
 	"net/mail"
-	"strings"
 
 	"github.com/Yakov-Varnaev/fakebank/db"
 	"github.com/google/uuid"
@@ -60,9 +59,8 @@ func (d *UserRegisterData) validateEmail() error {
 		panic(err.Error())
 	}
 
-	fmt.Println(exists)
 	if exists {
-		return fmt.Errorf("Email is already taken")
+		return &EmailAlreadyExistsError{}
 	}
 	return nil
 }
@@ -84,25 +82,12 @@ func (d *UserRegisterData) Validate() error {
 }
 
 func (d *UserRegisterData) Save() (*User, error) {
-	query := `
-	INSERT INTO users (id, email, first_name, last_name, hashed_password, is_active, is_superuser, is_verified)
-	VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-	RETURNING id, email, first_name, last_name, hashed_password, is_active, is_superuser, is_verified`
-
-	hashedPassword, err := HashPassword(d.Password)
+	var userDb UserDB
+	user, err := userDb.Create(d)
 	if err != nil {
 		return nil, err
 	}
-	var user User
-	err = db.GetDB().QueryRow(
-		query, uuid.NewString(), strings.ToLower(d.Email), d.FirstName, d.LastName, hashedPassword, d.IsActive, d.IsSuperuser, d.IsVerified,
-	).Scan(
-		&user.ID, &user.Email, &user.FirstName, &user.LastName, &user.Password, &user.IsActive, &user.IsSuperuser, &user.IsVerified,
-	)
-	if err != nil {
-		return nil, err
-	}
-	return &user, nil
+	return user, nil
 }
 
 type UserLoginData struct {
