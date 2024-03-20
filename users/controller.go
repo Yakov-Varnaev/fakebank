@@ -63,19 +63,12 @@ func (ctrl *Controller) Signin(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"detail": err.Error()})
 		return
 	}
-	err = loginData.Validate()
+
+	service := SigninService{Data: &loginData}
+	token, err := service.Act()
 	if err != nil {
-		c.JSON(http.StatusUnauthorized, gin.H{"detail": err.Error()})
-	}
-	user, err := loginData.Authenticate()
-	if err != nil {
-		c.JSON(http.StatusUnauthorized, gin.H{"detail": err.Error()})
-		return
-	}
-	token, err := CreateCookies(user)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"detail": err.Error()})
-		return
+		err := httpErrors.GetHTTPError(err)
+		c.AbortWithStatusJSON(err.Code, gin.H{"detail": err.Error()})
 	}
 
 	c.SetCookie(config.AUTH_COOKIE_NAME, token, config.TOKEN_LIFETIME, "/", "localhost", false, true)
@@ -167,7 +160,7 @@ func (ctrl *Controller) List(c *gin.Context) {
 		return
 	}
 
-	c.JSON(200, UserPage{Total: total, Data: result})
+	c.JSON(http.StatusOK, UserPage{Total: total, Data: result})
 }
 
 // Authenticated endpoint godoc
