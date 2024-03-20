@@ -78,7 +78,7 @@ func (ctrl *Controller) Signin(c *gin.Context) {
 		return
 	}
 
-	c.SetCookie(config.AUTH_COOKIE_NAME, token, 60*60*24, "/", "localhost", false, true)
+	c.SetCookie(config.AUTH_COOKIE_NAME, token, config.TOKEN_LIFETIME, "/", "localhost", false, true)
 	c.Status(http.StatusOK)
 }
 
