@@ -55,7 +55,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/users/": {
+        "/users": {
             "get": {
                 "description": "List user",
                 "consumes": [
@@ -113,6 +113,34 @@ const docTemplate = `{
                         }
                     }
                 ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/users.User"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/me": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "description": "Authenticated endpoint",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Authenticated endpoint",
                 "responses": {
                     "200": {
                         "description": "OK",

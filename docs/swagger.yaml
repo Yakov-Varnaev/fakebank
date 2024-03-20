@@ -84,7 +84,7 @@ paths:
       tags:
       - users
       - auth
-  /users/:
+  /users:
     get:
       consumes:
       - application/json
@@ -147,6 +147,23 @@ paths:
           schema:
             $ref: '#/definitions/users.User'
       summary: Retrieve user
+      tags:
+      - users
+  /users/me:
+    get:
+      consumes:
+      - application/json
+      description: Authenticated endpoint
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/users.User'
+      security:
+      - Bearer: []
+      summary: Authenticated endpoint
       tags:
       - users
 securityDefinitions:

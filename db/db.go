@@ -4,20 +4,23 @@ import (
 	"database/sql"
 	"log"
 
+	"github.com/doug-martin/goqu/v9"
+	_ "github.com/doug-martin/goqu/v9/dialect/postgres"
 	_ "github.com/lib/pq"
 )
 
-var db *sql.DB
+var db *goqu.Database
 
 func Init() {
 	connStr := "postgres://fakebank:fakebank@localhost:5432/test?sslmode=disable"
-	var err error
-	db, err = sql.Open("postgres", connStr)
+	dialect := goqu.Dialect("postgres")
+	pgdb, err := sql.Open("postgres", connStr)
+	db = dialect.DB(pgdb)
 	if err != nil {
 		log.Fatal(err)
 	}
 }
 
-func GetDB() *sql.DB {
+func GetDB() *goqu.Database {
 	return db
 }

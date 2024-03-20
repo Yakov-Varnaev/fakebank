@@ -1,6 +1,7 @@
 package server
 
 import (
+	"github.com/Yakov-Varnaev/fakebank/auth"
 	"github.com/Yakov-Varnaev/fakebank/users"
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
@@ -29,6 +30,10 @@ func NewRouter() *gin.Engine {
 			userGroup.GET("/:id", user.Retrieve)
 			userGroup.POST("/", user.Signup)
 			userGroup.GET("/", user.List)
+
+			userAuthenticatedOnlyGroup := userGroup.Group("/")
+			userAuthenticatedOnlyGroup.Use(auth.AuthenticateMiddleware(true))
+			userAuthenticatedOnlyGroup.GET("/me", user.RetrieveMe)
 		}
 	}
 

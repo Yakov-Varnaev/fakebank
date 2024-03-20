@@ -24,14 +24,14 @@ func VerifyPassword(hashedPassword, password string) error {
 }
 
 type User struct {
-	ID          string `json:"id"`
-	FirstName   string `json:"first_name"`
-	LastName    string `json:"last_name"`
-	Email       string `json:"email"`
-	IsActive    bool   `json:"is_active"`
-	IsSuperuser bool   `json:"is_superuser"`
-	IsVerified  bool   `json:"is_verified"`
-	Password    string `json:"-"`
+	ID          string `json:"id,omitempty" db:"id"`
+	FirstName   string `json:"first_name,omitempty" db:"first_name"`
+	LastName    string `json:"last_name,omitempty" db:"last_name"`
+	Email       string `json:"email,omitempty" db:"email"`
+	IsActive    bool   `json:"is_active,omitempty" db:"is_active"`
+	IsSuperuser bool   `json:"is_superuser,omitempty" db:"is_superuser"`
+	IsVerified  bool   `json:"is_verified,omitempty" db:"is_verified"`
+	Password    string `json:"-" db:"hashed_password"`
 }
 
 type UserRegisterData struct {
@@ -143,7 +143,7 @@ func (d *UserLoginData) Authenticate() (*User, error) {
 	return &user, nil
 }
 
-var session_store = make(map[string]*User)
+var SessionStore = make(map[string]*User)
 
 func CreateCookies(user *User) (string, error) {
 	accessToken, err := uuid.NewRandom()
@@ -152,7 +152,8 @@ func CreateCookies(user *User) (string, error) {
 	}
 
 	stringToken := accessToken.String()
-	session_store[stringToken] = user
+	fmt.Println("CreateCookies: ", stringToken, " ", user.ID, " ", user.Email)
+	SessionStore[stringToken] = user
 
 	return stringToken, nil
 }
