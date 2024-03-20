@@ -24,6 +24,37 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/auth/signin": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users",
+                    "auth"
+                ],
+                "summary": "Sign In",
+                "parameters": [
+                    {
+                        "description": "User Credentials",
+                        "name": "loginData",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/users.UserLoginData"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
         "/users/": {
             "get": {
                 "description": "List user",
@@ -138,7 +169,27 @@ const docTemplate = `{
                 "id": {
                     "type": "string"
                 },
+                "is_active": {
+                    "type": "boolean"
+                },
+                "is_superuser": {
+                    "type": "boolean"
+                },
+                "is_verified": {
+                    "type": "boolean"
+                },
                 "last_name": {
+                    "type": "string"
+                }
+            }
+        },
+        "users.UserLoginData": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
                     "type": "string"
                 }
             }
@@ -165,6 +216,15 @@ const docTemplate = `{
                 },
                 "first_name": {
                     "type": "string"
+                },
+                "is_active": {
+                    "type": "boolean"
+                },
+                "is_superuser": {
+                    "type": "boolean"
+                },
+                "is_verified": {
+                    "type": "boolean"
                 },
                 "last_name": {
                     "type": "string"

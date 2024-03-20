@@ -6,6 +6,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/Yakov-Varnaev/fakebank/config"
 	"github.com/Yakov-Varnaev/fakebank/db"
 	"github.com/gin-gonic/gin"
 )
@@ -18,13 +19,14 @@ type UserPage struct {
 }
 
 // Register user godoc
-// @Summary	Create new user
-// @Tags		users
-// @Accept		json
-// @Produce	json
-// @Param		data	body	UserRegisterData	true	"User Register Data"
-// @Success 200 {object} User
-// @Router /users/ [post]
+//
+//	@Summary	Create new user
+//	@Tags		users
+//	@Accept		json
+//	@Produce	json
+//	@Param		data	body		UserRegisterData	true	"User Register Data"
+//	@Success	200		{object}	User
+//	@Router		/users/ [post]
 func (ctrl *Controller) Signup(c *gin.Context) {
 	var userData UserRegisterData
 
@@ -51,19 +53,56 @@ func (ctrl *Controller) Signup(c *gin.Context) {
 	c.JSON(http.StatusCreated, user)
 }
 
+// Signin godoc
+//
+//	@Summary	Sign In
+//	@Tags		users, auth
+//	@Accept		json
+//	@Produce	json
+//	@Param		loginData	body	UserLoginData	true	"User Credentials"
+//	@Success	200
+//	@Router		/auth/signin [post]
+func (ctrl *Controller) Signin(c *gin.Context) {
+	var loginData UserLoginData
+
+	err := c.ShouldBindJSON(&loginData)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"detail": err.Error()})
+		return
+	}
+	err = loginData.Validate()
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"detail": err.Error()})
+	}
+	user, err := loginData.Authenticate()
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"detail": err.Error()})
+		return
+	}
+	token, err := CreateCookies(user)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"detail": err.Error()})
+		return
+	}
+
+	c.SetCookie(config.AUTH_COOKIE_NAME, token, 60*60*24, "/", "localhost", false, true)
+	c.Status(http.StatusOK)
+}
+
 // Retrieve user godoc
-// @Summary		Retrieve user
-// @Description	Retrieve user
-// @Tags			users
-// @Accept			json
-// @Produce		json
-// @Param			id	path	string true	"User ID"
-// @Success		200	{object}	User
-// @Router			/users/{id} [get]
+//
+//	@Summary		Retrieve user
+//	@Description	Retrieve user
+//	@Tags			users
+//	@Accept			json
+//	@Produce		json
+//	@Param			id	path		string	true	"User ID"
+//	@Success		200	{object}	User
+//	@Router			/users/{id} [get]
 func (ctrl *Controller) Retrieve(c *gin.Context) {
 	db := db.GetDB()
 	userId := c.Param("id")
-	user := User{}
+	var user User
 	err := db.QueryRow(
 		`SELECT id, email, first_name, last_name FROM users WHERE users.id = $1 LIMIT 1`,
 		userId,
@@ -76,15 +115,16 @@ func (ctrl *Controller) Retrieve(c *gin.Context) {
 }
 
 // List users godoc
-// @Summary		List user
-// @Description	List user
-// @Tags			users
-// @Accept			json
-// @Produce		json
-// @Param			offset	query	int	false	"Offset"
-// @Param			limit	query	int	false	"Limit"
-// @Success		200	{object}	UserPage
-// @Router			/users/ [get]
+//
+//	@Summary		List user
+//	@Description	List user
+//	@Tags			users
+//	@Accept			json
+//	@Produce		json
+//	@Param			offset	query		int	false	"Offset"
+//	@Param			limit	query		int	false	"Limit"
+//	@Success		200		{object}	UserPage
+//	@Router			/users/ [get]
 func (ctrl *Controller) List(c *gin.Context) {
 	db := db.GetDB()
 	offsetStr := c.DefaultQuery("offset", "0")

@@ -1,7 +1,9 @@
 package users
 
 import (
+	"database/sql"
 	"fmt"
+	"net/mail"
 	"strings"
 
 	"github.com/Yakov-Varnaev/fakebank/db"
@@ -29,7 +31,7 @@ type User struct {
 	IsActive    bool   `json:"is_active"`
 	IsSuperuser bool   `json:"is_superuser"`
 	IsVerified  bool   `json:"is_verified"`
-	Password    string
+	Password    string `json:"-"`
 }
 
 type UserRegisterData struct {
@@ -46,10 +48,14 @@ func (d *UserRegisterData) validateEmail() error {
 	if d.Email == "" {
 		return fmt.Errorf("Email is required")
 	}
+	_, err := mail.ParseAddress(d.Email)
+	if err != nil {
+		return fmt.Errorf("Invalid email")
+	}
 
 	query := `SELECT EXISTS(SELECT id FROM users WHERE email = LOWER($1))`
 	var exists bool
-	err := db.GetDB().QueryRow(query, d.Email).Scan(&exists)
+	err = db.GetDB().QueryRow(query, d.Email).Scan(&exists)
 	if err != nil {
 		panic(err.Error())
 	}
@@ -97,4 +103,56 @@ func (d *UserRegisterData) Save() (*User, error) {
 		return nil, err
 	}
 	return &user, nil
+}
+
+type UserLoginData struct {
+	Email    string `json:"email,omitempty"`
+	Password string `json:"password,omitempty"`
+}
+
+func (d *UserLoginData) Validate() error {
+	if d.Email == "" {
+		return fmt.Errorf("Email is required")
+	}
+	_, err := mail.ParseAddress(d.Email)
+	if err != nil {
+		return fmt.Errorf("Invalid email")
+	}
+	if d.Password == "" {
+		return fmt.Errorf("Password is required")
+	}
+	return nil
+}
+
+func (d *UserLoginData) Authenticate() (*User, error) {
+	var user User
+	err := db.GetDB().QueryRow(
+		`SELECT id, email, first_name, last_name, hashed_password, is_active, is_superuser, is_verified FROM users WHERE email = LOWER($1)`,
+		d.Email,
+	).Scan(&user.ID, &user.Email, &user.FirstName, &user.LastName, &user.Password, &user.IsActive, &user.IsSuperuser, &user.IsVerified)
+
+	if err == sql.ErrNoRows {
+		return nil, fmt.Errorf("User not found")
+	}
+
+	err = VerifyPassword(user.Password, d.Password)
+	if err != nil {
+		return nil, fmt.Errorf("Invalid password")
+	}
+
+	return &user, nil
+}
+
+var session_store = make(map[string]*User)
+
+func CreateCookies(user *User) (string, error) {
+	accessToken, err := uuid.NewRandom()
+	if err != nil {
+		return "", err
+	}
+
+	stringToken := accessToken.String()
+	session_store[stringToken] = user
+
+	return stringToken, nil
 }

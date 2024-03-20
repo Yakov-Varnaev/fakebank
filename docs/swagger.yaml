@@ -8,7 +8,20 @@ definitions:
         type: string
       id:
         type: string
+      is_active:
+        type: boolean
+      is_superuser:
+        type: boolean
+      is_verified:
+        type: boolean
       last_name:
+        type: string
+    type: object
+  users.UserLoginData:
+    properties:
+      email:
+        type: string
+      password:
         type: string
     type: object
   users.UserPage:
@@ -26,6 +39,12 @@ definitions:
         type: string
       first_name:
         type: string
+      is_active:
+        type: boolean
+      is_superuser:
+        type: boolean
+      is_verified:
+        type: boolean
       last_name:
         type: string
       password:
@@ -45,6 +64,26 @@ info:
   title: FakeBank API
   version: "1.0"
 paths:
+  /auth/signin:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: User Credentials
+        in: body
+        name: loginData
+        required: true
+        schema:
+          $ref: '#/definitions/users.UserLoginData'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Sign In
+      tags:
+      - users
+      - auth
   /users/:
     get:
       consumes:
