@@ -4,9 +4,15 @@ import (
 	"fmt"
 
 	"github.com/Yakov-Varnaev/fakebank/db"
+	pagination "github.com/Yakov-Varnaev/fakebank/utils"
 	"github.com/doug-martin/goqu/v9"
 	"github.com/google/uuid"
 )
+
+type Page[T any] struct {
+	Total int64 `json:"total"`
+	Data  []T   `json:"data"`
+}
 
 type UserDB struct{}
 
@@ -65,4 +71,35 @@ func (u User) Refresh() error {
 	u.IsVerified = dbUser.IsVerified
 
 	return nil
+}
+
+func (userDb *UserDB) List(paginationParams *pagination.Params, searchQuery string) (*Page[*User], error) {
+	var users []*User
+	query := db.GetDB().From("users")
+	if paginationParams != nil {
+		query = query.Limit(uint(paginationParams.Limit)).Offset(uint(paginationParams.Offset))
+	}
+
+	if searchQuery != "" {
+		query = query.Where(goqu.Or(
+			goqu.C("email").ILike(fmt.Sprintf("%%%s%%", searchQuery)),
+			goqu.L("CONCAT(first_name, ' ', last_name) ILIKE ?", fmt.Sprintf("%%%s%%", searchQuery)),
+			goqu.L("CONCAT(last_name, ' ', first_name) ILIKE ?", fmt.Sprintf("%%%s%%", searchQuery)),
+		))
+	}
+
+	err := query.ScanStructs(&users)
+	if err != nil {
+		return nil, err
+	}
+
+	total, err := query.Count()
+	if err != nil {
+		return nil, err
+	}
+	page := &Page[*User]{
+		Total: total,
+		Data:  users,
+	}
+	return page, nil
 }

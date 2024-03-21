@@ -1,6 +1,7 @@
 package server
 
 import (
+	"github.com/Yakov-Varnaev/fakebank/accounts"
 	"github.com/Yakov-Varnaev/fakebank/auth"
 	"github.com/Yakov-Varnaev/fakebank/users"
 	"github.com/gin-gonic/gin"
@@ -34,6 +35,12 @@ func NewRouter() *gin.Engine {
 			userAuthenticatedOnlyGroup := userGroup.Group("/")
 			userAuthenticatedOnlyGroup.Use(auth.AuthenticateMiddleware(true))
 			userAuthenticatedOnlyGroup.GET("/me", user.RetrieveMe)
+		}
+		accountGroup := v1.Group("accounts")
+		{
+			account := new(accounts.Controller)
+			accountGroup.POST("/", account.CreateAccount)
+			accountGroup.GET("/", account.List)
 		}
 	}
 

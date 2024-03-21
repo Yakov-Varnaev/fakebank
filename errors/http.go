@@ -20,6 +20,9 @@ func (e *ValidationError) Error() string {
 }
 
 func GetHTTPError(err error) *HTTPError {
+	if err == nil {
+		return nil
+	}
 	httpError, ok := err.(*HTTPError)
 	if !ok {
 		return &HTTPError{Code: http.StatusInternalServerError, Message: err.Error()}

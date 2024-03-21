@@ -1,5 +1,39 @@
 basePath: /api/v1
 definitions:
+  accounts.Account:
+    properties:
+      balance:
+        type: number
+      id:
+        type: string
+      name:
+        type: string
+      user_id:
+        type: string
+    type: object
+  accounts.AccountCreate:
+    properties:
+      name:
+        type: string
+    type: object
+  pagination.Page-accounts_Account:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/accounts.Account'
+        type: array
+      total:
+        type: integer
+    type: object
+  pagination.Page-users_User:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/users.User'
+        type: array
+      total:
+        type: integer
+    type: object
   users.User:
     properties:
       email:
@@ -23,15 +57,6 @@ definitions:
         type: string
       password:
         type: string
-    type: object
-  users.UserPage:
-    properties:
-      data:
-        items:
-          $ref: '#/definitions/users.User'
-        type: array
-      total:
-        type: integer
     type: object
   users.UserRegisterData:
     properties:
@@ -64,6 +89,53 @@ info:
   title: FakeBank API
   version: "1.0"
 paths:
+  /accounts:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Offset
+        in: query
+        name: offset
+        type: integer
+      - description: Limit
+        in: query
+        name: limit
+        type: integer
+      - description: User ID
+        in: query
+        name: user_id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/pagination.Page-accounts_Account'
+      summary: List accounts
+      tags:
+      - accounts
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Account Data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/accounts.AccountCreate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/accounts.Account'
+      summary: Create new account
+      tags:
+      - accounts
   /auth/signin:
     post:
       consumes:
@@ -104,7 +176,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/users.UserPage'
+            $ref: '#/definitions/pagination.Page-users_User'
       summary: List user
       tags:
       - users
