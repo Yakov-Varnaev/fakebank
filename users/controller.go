@@ -54,9 +54,10 @@ func (ctrl *Controller) Signup(c *gin.Context) {
 //	@Success		200	{object}	User
 //	@Router			/users/{id} [get]
 func (ctrl *Controller) Retrieve(c *gin.Context) {
-	userId := c.Param("id")
+	var service RetrieveService
+	service.FromContext(c)
 
-	user, err := RetrieveService{ID: userId}.Act()
+	user, err := service.Act()
 	if err := httpErrors.GetHTTPError(err); err != nil {
 		c.JSON(err.Code, gin.H{"detail": err.Message})
 		return
@@ -93,11 +94,14 @@ func (ctrl *Controller) RetrieveMe(c *gin.Context) {
 //	@Success		200		{object}	pagination.Page[User]
 //	@Router			/users [get]
 func (ctrl *Controller) List(c *gin.Context) {
-	paginationParams, _ := pagination.FromContext(c)
+	var service ListingService
+	err := service.FromContext(c)
+	if err := httpErrors.GetHTTPError(err); err != nil {
+		c.JSON(err.Code, gin.H{"detail": err.Message})
+		return
+	}
 
-	query := c.DefaultQuery("query", "")
-
-	page, err := ListingService{Pagination: paginationParams, Query: query}.Act()
+	page, err := service.Act()
 
 	if err := httpErrors.GetHTTPError(err); err != nil {
 		c.JSON(err.Code, gin.H{"detail": err.Message})
