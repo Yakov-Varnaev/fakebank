@@ -3,7 +3,6 @@ package accounts
 import (
 	"net/http"
 
-	"github.com/Yakov-Varnaev/fakebank/db"
 	httpErrors "github.com/Yakov-Varnaev/fakebank/errors"
 	_ "github.com/Yakov-Varnaev/fakebank/utils"
 	"github.com/gin-gonic/gin"
@@ -21,20 +20,15 @@ type Controller struct{}
 //	@Success	200		{object}	Account
 //	@Router		/accounts [post]
 func (ctrl *Controller) CreateAccount(c *gin.Context) {
-	var accountData AccountCreate
-	err := c.ShouldBindJSON(&accountData)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"detail": err.Error()})
+	var service CreateService
+	err := service.FromContext(c)
+	if err := httpErrors.GetHTTPError(err); err != nil {
+		c.JSON(err.Code, gin.H{"detail": err.Message})
 		return
 	}
-	accountCreateData := AccountCreateData{
-		AccountCreate: accountData,
-		UserID:        "d7c77823-2eff-4f1e-ac84-cc3f33e6a570",
-	}
-
-	account, err := db.Create[AccountCreateData, Account]("account", accountCreateData)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"detail": err.Error()})
+	account, err := service.Act()
+	if err := httpErrors.GetHTTPError(err); err != nil {
+		c.JSON(err.Code, gin.H{"detail": err.Message})
 		return
 	}
 

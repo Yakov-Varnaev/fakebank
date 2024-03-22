@@ -12,7 +12,7 @@ type Account struct {
 }
 
 type AccountCreate struct {
-	Name string `db:"name"`
+	Name string `json:"name" db:"name"`
 }
 
 type AccountCreateData struct {

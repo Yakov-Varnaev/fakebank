@@ -37,6 +37,7 @@ func NewRouter() *gin.Engine {
 			userAuthenticatedOnlyGroup.GET("/me", user.RetrieveMe)
 		}
 		accountGroup := v1.Group("accounts")
+		accountGroup.Use(auth.AuthenticateMiddleware(true))
 		{
 			account := new(accounts.Controller)
 			accountGroup.POST("/", account.CreateAccount)
