@@ -33,13 +33,11 @@ type User struct {
 }
 
 type UserRegisterData struct {
-	Email       string `json:"email,omitempty"`
-	FirstName   string `json:"first_name,omitempty"`
-	LastName    string `json:"last_name,omitempty"`
-	Password    string `json:"password,omitempty"`
-	IsActive    bool   `json:"is_active,omitempty"`
-	IsSuperuser bool   `json:"is_superuser,omitempty"`
-	IsVerified  bool   `json:"is_verified,omitempty"`
+	Email     string `json:"email,omitempty"`
+	FirstName string `json:"first_name,omitempty"`
+	LastName  string `json:"last_name,omitempty"`
+	Password  string `json:"password,omitempty"`
+	IsActive  bool   `json:"_" db:"is_active"`
 }
 
 func (d *UserRegisterData) validateEmail() error {
@@ -55,7 +53,7 @@ func (d *UserRegisterData) validateEmail() error {
 	var exists bool
 	err = db.GetDB().QueryRow(query, d.Email).Scan(&exists)
 	if err != nil {
-		panic(err.Error())
+		return err
 	}
 
 	if exists {

@@ -42,9 +42,16 @@ func Create[CreateData DBObject, ReturnData any](table string, data CreateData) 
 	return &result, nil
 }
 
-func List[ReturnData DBObject](table string, paginationParams *pagination.Params) (*pagination.Page[ReturnData], error) {
+type FilterFunc func(query *goqu.SelectDataset) *goqu.SelectDataset
+
+func List[ReturnData DBObject](
+	table string,
+	paginationParams *pagination.Params,
+	filterFunc FilterFunc,
+) (*pagination.Page[ReturnData], error) {
 	var result []ReturnData
 	query := db.From(table)
+	query = filterFunc(query)
 	total, err := query.Count()
 	if err != nil {
 		return nil, err
@@ -55,4 +62,16 @@ func List[ReturnData DBObject](table string, paginationParams *pagination.Params
 		return nil, err
 	}
 	return &pagination.Page[ReturnData]{Data: result, Total: total}, nil
+}
+
+func GetByID[ReturnData DBObject](table string, id string) (*ReturnData, error) {
+	var result ReturnData
+	found, err := db.From(table).Where(goqu.C("id").Eq(id)).ScanStruct(&result)
+	if err != nil {
+		return nil, err
+	}
+	if !found {
+		return nil, nil
+	}
+	return &result, nil
 }

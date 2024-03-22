@@ -54,6 +54,12 @@ const docTemplate = `{
                         "description": "User ID",
                         "name": "user_id",
                         "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Search query",
+                        "name": "query",
+                        "in": "query"
                     }
                 ],
                 "responses": {
@@ -152,6 +158,12 @@ const docTemplate = `{
                         "type": "integer",
                         "description": "Limit",
                         "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Search query",
+                        "name": "query",
                         "in": "query"
                     }
                 ],
@@ -351,20 +363,14 @@ const docTemplate = `{
         "users.UserRegisterData": {
             "type": "object",
             "properties": {
+                "_": {
+                    "type": "boolean"
+                },
                 "email": {
                     "type": "string"
                 },
                 "first_name": {
                     "type": "string"
-                },
-                "is_active": {
-                    "type": "boolean"
-                },
-                "is_superuser": {
-                    "type": "boolean"
-                },
-                "is_verified": {
-                    "type": "boolean"
                 },
                 "last_name": {
                     "type": "string"

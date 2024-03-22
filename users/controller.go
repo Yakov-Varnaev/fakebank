@@ -73,7 +73,7 @@ func (ctrl *Controller) Retrieve(c *gin.Context) {
 //	@Accept			json
 //	@Produce		json
 //	@Security		Bearer
-//	@Success		200 {object}	User
+//	@Success		200	{object}	User
 //	@Router			/users/me [get]
 func (ctrl *Controller) RetrieveMe(c *gin.Context) {
 	user := c.MustGet("user").(*User)
@@ -87,9 +87,10 @@ func (ctrl *Controller) RetrieveMe(c *gin.Context) {
 //	@Tags			users
 //	@Accept			json
 //	@Produce		json
-//	@Param			offset	query		int	false	"Offset"
-//	@Param			limit	query		int	false	"Limit"
-//	@Success		200		{object} pagination.Page[User]
+//	@Param			offset	query		int		false	"Offset"
+//	@Param			limit	query		int		false	"Limit"
+//	@Param			query	query		string	false	"Search query"
+//	@Success		200		{object}	pagination.Page[User]
 //	@Router			/users [get]
 func (ctrl *Controller) List(c *gin.Context) {
 	paginationParams, _ := pagination.FromContext(c)

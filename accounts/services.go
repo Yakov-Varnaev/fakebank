@@ -1,9 +1,12 @@
 package accounts
 
 import (
+	"fmt"
+
 	"github.com/Yakov-Varnaev/fakebank/db"
 	"github.com/Yakov-Varnaev/fakebank/users"
 	pagination "github.com/Yakov-Varnaev/fakebank/utils"
+	"github.com/doug-martin/goqu/v9"
 	"github.com/gin-gonic/gin"
 )
 
@@ -45,11 +48,26 @@ func (service *CreateService) Act() (*Account, error) {
 
 type Filters struct {
 	UserID string
+	Query  string
 }
 
 func (filters *Filters) FromContext(c *gin.Context) error {
 	filters.UserID = c.Query("user_id")
+	filters.Query = c.Query("query")
 	return nil
+}
+
+func (filters *Filters) FilterFunc(query *goqu.SelectDataset) *goqu.SelectDataset {
+	if filters.UserID != "" {
+		query = query.Where(goqu.C("user_id").Eq(filters.UserID))
+	}
+
+	if filters.Query != "" {
+		query = query.Where(goqu.Or(
+			goqu.C("name").ILike(fmt.Sprintf("%%%s%%", filters.Query)),
+		))
+	}
+	return query
 }
 
 type ListService struct {
@@ -65,13 +83,16 @@ func (service *ListService) FromContext(c *gin.Context) error {
 	service.PaginationParms = paginationParams
 
 	var filters Filters
-	filters.FromContext(c)
-
+	err = filters.FromContext(c)
+	if err != nil {
+		return err
+	}
+	service.Filters = &filters
 	return nil
 }
 
 func (service *ListService) Act() (*pagination.Page[Account], error) {
-	page, err := db.List[Account]("account", service.PaginationParms)
+	page, err := db.List[Account]("account", service.PaginationParms, service.Filters.FilterFunc)
 	if err != nil {
 		return nil, err
 	}

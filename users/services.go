@@ -67,7 +67,7 @@ type ListingService struct {
 	db         *UserDB
 }
 
-func (service ListingService) Act() (*Page[*User], error) {
+func (service ListingService) Act() (*pagination.Page[*User], error) {
 	users, err := service.db.List(service.Pagination, service.Query)
 	if err != nil {
 		return nil, &httpErrors.HTTPError{

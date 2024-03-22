@@ -44,6 +44,7 @@ func (ctrl *Controller) CreateAccount(c *gin.Context) {
 //	@Param		offset	query		int		false	"Offset"
 //	@Param		limit	query		int		false	"Limit"
 //	@Param		user_id	query		string	false	"User ID"
+//	@Param		query query		string	false	"Search query"
 //	@Success	200		{object}	pagination.Page[Account]
 //	@Router		/accounts [get]
 func (ctrl *Controller) List(c *gin.Context) {
