@@ -3,7 +3,6 @@ package users
 import (
 	"net/http"
 
-	"github.com/Yakov-Varnaev/fakebank/config"
 	httpErrors "github.com/Yakov-Varnaev/fakebank/errors"
 	pagination "github.com/Yakov-Varnaev/fakebank/utils"
 	"github.com/gin-gonic/gin"
@@ -42,35 +41,6 @@ func (ctrl *Controller) Signup(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusCreated, user)
-}
-
-// Signin godoc
-//
-//	@Summary	Sign In
-//	@Tags		users, auth
-//	@Accept		json
-//	@Produce	json
-//	@Param		loginData	body	UserLoginData	true	"User Credentials"
-//	@Success	200
-//	@Router		/auth/signin [post]
-func (ctrl *Controller) Signin(c *gin.Context) {
-	var loginData UserLoginData
-
-	err := c.ShouldBindJSON(&loginData)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"detail": err.Error()})
-		return
-	}
-
-	service := SigninService{Data: &loginData}
-	token, err := service.Act()
-	if err != nil {
-		err := httpErrors.GetHTTPError(err)
-		c.AbortWithStatusJSON(err.Code, gin.H{"detail": err.Error()})
-	}
-
-	c.SetCookie(config.AUTH_COOKIE_NAME, token, config.TOKEN_LIFETIME, "/", "localhost", false, true)
-	c.Status(http.StatusOK)
 }
 
 // Retrieve user godoc

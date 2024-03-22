@@ -5,47 +5,27 @@ import (
 	"net/http"
 
 	"github.com/Yakov-Varnaev/fakebank/config"
-	"github.com/Yakov-Varnaev/fakebank/users"
 	"github.com/gin-gonic/gin"
 )
-
-func CheckToken(token string) (*users.User, error) {
-	user, ok := users.SessionStore[token]
-	if !ok {
-		return nil, fmt.Errorf("Invalid token")
-	}
-	return user, nil
-}
 
 func AuthenticateMiddleware(authenticatedOnly bool) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		token, err := c.Cookie(config.AUTH_COOKIE_NAME)
-		if err != nil || token == "" {
+		if err != nil {
 			if authenticatedOnly {
 				c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"detail": "Auth cookie is missing"})
 				return
-			} else {
-				c.Next()
-				return
 			}
+			c.Next()
+			return
 		}
 
-		user, err := CheckToken(token)
+		user, err := ValidateJWTToken(token)
 		if err != nil {
+			fmt.Println(err)
 			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"detail": "Invalid token"})
 			return
 		}
-
-		err = user.Refresh()
-		if err != nil {
-			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"detail": "Invalid token user refresh." + err.Error()})
-			return
-		}
-
-		// if !user.IsActive {
-		// 	c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"detail": "User is not active"})
-		// 	return
-		// }
 
 		c.Set("user", user)
 		c.Next()

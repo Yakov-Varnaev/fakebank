@@ -6,7 +6,6 @@ import (
 	"net/mail"
 
 	"github.com/Yakov-Varnaev/fakebank/db"
-	"github.com/google/uuid"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -126,19 +125,4 @@ func (d *UserLoginData) Authenticate() (*User, error) {
 	}
 
 	return &user, nil
-}
-
-var SessionStore = make(map[string]*User)
-
-func CreateCookies(user *User) (string, error) {
-	accessToken, err := uuid.NewRandom()
-	if err != nil {
-		return "", err
-	}
-
-	stringToken := accessToken.String()
-	fmt.Println("CreateCookies: ", stringToken, " ", user.ID, " ", user.Email)
-	SessionStore[stringToken] = user
-
-	return stringToken, nil
 }
