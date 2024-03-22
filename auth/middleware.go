@@ -20,17 +20,7 @@ func CheckToken(token string) (*users.User, error) {
 func AuthenticateMiddleware(authenticatedOnly bool) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		token, err := c.Cookie(config.AUTH_COOKIE_NAME)
-		if err != nil {
-			if authenticatedOnly {
-				c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"detail": "Auth cookie is missing"})
-				return
-			} else {
-				c.Next()
-				return
-			}
-		}
-
-		if token == "" {
+		if err != nil || token == "" {
 			if authenticatedOnly {
 				c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"detail": "Auth cookie is missing"})
 				return
@@ -42,7 +32,7 @@ func AuthenticateMiddleware(authenticatedOnly bool) gin.HandlerFunc {
 
 		user, err := CheckToken(token)
 		if err != nil {
-			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"detail": "Invalid token check token"})
+			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"detail": "Invalid token"})
 			return
 		}
 
