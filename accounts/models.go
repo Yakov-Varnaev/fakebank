@@ -1,6 +1,8 @@
 package accounts
 
 import (
+	"fmt"
+
 	"github.com/shopspring/decimal"
 )
 
@@ -13,6 +15,13 @@ type Account struct {
 
 type AccountCreate struct {
 	Name string `json:"name" db:"name"`
+}
+
+func (a *AccountCreate) Validate() error {
+	if a.Name == "" {
+		return fmt.Errorf("Name is required")
+	}
+	return nil
 }
 
 type AccountCreateData struct {

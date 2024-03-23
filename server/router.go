@@ -40,8 +40,9 @@ func NewRouter() *gin.Engine {
 		accountGroup.Use(auth.AuthenticateMiddleware(true))
 		{
 			account := new(accounts.Controller)
-			accountGroup.POST("/", account.CreateAccount)
+			accountGroup.POST("/", account.Create)
 			accountGroup.GET("/", account.List)
+			accountGroup.PUT("/:id", account.Update)
 		}
 	}
 

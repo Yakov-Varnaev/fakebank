@@ -19,7 +19,7 @@ type Controller struct{}
 //	@Param		data	body		AccountCreate	true	"Account Data"
 //	@Success	200		{object}	Account
 //	@Router		/accounts [post]
-func (ctrl *Controller) CreateAccount(c *gin.Context) {
+func (ctrl *Controller) Create(c *gin.Context) {
 	var service CreateService
 	err := service.FromContext(c)
 	if err := httpErrors.GetHTTPError(err); err != nil {
@@ -44,7 +44,7 @@ func (ctrl *Controller) CreateAccount(c *gin.Context) {
 //	@Param		offset	query		int		false	"Offset"
 //	@Param		limit	query		int		false	"Limit"
 //	@Param		user_id	query		string	false	"User ID"
-//	@Param		query query		string	false	"Search query"
+//	@Param		query	query		string	false	"Search query"
 //	@Success	200		{object}	pagination.Page[Account]
 //	@Router		/accounts [get]
 func (ctrl *Controller) List(c *gin.Context) {
@@ -61,4 +61,32 @@ func (ctrl *Controller) List(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusOK, page)
+}
+
+// Update Account godoc
+//
+//	@Summary	Update account
+//	@Tags		accounts
+//	@Accept		json
+//	@Produce	json
+//	@Param		id		path		string			true	"Account ID"
+//	@Param		data	body		AccountCreate	true	"Account Data"
+//	@Success	200		{object}	Account
+//	@Failure	400
+//	@Failure	403
+//	@Router		/accounts/{id} [put]
+func (ctrl *Controller) Update(c *gin.Context) {
+	var service UpdateService
+	err := service.FromContext(c)
+	if err := httpErrors.GetHTTPError(err); err != nil {
+		c.JSON(err.Code, gin.H{"detail": err.Message})
+		return
+	}
+
+	account, err := service.Act()
+	if err := httpErrors.GetHTTPError(err); err != nil {
+		c.JSON(err.Code, gin.H{"detail": err.Message})
+		return
+	}
+	c.JSON(http.StatusOK, account)
 }

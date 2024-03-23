@@ -2,8 +2,10 @@ package accounts
 
 import (
 	"fmt"
+	"net/http"
 
 	"github.com/Yakov-Varnaev/fakebank/db"
+	httpErrors "github.com/Yakov-Varnaev/fakebank/errors"
 	"github.com/Yakov-Varnaev/fakebank/users"
 	pagination "github.com/Yakov-Varnaev/fakebank/utils"
 	"github.com/doug-martin/goqu/v9"
@@ -97,4 +99,54 @@ func (service *ListService) Act() (*pagination.Page[Account], error) {
 		return nil, err
 	}
 	return page, nil
+}
+
+type UpdateService struct {
+	ID   string
+	Data *AccountCreate
+	User *users.User
+}
+
+func (service *UpdateService) FromContext(c *gin.Context) error {
+	var data AccountCreate
+	err := c.ShouldBindJSON(&data)
+	if err != nil {
+		return err
+	}
+	service.Data = &data
+	service.ID = c.Param("id")
+
+	user, ok := c.Get("user")
+	if !ok || user == nil {
+		panic("User not found in context")
+	}
+
+	service.User = user.(*users.User)
+	return nil
+}
+
+func (service *UpdateService) Act() (*Account, error) {
+	account, err := db.GetByID[Account]("account", service.ID)
+	if err != nil {
+		return nil, err
+	}
+
+	if account == nil {
+		return nil, &httpErrors.HTTPError{
+			Code: http.StatusNotFound, Message: "Not found",
+		}
+	}
+
+	if account.UserID != service.User.ID {
+		return nil, &httpErrors.HTTPError{
+			Code: http.StatusForbidden, Message: "Forbidden",
+		}
+	}
+
+	updatedAccount, err := db.Update[AccountCreate, Account]("account", service.ID, *service.Data)
+	if err != nil {
+		return nil, err
+	}
+
+	return updatedAccount, nil
 }

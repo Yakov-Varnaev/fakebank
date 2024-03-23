@@ -85,3 +85,12 @@ func Exists(table string, queryProcessFunc QueryProcessFunc) (bool, error) {
 	}
 	return cnt > 0, nil
 }
+
+func Update[UpdateData DBObject, ReturnData any](table string, id string, data UpdateData) (*ReturnData, error) {
+	var result ReturnData
+	_, err := db.Update(table).Set(data).Where(goqu.C("id").Eq(id)).Returning(&result).Executor().ScanStruct(&result)
+	if err != nil {
+		return nil, err
+	}
+	return &result, nil
+}
