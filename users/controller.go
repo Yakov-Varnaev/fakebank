@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	httpErrors "github.com/Yakov-Varnaev/fakebank/errors"
+	_ "github.com/Yakov-Varnaev/fakebank/utils"
 	"github.com/gin-gonic/gin"
 )
 
