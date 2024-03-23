@@ -42,12 +42,12 @@ func Create[CreateData DBObject, ReturnData any](table string, data CreateData) 
 	return &result, nil
 }
 
-type FilterFunc func(query *goqu.SelectDataset) *goqu.SelectDataset
+type QueryProcessFunc func(query *goqu.SelectDataset) *goqu.SelectDataset
 
 func List[ReturnData DBObject](
 	table string,
 	paginationParams *pagination.Params,
-	filterFunc FilterFunc,
+	filterFunc QueryProcessFunc,
 ) (*pagination.Page[ReturnData], error) {
 	var result []ReturnData
 	query := db.From(table)

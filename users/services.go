@@ -81,9 +81,12 @@ func (filters *Filters) FromContext(c *gin.Context) {
 func (filters *Filters) FilterFunc(query *goqu.SelectDataset) *goqu.SelectDataset {
 	if filters.Query != "" {
 		query = query.Where(goqu.Or(
-			goqu.C("name").ILike(fmt.Sprintf("%%%s%%", filters.Query)),
+			goqu.C("email").ILike(fmt.Sprintf("%%%s%%", filters.Query)),
+			goqu.L("CONCAT(first_name, ' ', last_name) ILIKE ?", fmt.Sprintf("%%%s%%", filters.Query)),
+			goqu.L("CONCAT(last_name, ' ', first_name) ILIKE ?", fmt.Sprintf("%%%s%%", filters.Query)),
 		))
 	}
+
 	return query
 }
 
