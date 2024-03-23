@@ -6,6 +6,7 @@ import (
 	"net/mail"
 
 	"github.com/Yakov-Varnaev/fakebank/db"
+	"github.com/doug-martin/goqu/v9"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -49,9 +50,9 @@ func (d *UserRegisterData) validateEmail() error {
 		return fmt.Errorf("Invalid email")
 	}
 
-	query := `SELECT EXISTS(SELECT id FROM users WHERE email = LOWER($1))`
-	var exists bool
-	err = db.GetDB().QueryRow(query, d.Email).Scan(&exists)
+	exists, err := db.Exists("users", func(query *goqu.SelectDataset) *goqu.SelectDataset {
+		return query.Where(goqu.C("email").ILike(d.Email))
+	})
 	if err != nil {
 		return err
 	}

@@ -3,6 +3,7 @@ package users
 import (
 	"github.com/Yakov-Varnaev/fakebank/db"
 	pagination "github.com/Yakov-Varnaev/fakebank/utils"
+	"github.com/doug-martin/goqu/v9"
 )
 
 type UserDB struct{}

@@ -75,3 +75,13 @@ func GetByID[ReturnData DBObject](table string, id string) (*ReturnData, error) 
 	}
 	return &result, nil
 }
+
+func Exists(table string, queryProcessFunc QueryProcessFunc) (bool, error) {
+	query := db.From(table)
+	query = queryProcessFunc(query)
+	cnt, err := query.Count() // There is no exists method in goqu
+	if err != nil {
+		return false, err
+	}
+	return cnt > 0, nil
+}
