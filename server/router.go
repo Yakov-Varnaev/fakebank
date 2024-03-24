@@ -3,6 +3,7 @@ package server
 import (
 	"github.com/Yakov-Varnaev/fakebank/accounts"
 	"github.com/Yakov-Varnaev/fakebank/auth"
+	"github.com/Yakov-Varnaev/fakebank/transactions"
 	"github.com/Yakov-Varnaev/fakebank/users"
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
@@ -43,6 +44,13 @@ func NewRouter() *gin.Engine {
 			accountGroup.POST("/", account.Create)
 			accountGroup.GET("/", account.List)
 			accountGroup.PUT("/:id", account.Update)
+		}
+
+		transactionGroup := v1.Group("transactions")
+		transactionGroup.Use(auth.AuthenticateMiddleware(true))
+		{
+			controller := new(transactions.Controller)
+			transactionGroup.POST("/", controller.Create)
 		}
 	}
 

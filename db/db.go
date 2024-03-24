@@ -2,6 +2,7 @@ package db
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 
 	pagination "github.com/Yakov-Varnaev/fakebank/utils"
@@ -29,12 +30,11 @@ func GetDB() *goqu.Database {
 
 type DBObject interface{}
 
-type DB struct {
-	Table string
-}
-
 func Create[CreateData DBObject, ReturnData any](table string, data CreateData) (*ReturnData, error) {
 	var result ReturnData
+	query := db.Insert(table).Rows(data).Returning(&result)
+	sql, _, _ := query.ToSQL()
+	fmt.Println(sql)
 	_, err := db.Insert(table).Rows(data).Returning(&result).Executor().ScanStruct(&result)
 	if err != nil {
 		return nil, err

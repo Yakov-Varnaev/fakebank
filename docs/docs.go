@@ -180,6 +180,36 @@ const docTemplate = `{
                 }
             }
         },
+        "/transactions": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "transactions"
+                ],
+                "summary": "Create Transaction",
+                "parameters": [
+                    {
+                        "description": "Transaction Data",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/transactions.TransactionCreateData"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
         "/users": {
             "get": {
                 "description": "List user",
@@ -366,6 +396,20 @@ const docTemplate = `{
                 },
                 "total": {
                     "type": "integer"
+                }
+            }
+        },
+        "transactions.TransactionCreateData": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "number"
+                },
+                "recipient_id": {
+                    "type": "string"
+                },
+                "sender_id": {
+                    "type": "string"
                 }
             }
         },

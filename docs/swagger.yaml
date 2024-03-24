@@ -34,6 +34,15 @@ definitions:
       total:
         type: integer
     type: object
+  transactions.TransactionCreateData:
+    properties:
+      amount:
+        type: number
+      recipient_id:
+        type: string
+      sender_id:
+        type: string
+    type: object
   users.User:
     properties:
       email:
@@ -186,6 +195,25 @@ paths:
       tags:
       - users
       - auth
+  /transactions:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Transaction Data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/transactions.TransactionCreateData'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Create Transaction
+      tags:
+      - transactions
   /users:
     get:
       consumes:
