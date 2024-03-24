@@ -1,0 +1,113 @@
+version: "3.9"
+
+networks:
+  mynetwork:
+
+services:
+  postgres:
+    image: postgres:14-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - ~/apps/postgres:/var/lib/postgresql/fakebank_data
+    environment:
+      - POSTGRES_PASSWORD=fakebank
+      - POSTGRES_USER=fakebank
+      - POSTGRES_DB=fakebank
+    networks:
+      - mynetwork
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    hostname: zookeeper
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    networks:
+      - mynetwork
+
+  kafka:
+    image: confluentinc/cp-server:7.5.0
+    hostname: broker
+    container_name: broker
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+      - "9101:9101"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_METRIC_REPORTERS: io.confluent.metrics.reporter.ConfluentMetricsReporter
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_CONFLUENT_LICENSE_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_CONFLUENT_BALANCER_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_JMX_PORT: 9101
+      KAFKA_JMX_HOSTNAME: localhost
+      KAFKA_CONFLUENT_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+      CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS: broker:29092
+      CONFLUENT_METRICS_REPORTER_TOPIC_REPLICAS: 1
+      CONFLUENT_METRICS_ENABLE: "false"
+      CONFLUENT_SUPPORT_CUSTOMER_ID: "anonymous"
+    networks:
+      - mynetwork
+
+  transaction_processor:
+    build:
+      context: .
+      dockerfile: Dockerfile.processor
+      args:
+        KAFKA_URL: kafka:29092
+
+    environment:
+      KAFKA_URL: kafka:29092
+      DB_URL: postgresql+asyncpg://fakebank:fakebank@postgres:5432/fakebank
+    depends_on:
+      - kafka
+      - postgres
+    networks:
+      - mynetwork
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        KAFKA_URL: "kafka:29092"
+    environment:
+      DB_URL: postgresql+asyncpg://fakebank:fakebank@postgres:5432/fakebank
+      KAFKA_URL: kafka:29092
+    depends_on:
+      - kafka
+      - postgres
+    networks:
+      - mynetwork
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.nuxt
+    environment:
+      NUXT_ENV_API_HOST: backend/api
+      NITRO_PORT: 7000
+    networks:
+      - mynetwork
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - backend
+    networks:
+      - mynetwork
