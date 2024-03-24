@@ -425,15 +425,6 @@ const docTemplate = `{
                 "id": {
                     "type": "string"
                 },
-                "is_active": {
-                    "type": "boolean"
-                },
-                "is_superuser": {
-                    "type": "boolean"
-                },
-                "is_verified": {
-                    "type": "boolean"
-                },
                 "last_name": {
                     "type": "string"
                 }
@@ -453,9 +444,6 @@ const docTemplate = `{
         "users.UserRegisterData": {
             "type": "object",
             "properties": {
-                "_": {
-                    "type": "boolean"
-                },
                 "email": {
                     "type": "string"
                 },

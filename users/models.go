@@ -27,9 +27,9 @@ type User struct {
 	FirstName   string `json:"first_name,omitempty" db:"first_name"`
 	LastName    string `json:"last_name,omitempty" db:"last_name"`
 	Email       string `json:"email,omitempty" db:"email"`
-	IsActive    bool   `json:"is_active,omitempty" db:"is_active"`
-	IsSuperuser bool   `json:"is_superuser,omitempty" db:"is_superuser"`
-	IsVerified  bool   `json:"is_verified,omitempty" db:"is_verified"`
+	IsActive    bool   `json:"-" db:"is_active"`
+	IsSuperuser bool   `json:"-" db:"is_superuser"`
+	IsVerified  bool   `json:"-" db:"is_verified"`
 	Password    string `json:"-" db:"hashed_password"`
 }
 
@@ -38,7 +38,7 @@ type UserRegisterData struct {
 	FirstName string `json:"first_name,omitempty"`
 	LastName  string `json:"last_name,omitempty"`
 	Password  string `json:"password,omitempty"`
-	IsActive  bool   `json:"_" db:"is_active"`
+	IsActive  bool   `json:"-" db:"is_active"`
 }
 
 func (d *UserRegisterData) validateEmail() error {

@@ -26,7 +26,7 @@ type UserPage struct {
 //	@Router		/users [post]
 func (ctrl *Controller) Signup(c *gin.Context) {
 	var userData UserRegisterData
-	err := c.ShouldBindJSON(userData)
+	err := c.ShouldBindJSON(&userData)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"detail": err.Error()})
 		return

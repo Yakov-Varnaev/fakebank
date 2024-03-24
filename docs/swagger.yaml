@@ -51,12 +51,6 @@ definitions:
         type: string
       id:
         type: string
-      is_active:
-        type: boolean
-      is_superuser:
-        type: boolean
-      is_verified:
-        type: boolean
       last_name:
         type: string
     type: object
@@ -69,8 +63,6 @@ definitions:
     type: object
   users.UserRegisterData:
     properties:
-      _:
-        type: boolean
       email:
         type: string
       first_name:
