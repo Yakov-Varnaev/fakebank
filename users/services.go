@@ -87,6 +87,9 @@ func (filters *Filters) FromContext(c *gin.Context) {
 }
 
 func (filters *Filters) FilterFunc(query *goqu.SelectDataset) *goqu.SelectDataset {
+	if filters == nil {
+		return query
+	}
 	if filters.Query != "" {
 		query = query.Where(goqu.Or(
 			goqu.C("email").ILike(fmt.Sprintf("%%%s%%", filters.Query)),
@@ -100,16 +103,29 @@ func (filters *Filters) FilterFunc(query *goqu.SelectDataset) *goqu.SelectDatase
 
 type ListingService struct {
 	Pagination *pagination.Params
-	Query      *Filters
+	Filters    *Filters
 	db         *UserDB
 }
 
 func (service *ListingService) FromContext(c *gin.Context) error {
 	var filters Filters
+	var err error
 	filters.FromContext(c)
+	service.Filters = &filters
+	service.Pagination, err = pagination.FromContext(c)
+	if err != nil {
+		return &httpErrors.HTTPError{Code: http.StatusBadRequest, Message: err.Error()}
+	}
 	return nil
 }
 
+func (service *ListingService) FilterFunc(query *goqu.SelectDataset) *goqu.SelectDataset {
+	if service.Filters != nil {
+		query = service.Filters.FilterFunc(query)
+	}
+	return query
+}
+
 func (service ListingService) Act() (*pagination.Page[*User], error) {
-	return db.List[*User]("users", service.Pagination, service.Query.FilterFunc)
+	return db.List[*User]("users", service.Pagination, service.FilterFunc)
 }

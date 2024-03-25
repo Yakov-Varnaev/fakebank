@@ -49,7 +49,7 @@ func List[ReturnData DBObject](
 	paginationParams *pagination.Params,
 	filterFunc QueryProcessFunc,
 ) (*pagination.Page[ReturnData], error) {
-	var result []ReturnData
+	result := []ReturnData{}
 	query := db.From(table)
 	query = filterFunc(query)
 	total, err := query.Count()
