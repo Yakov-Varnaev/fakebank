@@ -34,11 +34,13 @@ type User struct {
 }
 
 type UserRegisterData struct {
-	Email     string `json:"email,omitempty"`
-	FirstName string `json:"first_name,omitempty"`
-	LastName  string `json:"last_name,omitempty"`
-	Password  string `json:"password,omitempty"`
-	IsActive  bool   `json:"-" db:"is_active"`
+	Email       string `json:"email,omitempty" db:"email"`
+	FirstName   string `json:"first_name,omitempty" db:"first_name"`
+	LastName    string `json:"last_name,omitempty" db:"last_name"`
+	Password    string `json:"password,omitempty" db:"hashed_password"`
+	IsActive    bool   `json:"-," db:"is_active"`
+	IsSuperuser bool   `json:"-" db:"is_superuser"`
+	IsVerified  bool   `json:"-" db:"is_verified"`
 }
 
 func (d *UserRegisterData) validateEmail() error {
@@ -108,20 +110,16 @@ func (d *UserLoginData) Validate() error {
 }
 
 func (d *UserLoginData) Authenticate() (*User, error) {
-	var user User
-	err := db.GetDB().QueryRow(
-		`SELECT id, email, first_name, last_name, hashed_password, is_active, is_superuser, is_verified FROM users WHERE email = LOWER($1)`,
-		d.Email,
-	).Scan(&user.ID, &user.Email, &user.FirstName, &user.LastName, &user.Password, &user.IsActive, &user.IsSuperuser, &user.IsVerified)
-
+	user, err := db.GetByField[User]("users", "email", d.Email)
 	if err == sql.ErrNoRows {
 		return nil, fmt.Errorf("User not found")
 	}
-
+	fmt.Println("User", user)
+	fmt.Println("Password", user.Password)
 	err = VerifyPassword(user.Password, d.Password)
 	if err != nil {
 		return nil, fmt.Errorf("Invalid password")
 	}
 
-	return &user, nil
+	return user, nil
 }

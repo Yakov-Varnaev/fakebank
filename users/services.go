@@ -35,6 +35,14 @@ func (service *SignupSerivce) Signup() (*User, error) {
 		return nil, &httpErrors.HTTPError{Code: http.StatusBadRequest, Message: err.Error()}
 	}
 
+	service.Data.IsActive = true
+	service.Data.IsVerified = false
+	service.Data.IsSuperuser = false
+	hashedPassword, err := HashPassword(service.Data.Password)
+	if err != nil {
+		return nil, err
+	}
+	service.Data.Password = hashedPassword
 	user, err := service.db.Create(service.Data)
 	if err != nil {
 		return nil, &httpErrors.HTTPError{Code: http.StatusInternalServerError, Message: err.Error()}

@@ -15,7 +15,7 @@ var db *goqu.Database
 
 func Init() {
 	// TODO: move to env
-	connStr := "postgres://fakebank:fakebank@localhost:5432/test?sslmode=disable"
+	connStr := "postgres://fakebank:fakebank@localhost:5432/fakebank?sslmode=disable"
 	dialect := goqu.Dialect("postgres")
 	pgdb, err := sql.Open("postgres", connStr)
 	db = dialect.DB(pgdb)
@@ -65,13 +65,17 @@ func List[ReturnData DBObject](
 }
 
 func GetByID[ReturnData DBObject](table string, id string) (*ReturnData, error) {
+	return GetByField[ReturnData](table, "id", id)
+}
+
+func GetByField[ReturnData DBObject](table string, field string, value string) (*ReturnData, error) {
 	var result ReturnData
-	found, err := db.From(table).Where(goqu.C("id").Eq(id)).ScanStruct(&result)
+	found, err := db.From(table).Where(goqu.C(field).Eq(value)).ScanStruct(&result)
 	if err != nil {
 		return nil, err
 	}
 	if !found {
-		return nil, nil
+		return nil, sql.ErrNoRows
 	}
 	return &result, nil
 }

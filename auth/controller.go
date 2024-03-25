@@ -34,6 +34,7 @@ func (ctrl *Controller) Signin(c *gin.Context) {
 	if err != nil {
 		err := httpErrors.GetHTTPError(err)
 		c.AbortWithStatusJSON(err.Code, gin.H{"detail": err.Error()})
+		return
 	}
 
 	c.SetCookie(config.AUTH_COOKIE_NAME, token, config.TOKEN_LIFETIME, "/", "localhost", false, true)

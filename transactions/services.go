@@ -8,7 +8,6 @@ import (
 	"github.com/Yakov-Varnaev/fakebank/db"
 	"github.com/Yakov-Varnaev/fakebank/users"
 	"github.com/gin-gonic/gin"
-	// "github.com/google/uuid"
 )
 
 type CreateService struct {
