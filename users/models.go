@@ -114,8 +114,6 @@ func (d *UserLoginData) Authenticate() (*User, error) {
 	if err == sql.ErrNoRows {
 		return nil, fmt.Errorf("User not found")
 	}
-	fmt.Println("User", user)
-	fmt.Println("Password", user.Password)
 	err = VerifyPassword(user.Password, d.Password)
 	if err != nil {
 		return nil, fmt.Errorf("Invalid password")
