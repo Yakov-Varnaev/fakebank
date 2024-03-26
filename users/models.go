@@ -110,7 +110,7 @@ func (d *UserLoginData) Validate() error {
 }
 
 func (d *UserLoginData) Authenticate() (*User, error) {
-	user, err := db.GetByField[User]("users", "email", d.Email)
+	user, err := db.GetByField[User]("users", "email", d.Email, nil)
 	if err == sql.ErrNoRows {
 		return nil, fmt.Errorf("User not found")
 	}

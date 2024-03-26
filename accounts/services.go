@@ -59,14 +59,18 @@ func (filters *Filters) FromContext(c *gin.Context) error {
 	return nil
 }
 
-func (filters *Filters) FilterFunc(query *goqu.SelectDataset) *goqu.SelectDataset {
-	if filters.UserID != "" {
-		query = query.Where(goqu.C("user_id").Eq(filters.UserID))
+func (filter *Filters) Process(query *goqu.SelectDataset) *goqu.SelectDataset {
+	if filter == nil {
+		return query
 	}
 
-	if filters.Query != "" {
+	if filter.UserID != "" {
+		query = query.Where(goqu.C("user_id").Eq(filter.UserID))
+	}
+
+	if filter.Query != "" {
 		query = query.Where(goqu.Or(
-			goqu.C("name").ILike(fmt.Sprintf("%%%s%%", filters.Query)),
+			goqu.C("name").ILike(fmt.Sprintf("%%%s%%", filter.Query)),
 		))
 	}
 	return query
@@ -94,7 +98,7 @@ func (service *ListService) FromContext(c *gin.Context) error {
 }
 
 func (service *ListService) Act() (*pagination.Page[Account], error) {
-	page, err := db.List[Account]("account", service.PaginationParms, service.Filters.FilterFunc)
+	page, err := db.List[Account]("account", service.PaginationParms, service.Filters)
 	if err != nil {
 		return nil, err
 	}
@@ -126,7 +130,7 @@ func (service *UpdateService) FromContext(c *gin.Context) error {
 }
 
 func (service *UpdateService) Act() (*Account, error) {
-	account, err := db.GetByID[Account]("account", service.ID)
+	account, err := db.GetByID[Account]("account", service.ID, nil)
 	if err != nil {
 		return nil, err
 	}

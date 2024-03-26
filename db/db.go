@@ -30,6 +30,10 @@ func GetDB() *goqu.Database {
 
 type DBObject interface{}
 
+type QueryProcessor interface {
+	Process(query *goqu.SelectDataset) *goqu.SelectDataset
+}
+
 func Create[CreateData DBObject, ReturnData any](table string, data CreateData) (*ReturnData, error) {
 	var result ReturnData
 	query := db.Insert(table).Rows(data).Returning(&result)
@@ -47,11 +51,13 @@ type QueryProcessFunc func(query *goqu.SelectDataset) *goqu.SelectDataset
 func List[ReturnData DBObject](
 	table string,
 	paginationParams *pagination.Params,
-	filterFunc QueryProcessFunc,
+	queryProcessor QueryProcessor,
 ) (*pagination.Page[ReturnData], error) {
 	result := []ReturnData{}
 	query := db.From(table)
-	query = filterFunc(query)
+	if queryProcessor != nil {
+		query = queryProcessor.Process(query)
+	}
 	total, err := query.Count()
 	if err != nil {
 		return nil, err
@@ -64,13 +70,17 @@ func List[ReturnData DBObject](
 	return &pagination.Page[ReturnData]{Data: result, Total: total}, nil
 }
 
-func GetByID[ReturnData DBObject](table string, id string) (*ReturnData, error) {
-	return GetByField[ReturnData](table, "id", id)
+func GetByID[ReturnData DBObject](table string, id string, queryProcessor QueryProcessor) (*ReturnData, error) {
+	return GetByField[ReturnData](table, "id", id, queryProcessor)
 }
 
-func GetByField[ReturnData DBObject](table string, field string, value string) (*ReturnData, error) {
+func GetByField[ReturnData DBObject](table string, field string, value string, queryProcessor QueryProcessor) (*ReturnData, error) {
 	var result ReturnData
-	found, err := db.From(table).Where(goqu.C(field).Eq(value)).ScanStruct(&result)
+	query := db.From(table).Where(goqu.C(field).Eq(value))
+	if queryProcessor != nil {
+		query = queryProcessor.Process(query)
+	}
+	found, err := query.ScanStruct(&result)
 	if err != nil {
 		return nil, err
 	}

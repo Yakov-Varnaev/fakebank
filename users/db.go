@@ -10,7 +10,7 @@ const userTable = "users"
 type UserDB struct{}
 
 func (userDb *UserDB) GetUserByID(id string) (*User, error) {
-	return db.GetByID[User](userTable, id)
+	return db.GetByID[User](userTable, id, nil)
 }
 
 func (userDb *UserDB) Create(userData *UserRegisterData) (*User, error) {
@@ -21,7 +21,7 @@ func (userDb *UserDB) List(paginationParams *pagination.Params, filters *Filters
 	page, err := db.List[*User](
 		userTable,
 		paginationParams,
-		filters.FilterFunc,
+		filters,
 	)
 	if err != nil {
 		return nil, err

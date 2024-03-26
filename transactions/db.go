@@ -1,8 +1,7 @@
 package transactions
 
-// import pagination "github.com/Yakov-Varnaev/fakebank/utils"
+import "github.com/doug-martin/goqu/v9"
 
-func Create(data *TransactionCreateData) error {
-	// ...
-	return nil
+func Foo(query *goqu.SelectDataset) *goqu.SelectDataset {
+	return query
 }

@@ -86,19 +86,16 @@ func (filters *Filters) FromContext(c *gin.Context) {
 	filters.Query = c.Query("query")
 }
 
-func (filters *Filters) FilterFunc(query *goqu.SelectDataset) *goqu.SelectDataset {
-	if filters == nil {
+func (filters *Filters) Process(query *goqu.SelectDataset) *goqu.SelectDataset {
+	if filters == nil || filters.Query == "" {
 		return query
 	}
-	if filters.Query != "" {
-		query = query.Where(goqu.Or(
-			goqu.C("email").ILike(fmt.Sprintf("%%%s%%", filters.Query)),
-			goqu.L("CONCAT(first_name, ' ', last_name) ILIKE ?", fmt.Sprintf("%%%s%%", filters.Query)),
-			goqu.L("CONCAT(last_name, ' ', first_name) ILIKE ?", fmt.Sprintf("%%%s%%", filters.Query)),
-		))
-	}
 
-	return query
+	return query.Where(goqu.Or(
+		goqu.C("email").ILike(fmt.Sprintf("%%%s%%", filters.Query)),
+		goqu.L("CONCAT(first_name, ' ', last_name) ILIKE ?", fmt.Sprintf("%%%s%%", filters.Query)),
+		goqu.L("CONCAT(last_name, ' ', first_name) ILIKE ?", fmt.Sprintf("%%%s%%", filters.Query)),
+	))
 }
 
 type ListingService struct {
@@ -119,13 +116,6 @@ func (service *ListingService) FromContext(c *gin.Context) error {
 	return nil
 }
 
-func (service *ListingService) FilterFunc(query *goqu.SelectDataset) *goqu.SelectDataset {
-	if service.Filters != nil {
-		query = service.Filters.FilterFunc(query)
-	}
-	return query
-}
-
 func (service ListingService) Act() (*pagination.Page[*User], error) {
-	return db.List[*User]("users", service.Pagination, service.FilterFunc)
+	return db.List[*User]("users", service.Pagination, service.Filters)
 }
